@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.application.mapper.AppPersonnelMapper">
+	<resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.Personnel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="agent_code" jdbcType="VARCHAR" property="agentCode" />
+    <result column="personnel_TYPE" jdbcType="CHAR" property="personnelType" />
+    <result column="personnel_STATUS" jdbcType="CHAR" property="personnelStatus" />
+    <result column="identity_type" jdbcType="CHAR" property="identityType" />
+    <result column="IDENTITY_CODE" jdbcType="VARCHAR" property="identityCode" />
+    <result column="CTFEXPIRE_DATE" jdbcType="DATE" property="ctfexpireDate" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+     <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="SEX" jdbcType="CHAR" property="sex" />
+    <result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
+    <result column="Nation" jdbcType="VARCHAR" property="nation" />
+    <result column="Political" jdbcType="VARCHAR" property="political" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="CELLPHONE" jdbcType="VARCHAR" property="cellphone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="IS_PHONE_VALIDATE" jdbcType="CHAR" property="isPhoneValidate" />
+    <result column="is_insurance_company" jdbcType="INTEGER" property="isInsuranceCompany" />
+    <result column="Original_company" jdbcType="VARCHAR" property="originalCompany" />
+    <result column="is_quit" jdbcType="INTEGER" property="isQuit" />
+    <result column="is_over_six" jdbcType="CHAR" property="isOverSix" />
+    <result column="native_work_time" jdbcType="VARCHAR" property="nativeWorkTime" />
+    <result column="check_result" jdbcType="CHAR" property="checkResult" />
+    <result column="is_check" jdbcType="CHAR" property="isCheck" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="trial_result" jdbcType="VARCHAR" property="trialResult" />
+    <result column="departure_date" jdbcType="DATE" property="departureDate" />
+     <result column="cheak_option" jdbcType="CHAR" property="cheakOption" />
+     <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+     <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+     <result column="account_id" jdbcType="BIGINT" property="accountId" />
+     <result column="contact_qq" jdbcType="VARCHAR" property="contactQQ" />
+     <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+     <result column="protocol_position" jdbcType="VARCHAR" property="protocolPosition" />
+     <result column="confirm_position" jdbcType="VARCHAR" property="confirmPosition" />
+     <result column="work_introduction" jdbcType="VARCHAR" property="workIntroduction" />
+     <result column="once_name" jdbcType="VARCHAR" property="onceName" />
+	 <result column="contact_address" jdbcType="VARCHAR" property="contactAddress" />
+	 <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+	 <result column="family_addr_detail" jdbcType="VARCHAR" property="familyAddrDetail" />
+	 <result column="is_mdrt" jdbcType="VARCHAR" property="isMdrt" />
+	 <result column="china_citic_bank" jdbcType="VARCHAR" property="chinaCiticBank" />
+	 <result column="bank_branch" jdbcType="VARCHAR" property="bankBranch" />
+	 <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+	 <result column="domicile_place" jdbcType="VARCHAR" property="domicilePlace" />
+     <result column="job_certificate" jdbcType="VARCHAR" property="jobCertificate" />
+     <result column="total_portfolio" jdbcType="INTEGER" property="totalPortfolio" />
+     <result column="max_coacher" jdbcType="INTEGER" property="maxCoacher" />
+     <result column="certificate1" jdbcType="VARCHAR" property="certificate1" />
+     <result column="certificate2" jdbcType="VARCHAR" property="certificate2" />
+     <result column="certificate3" jdbcType="VARCHAR" property="certificate3" />
+     <result column="certificate4" jdbcType="VARCHAR" property="certificate4" />
+     <result column="certificate_other" jdbcType="VARCHAR" property="certificateOther" />
+		<result column="total_work_time" jdbcType="VARCHAR" property="totalWorkTime" />
+		<result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+		<result column="is_close" jdbcType="INTEGER" property="isClose" />
+
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, agent_code, personnel_TYPE, personnel_STATUS, identity_type, IDENTITY_CODE, CTFEXPIRE_DATE, 
+    NAME,age, SEX, BIRTHDAY, Nation, Political, source, channel, EDUCATION, CELLPHONE, EMAIL, 
+    IS_PHONE_VALIDATE, is_insurance_company, Original_company, is_quit, is_over_six, native_work_time,check_result,
+    is_check, create_time, create_user, update_time, update_user,country,trial_result,departure_date,org_id,account_id,contact_qq,
+    wechat,protocol_position,confirm_position,work_introduction,once_name,contact_address,postcode,
+    telephone,family_addr_detail,is_mdrt,domicile_place,job_certificate,certificate1,certificate2,certificate3,certificate4,certificate_other,
+    total_portfolio,max_coacher,china_citic_bank,bank_branch,bank_name,org_name,max_coacher,total_portfolio,total_work_time,create_user_name,is_close
+  </sql>
+  
+  <select id="getAgentPersonnelCount" parameterType="String" resultType="Integer">
+  	SELECT
+	count(1)
+	FROM
+		er_personnel
+	WHERE
+		create_user = #{id}
+	AND personnel_status != '1'
+	AND personnel_status != '-1'
+
+	and (is_close != 1
+	 or is_close is null)
+
+	AND (
+		check_result != "1"
+		OR check_result IS NULL
+	)
+  </select>
+  
+  <select id="getAgentPersonnelCountByViewer" parameterType="String" resultType="Integer">
+  	select 
+  		count(1) from er_personnel p
+  		left join er_interview_action i 
+  		on p.id = i.personnel_id and p.personnel_status = i.flow_item_id  
+  	where
+
+	(p.is_close != 1 or p.is_close is null)
+	AND processing_person = #{id}
+  	and p.personnel_status IN ('2', '3', '4', '5')
+  </select>
+
+   	<select id="getAgentPersonnel" parameterType="com.fulan.api.personnel.vo.FilterVo" 
+   			resultType="com.fulan.api.personnel.vo.AgentPersonnelInfo">
+		select * from(
+			select 
+				p.id,
+				p.name name, 
+				p.personnel_status personnelStatus,
+				p.check_result checkResult,
+				p.sex sex,
+
+				p.is_close isClose,
+				p.cellphone cellphone, 
+				case  when ifnull(confirm_position, '') = '' then protocol_position else confirm_position  end position,
+				f.flow_item_name flow,
+				case when p.personnel_status="7" and p.check_result='1'  then "已签约"  else   (case IFNULL(i.processing_status, '') when '' then '进行中' when '2' then '未通过' else '通过' end) end as status
+			from er_personnel p 
+			left join er_interview_action i on p.id = i.personnel_id and ISNULL(i.end_time)
+			left join er_flow_item f on i.flow_item_id = f.id
+			where p.create_user = #{accountId} and p.personnel_status != "1"
+		<if test="startTime != null">
+			and p.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and p.create_time &lt;= #{endTime}
+		</if>
+		order by p.create_time desc
+		) a where 1 = 1 
+		<if test="keyName != null and  keyName !=''">
+			and (name like  concat('%', #{keyName,jdbcType=VARCHAR}, '%')
+				or cellphone like concat('%', #{keyName,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="name != null and  name !=''">
+			and name like  concat('%', #{name,jdbcType=VARCHAR}, '%')
+		</if>
+		<if test="phone != null and  phone !=''">
+			and cellphone like  concat('%', #{phone,jdbcType=VARCHAR}, '%')
+		</if>
+		<if test="status != null">
+			<foreach collection="status" item="item" open="and status in(" close=")" separator=",">  
+            	#{item}  
+ 			</foreach> 
+		</if>
+		<if test="position != null">
+			<foreach collection="position" item="item" open="and position in(" close=")" separator=",">  
+            	#{item}  
+ 			</foreach> 
+		</if>
+  	</select>
+  
+  <select id="getApprovedAgentPersonnelByViewer" parameterType="com.fulan.api.personnel.domain.Personnel" 
+  		resultType="com.fulan.api.personnel.vo.AgentPersonnelInfo">
+		select * from(
+			select 
+				distinct  p.id,
+	  			p.is_close isClose,
+				p.name name, 
+				p.sex sex,
+				p.personnel_status personnelStatus,
+				p.check_result checkResult,
+				p.cellphone cellphone, 
+				case  when ifnull(confirm_position, '') = '' then protocol_position else confirm_position  end position,
+				eia.flow_item_id flowId,
+				f.flow_item_name flow,
+				case when p.personnel_status="7" and p.check_result='1'  then "已签约"  else   (case ifnull(eia.processing_status, '') when '' then '进行中' when '2' then '未通过' else '通过' end) end as status,
+	  p.create_time as create_time
+			from er_personnel p
+			left join er_interview_action eia on p.id = eia.personnel_id and ISNULL(eia.end_time)
+			left join er_interview_action i on p.id = i.personnel_id  and i.processing_status is not null
+			left join er_flow_item f on eia.flow_item_id = f.id
+			where 
+			i.processing_person = #{accountId,jdbcType=BIGINT}
+	  <if test="startTime != null">
+		  and p.create_time &gt;= #{startTime}
+	  </if>
+	  <if test="endTime != null">
+		  and p.create_time &lt;= #{endTime}
+	  </if>
+-- 	  Group By p.id
+	  order by p.create_time desc
+		) a where 1 = 1 
+		<if test="keyName != null and  keyName !=''">
+			and (name like  concat('%', #{keyName,jdbcType=VARCHAR}, '%')
+				or cellphone like concat('%', #{keyName,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="name != null and  name !=''">
+			and name like  concat('%', #{name,jdbcType=VARCHAR}, '%')
+		</if>
+		<if test="phone != null and  phone !=''">
+			and cellphone like  concat('%', #{phone,jdbcType=VARCHAR}, '%')
+		</if>
+		<if test="status != null">
+			<foreach collection="status" item="item" open="and status in(" close=")" separator=",">  
+            	#{item}  
+ 			</foreach> 
+		</if>
+		<if test="position != null">
+			<foreach collection="position" item="item" open="and position in(" close=")" separator=",">  
+            	#{item}  
+ 			</foreach> 
+		</if>
+  	</select>
+  	
+  	<select id="getAgentPersonnelByViewer" parameterType="com.fulan.api.personnel.domain.Personnel" 
+  		resultType="com.fulan.api.personnel.vo.AgentPersonnelInfo">
+		select * from(
+			select 
+				p.id,
+				p.name name, 
+				p.sex sex,
+				p.personnel_status personnelStatus,
+				p.check_result checkResult,
+				p.cellphone cellphone,
+
+				p.is_close isClose,
+				case  when ifnull(confirm_position, '') = '' then protocol_position else confirm_position  end position,
+				i.flow_item_id flowId,
+				f.flow_item_name flow,
+				case when p.personnel_status="7" and p.check_result='1'  then "已签约"  else   (case ifnull(i.processing_status, '') when '' then '进行中' when '2' then '未通过' else '通过' end) end as status
+			from er_personnel p 
+			left join er_interview_action i on p.id = i.personnel_id and ISNULL(i.end_time)
+			left join er_flow_item f on i.flow_item_id = f.id
+			where p.personnel_status in ('2', '3', '4', '5') and
+			i.processing_person = #{accountId,jdbcType=BIGINT} and 
+			ISNULL(i.processing_status)
+		<if test="startTime != null ">
+			and p.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime != null ">
+			and p.create_time &lt;= #{endTime}
+		</if>
+		order by p.create_time desc
+		) a where 1 = 1 
+		<if test="keyName != null and  keyName !=''">
+			and (name like  concat('%', #{keyName,jdbcType=VARCHAR}, '%')
+				or cellphone like concat('%', #{keyName,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="name != null and  name !=''">
+			and name like  concat('%', #{name,jdbcType=VARCHAR}, '%')
+		</if>
+		<if test="phone != null and  phone !=''">
+			and cellphone like  concat('%', #{phone,jdbcType=VARCHAR}, '%')
+		</if>
+		<if test="status != null">
+			<foreach collection="status" item="item" open="and status in(" close=")" separator=",">  
+            	#{item}  
+ 			</foreach> 
+		</if>
+		<if test="position != null">
+			<foreach collection="position" item="item" open="and position in(" close=")" separator=",">  
+            	#{item}  
+ 			</foreach> 
+		</if>
+  	</select>
+  	
+  	<!-- 更新人才主表流程信息 -->
+  	<update id="updatePersonnelInfo" parameterType="com.fulan.api.personnel.vo.EnterVo">
+	    update er_personnel
+	    <set>
+	    	<if test="nextStatus != null and  nextStatus !=''">
+				personnel_status = #{nextStatus},
+			</if>
+			<if test="protocolPosition != null and  protocolPosition !=''">
+				protocol_position = #{protocolPosition, jdbcType=VARCHAR},
+			</if>
+			<if test="confirmPosition != null and  confirmPosition !=''">
+				confirm_position = #{confirmPosition, jdbcType=VARCHAR},
+			</if>
+			update_time = now()
+	    </set>
+	    where id = #{personnelId,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<update id="updateInterviewInfo" parameterType="com.fulan.api.personnel.vo.EnterVo">
+	    update er_interview_action
+	    <set>
+	    	<if test="result != null and result !=''">
+				processing_status = #{result},
+			</if>
+			<if test="comment != null and  comment !=''">
+				processing_desc = #{comment, jdbcType=VARCHAR},
+			</if>
+			<if test="'1'.toString() == result">
+				end_time = now(),
+			</if>
+	    </set>
+	    where 
+	    personnel_id = #{personnelId,jdbcType=VARCHAR}
+	    and flow_item_id = #{currentStatus}
+  	</update>
+  	
+  	<insert id="insertInterviceInfo" parameterType="com.fulan.api.personnel.vo.EnterVo">
+	    insert into er_interview_action
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	    	id,
+	      	personnel_id,
+	      	flow_item_id,
+	      	start_time,
+	      	processing_person,
+	      	processing_name,
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	    	#{tagId},
+	      	#{personnelId, jdbcType=VARCHAR},
+	      	#{nextStatus},
+	      	now(),
+	      	#{nextProPerson, jdbcType=VARCHAR},
+	      	#{nextProName, jdbcType=VARCHAR},
+	    </trim>
+  	</insert>
+  	
+  	<update id="updatePersonnelBaseInfo" parameterType="com.fulan.api.personnel.domain.Personnel">
+	    update er_personnel
+	    <set>
+	      <if test="agentCode != null">
+	        agent_code = #{agentCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="personnelType != null">
+	        personnel_TYPE = #{personnelType,jdbcType=CHAR},
+	      </if>
+	      <if test="personnelStatus != null">
+	        personnel_STATUS = #{personnelStatus,jdbcType=CHAR},
+	      </if>
+	      <if test="identityType != null">
+	        IDENTITY_TYPE = #{identityType,jdbcType=CHAR},
+	      </if>
+		  
+	      <if test="identityCode != null">
+	        IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ctfexpireDate != null">
+	        CTFEXPIRE_DATE = #{ctfexpireDate,jdbcType=DATE},
+	      </if>
+	      <if test="name != null">
+	        NAME = #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="sex != null">
+	        SEX = #{sex,jdbcType=CHAR},
+	      </if>
+	      <if test="birthday != null">
+	        BIRTHDAY = #{birthday,jdbcType=DATE},
+	      </if>
+	      <if test="nation != null">
+	        Nation = #{nation,jdbcType=VARCHAR},
+	      </if>
+	      <if test="political != null">
+	        Political = #{political,jdbcType=VARCHAR},
+	      </if>
+	      <if test="source != null">
+	        source = #{source,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channel != null">
+	        channel = #{channel,jdbcType=VARCHAR},
+	      </if>
+	      <if test="education != null">
+	        EDUCATION = #{education,jdbcType=VARCHAR},
+	      </if>
+	      <if test="cellphone != null">
+	        CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="email != null">
+	        EMAIL = #{email,jdbcType=VARCHAR},
+	      </if>
+	      <if test="isPhoneValidate != null">
+	        IS_PHONE_VALIDATE = #{isPhoneValidate,jdbcType=CHAR},
+	      </if>
+	      <if test="isInsuranceCompany != null">
+	        is_insurance_company = #{isInsuranceCompany,jdbcType=INTEGER},
+	      </if>
+	      <if test="originalCompany != null">
+	        Original_company = #{originalCompany,jdbcType=VARCHAR},
+	      </if>
+	      <if test="isQuit != null">
+	        is_quit = #{isQuit,jdbcType=INTEGER},
+	      </if>
+	      <if test="isOverSix != null">
+	        is_over_six = #{isOverSix,jdbcType=CHAR},
+	      </if>
+	      <if test="nativeWorkTime != null">
+	        native_work_time = #{nativeWorkTime,jdbcType=VARCHAR},
+	      </if>
+	      <if test="checkResult != null">
+	        check_result = #{checkResult,jdbcType=CHAR},
+	      </if>
+	      <if test="isCheck != null">
+	        is_check = #{isCheck,jdbcType=CHAR},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime,jdbcType=DATE},
+	      </if>
+	      <if test="createUser != null">
+	        create_user = #{createUser,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateTime != null">
+	        update_time = #{updateTime,jdbcType=DATE},
+	      </if>
+	      <if test="updateUser != null">
+	        update_user = #{updateUser,jdbcType=BIGINT},
+	      </if>
+	      <if test="country != null">
+	        country = #{country,jdbcType=VARCHAR},
+	      </if>
+	       <if test="cheakOption != null">
+	        cheak_option = #{cheakOption,jdbcType=VARCHAR},
+	      </if>
+	       <if test="orgId != null">
+	        org_id = #{orgId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="accountId != null">
+	         account_id = #{accountId,jdbcType=BIGINT},
+	      </if>
+	       <if test="wechat != null">
+	        wechat = #{wechat,jdbcType=VARCHAR},
+	      </if> 
+	      <if test="contactQQ != null">
+	        contact_qq = #{contactQQ,jdbcType=VARCHAR},
+	      </if>
+	      <if test="protocolPosition != null">
+	        protocol_Position = #{protocolPosition,jdbcType=VARCHAR},
+	      </if>
+	      <if test="familyCity != null and familyCity != ''">
+	        family_city = #{familyCity,jdbcType=VARCHAR},
+	      </if>
+	      <if test="onceName != null and onceName != ''">
+	        once_name = #{onceName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="familyAddrDetail != null">
+	        family_addr_detail = #{familyAddrDetail,jdbcType=VARCHAR},
+	      </if>
+	      <if test="contactAddress != null">
+	        contact_address = #{contactAddress,jdbcType=VARCHAR},
+	      </if>
+	      <if test="postcode != null">
+	        postcode = #{postcode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="telephone != null">
+	        telephone = #{telephone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="isMdrt != null">
+	        is_mdrt = #{isMdrt,jdbcType=VARCHAR},
+	      </if>
+	       <if test="domicilePlace != null">
+	        domicile_place = #{domicilePlace,jdbcType=VARCHAR},
+	      </if>
+	       <if test="jobCertificate != null">
+	        job_certificate = #{jobCertificate,jdbcType=VARCHAR},
+	      </if>
+	       <if test="totalPortfolio != null">
+	        total_portfolio = #{totalPortfolio,jdbcType=INTEGER},
+	      </if>
+	       <if test="maxCoacher != null">
+	        max_coacher = #{maxCoacher,jdbcType=INTEGER},
+	      </if>
+	      
+	       <if test="certificate1 != null">
+	        certificate1 = #{certificate1,jdbcType=VARCHAR},
+	      </if>
+	       <if test="certificate2 != null">
+	        certificate2 = #{certificate2,jdbcType=VARCHAR},
+	      </if>
+	       <if test="certificate3 != null">
+	        certificate3 = #{certificate3,jdbcType=VARCHAR},
+	      </if>
+	       <if test="certificate4 != null">
+	        certificate4 = #{certificate4,jdbcType=VARCHAR},
+	      </if>
+	       <if test="certificateOther != null">
+	        certificate_other = #{certificateOther,jdbcType=VARCHAR},
+	      </if>
+	      <if test="chinaCiticBank != null">
+	        china_citic_bank = #{chinaCiticBank,jdbcType=VARCHAR},
+	      </if>
+	       <if test="bankBranch != null">
+	        bank_branch = #{bankBranch,jdbcType=VARCHAR},
+	      </if>
+	      <if test="bankName != null">
+	        bank_name = #{bankName,jdbcType=VARCHAR},
+	      </if>
+			<if test="totalWorkTime != null">
+				total_work_time = #{totalWorkTime,jdbcType=VARCHAR},
+			</if>
+	    </set>
+	    where id = #{id,jdbcType=BIGINT}
+ 	</update>
+ 	
+ 	
+ 	<select id="getPersonnelInfoForViewer" parameterType="String" 
+  		resultType="com.fulan.api.personnel.vo.AgentPersonnelInfo">
+		select 
+			p.id,
+			p.name name, 
+			p.sex sex,
+			p.contact_qq contactQq,
+			p.wechat wechat,
+			p.cellphone cellphone,
+			p.email email,
+			p.work_introduction workExperience,
+			p.create_user createUser,
+			p1.name createUserName,
+			p.protocol_position protocolPosition,
+			p.confirm_position confirmPosition,
+			f.flow_item_name flow,
+			p.personnel_status flowId,
+			p.total_work_time totalWorkTime,
+			p.native_work_time nativeWorkTime,
+			p.total_portfolio totalPortfolio,
+			p.max_coacher maxCoacher,
+
+			p.is_close isClose
+		from er_personnel p 
+		left join er_personnel p1 on p.create_user = p1.id
+		left join er_flow_item f on p.personnel_status = f.id
+		where p.id = #{personnelId}
+  	</select>
+  	
+  	<select id="getPersonnelBaseInfo" parameterType="String"  resultMap="BaseResultMap">
+		select 
+	    	<include refid="Base_Column_List" />
+	    from er_personnel
+	    where id = #{personnelId}
+  	</select>
+
+	<update id="clearBankInfo" parameterType="com.fulan.api.personnel.domain.Personnel">
+		update er_personnel
+		set china_citic_bank = null,
+		bank_branch = null,
+		bank_name = null
+		where id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>在线增员系统</title>
+<link rel="stylesheet" href="../../css/iconfont/iconfont.css">
+<link rel="stylesheet" href="../../css/reset.css">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/login.css">
+<script type="text/javascript">
+
+	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+		var version = parseFloat(RegExp.$1);
+		if(version>2.3){
+			var phoneScale = parseInt(window.screen.width)/1024;
+			document.write('<meta name="viewport" content="width=device-width, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+		}else{
+			document.write('<meta name="viewport" content="width=device-width, target-densitydpi=device-dpi">');
+		}
+	}else{
+		document.write('<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi">');
+	};
+	
+	function onLoad() {
+		document.addEventListener("deviceready", onDeviceReady, false);
+	}
+
+	function onDeviceReady() {
+		document.addEventListener("resume", onResume, false);
+	}
+
+	function onResume() {
+		//回到前台后  调用这里  
+		console.log("-----onResume-----");
+		try {
+			/*Cordova.cordovaComplete = true;*/
+			navigator.splashscreen.hide();
+		} catch(e) {
+			console.log("exec=============" + e.message)
+		}
+	}
+</script>
+</head>
+<body onload="onLoad()">
+	<!-- S Wrapper -->
+	<div class="login-wrapper">
+		<!-- <div class="header header-logo">
+			<div class="logo">
+				<img src="../../images/logo_white@2x.png" alt="">在线增员系统
+			</div>
+		</div> -->
+		<form id="login-form">
+			<ul class="form-tab">
+				<li data-type="face" class="active">面部识别</li>
+				<li data-type="account">密码登录</li>
+			</ul>
+			<div class="face-recognition">
+				<div class="face-login">
+					<img src="../../images/login-face.png" alt="">
+				</div>
+				<p class="face-tip">面部识别     安全快捷</p>
+			</div>
+			<div class="user-password">
+				<div class="user-account">
+					<div class="icon-img">
+						<i class="icon-solid-person"></i>
+					</div>
+					<input type="text" name="user" placeholder="用户名" value="" />
+				</div>
+				<div class="user-pass">
+					<div class="icon-img">
+						<i class="icon-mima"></i>
+					</div>
+					<input type="password" name="password" placeholder="密码" value="" />
+				</div>
+				<div class="system-type">
+					<div class="ipt-select">
+						<i class="icon-arrow-full-down"></i>
+						<input type="text" class="ipt-text" placeholder="请选择系统类型" readonly>
+						<select name="sys-type">
+							<option value disabled selected>请选择系统类型</option>
+							<option value="LOCAL_SYSTEM">本地系统</option>
+							<option value="JT_SYSTEM">经纪人系统</option>
+							<option value="DMS_SYSTEM">DMS系统</option>
+							<option value="AD_SYSTEM">AD系统</option>
+						</select>
+					</div>
+				</div>
+				<div class="submit-form">
+					<button class="login-to-platform" type="button">登录</button>
+				</div>
+			</div>
+		</form>
+
+		<p class="copyright"> 复深蓝© 2017 复深蓝　版權所有　不得轉載</p>
+	</div>
+	<!-- E Wrapper -->
+	
+	<script src="../../lib/zepto.min.js"></script>
+	<script src="../../lib/zepto.md5.js"></script>
+	<script src="../../lib/zepto.touch.js"></script>
+	<script src="../../lib/common/common.js"></script>
+	<!--<script src="../../lib/cordova/cordova.js"></script>-->
+	<script src="../../utils/interface.js"></script>
+	<script src="login.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fulan.application.mapper.PersonnelInformInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.PersonnelInformInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="personnel_id" property="personnelId" jdbcType="BIGINT" />
+    <result column="personnel_inform_id" property="personnelInformId" jdbcType="BIGINT" />
+    <result column="inform_id" property="informId" jdbcType="BIGINT" />
+    <result column="inform_type" property="informType" jdbcType="VARCHAR" />
+    <result column="inform_detail" property="informDetail" jdbcType="VARCHAR" />
+    <result column="inform_option" property="informOption" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, personnel_id, personnel_inform_id, inform_id, inform_type, inform_detail, inform_option
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_personnel_inform_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from er_personnel_inform_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.api.personnel.domain.PersonnelInformInfo" >
+    insert into er_personnel_inform_info (id, personnel_id, personnel_inform_id, 
+      inform_id, inform_type, inform_detail, 
+      inform_option)
+    values (#{id,jdbcType=BIGINT}, #{personnelId,jdbcType=BIGINT}, #{personnelInformId,jdbcType=BIGINT}, 
+      #{informId,jdbcType=BIGINT}, #{informType,jdbcType=VARCHAR}, #{informDetail,jdbcType=VARCHAR}, 
+      #{informOption,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fulan.api.personnel.domain.PersonnelInformInfo" >
+    insert into er_personnel_inform_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="personnelId != null" >
+        personnel_id,
+      </if>
+      <if test="personnelInformId != null" >
+        personnel_inform_id,
+      </if>
+      <if test="informId != null" >
+        inform_id,
+      </if>
+      <if test="informType != null" >
+        inform_type,
+      </if>
+      <if test="informDetail != null" >
+        inform_detail,
+      </if>
+      <if test="informOption != null" >
+        inform_option,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="personnelId != null" >
+        #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="personnelInformId != null" >
+        #{personnelInformId,jdbcType=BIGINT},
+      </if>
+      <if test="informId != null" >
+        #{informId,jdbcType=BIGINT},
+      </if>
+      <if test="informType != null" >
+        #{informType,jdbcType=VARCHAR},
+      </if>
+      <if test="informDetail != null" >
+        #{informDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="informOption != null" >
+        #{informOption,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.personnel.domain.PersonnelInformInfo" >
+    update er_personnel_inform_info
+    <set >
+      <if test="personnelId != null" >
+        personnel_id = #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="personnelInformId != null" >
+        personnel_inform_id = #{personnelInformId,jdbcType=BIGINT},
+      </if>
+      <if test="informId != null" >
+        inform_id = #{informId,jdbcType=BIGINT},
+      </if>
+      <if test="informType != null" >
+        inform_type = #{informType,jdbcType=VARCHAR},
+      </if>
+      <if test="informDetail != null" >
+        inform_detail = #{informDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="informOption != null" >
+        inform_option = #{informOption,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.personnel.domain.PersonnelInformInfo" >
+    update er_personnel_inform_info
+    set personnel_id = #{personnelId,jdbcType=BIGINT},
+      personnel_inform_id = #{personnelInformId,jdbcType=BIGINT},
+      inform_id = #{informId,jdbcType=BIGINT},
+      inform_type = #{informType,jdbcType=VARCHAR},
+      inform_detail = #{informDetail,jdbcType=VARCHAR},
+      inform_option = #{informOption,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <resultMap id="selectByMap" type="com.fulan.api.personnel.vo.PersonnelInformVo" >
+		<collection property="personnelInform" ofType="com.fulan.api.personnel.domain.PersonnelInform" select="com.fulan.application.mapper.PersonnelInformInfoMapper.selectInformById" column="id"></collection>
+		<collection property="personnelInformInfoList" ofType="com.fulan.api.personnel.domain.PersonnelInformInfo" select="com.fulan.application.mapper.PersonnelInformInfoMapper.selectByInformId" column="id"></collection>
+	</resultMap>
+	
+	<select id="selectInformById" resultType="com.fulan.api.personnel.domain.PersonnelInform" parameterType="java.lang.Long" >
+    select 
+     id as id ,
+     personnel_id as personnelId,
+     inform_detail as informDetail
+    from er_personnel_inform
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+    <select id="selectByInformId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_personnel_inform_info
+    where personnel_inform_id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+   <select id="getInform" resultMap="selectByMap" parameterType="java.util.Map" >
+    select 
+     id
+    from er_personnel_inform
+    where personnel_id = #{personnelId,jdbcType=BIGINT}
+  </select>
+  
+  
+</mapper>

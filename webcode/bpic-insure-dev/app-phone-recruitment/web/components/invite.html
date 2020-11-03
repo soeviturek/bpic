@@ -1,0 +1,57 @@
+<style>
+    .wrapper{padding-bottom: 0}
+    .invite{padding-top:270px}
+</style>
+<div class="invite">
+    <i class="icon-share"></i>
+    <h2>招募邀请</h2>
+    <input type="hidden" value="0" name="isShare">
+    <div class="ipt-select">
+        <i class="iconfont icon-jiantouarrow483"></i>
+        <input type="text" class="ipt-text" name="job" placeholder="拟申请职级" value="" readonly>
+        <select name="protocolposition">
+            <option selected disabled>拟申请职级</option>
+            {{?it.length > 0}}
+            {{~it:value:index}}
+            <option value="{{=value.code || ''}}">{{=value.value}}</option>
+            {{~}}
+            {{?}}
+        </select>
+    </div>
+
+    <div class="panel com-info">
+        <h3>公司介绍</h3>
+        <p>上海复深蓝软件股份有限</p>
+        <p>公司，总部位于上海，是</p>
+        <p>一家不断深入保险核心业务</p>
+        <p>加速人工智能在保险场景中落地</p>
+        <p>复深蓝积极探索科技并将之与保险经纪业务融合，科技赋能保险经纪和客户体验。复深蓝为您提供多层次、全覆盖的培育体系，快速、便捷、专业化的精准服务，一站式全方位保险解决方案。</p>
+        <p>复深蓝，期待您的加入！</p>
+    </div>
+
+
+    <!-- <div class="panel input-info">
+        <h3><span>*</span>个人信息</h3>
+        <div class="name">
+            姓名<input type="text" readonly>
+        </div>
+        <div class="sex">
+            性别 <label><input type="radio" name="sex" value="M" disabled>男</label> <label><input type="radio" name="sex" value="F" disabled>女</label>
+        </div>
+        <div class="phone">
+            手机<input type="text" readonly>
+        </div>
+        <div class="city">
+            所在城市<input type="text" readonly>
+        </div>
+        <div class="wechat">
+            微信<input type="text" readonly>
+        </div>
+    </div>
+
+    <div class="panel experience">
+        <h3>同业经历</h3>
+        <textarea readonly></textarea>
+    </div>
+    <div id="submit">立刻加入</div> -->
+</div>

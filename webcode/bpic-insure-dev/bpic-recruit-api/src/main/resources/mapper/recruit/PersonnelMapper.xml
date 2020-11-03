@@ -1,0 +1,1586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.application.mapper.PersonnelMapper">
+  <resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.Personnel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="agent_code" jdbcType="VARCHAR" property="agentCode" />
+    <result column="personnel_TYPE" jdbcType="CHAR" property="personnelType" />
+    <result column="personnel_STATUS" jdbcType="CHAR" property="personnelStatus" />
+    <result column="IDENTITY_TYPE" jdbcType="CHAR" property="identityType" />
+    <result column="IDENTITY_CODE" jdbcType="VARCHAR" property="identityCode" />
+    <result column="CTFEXPIRE_DATE" jdbcType="DATE" property="ctfexpireDate" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="once_name" jdbcType="VARCHAR" property="onceName" />
+    <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="SEX" jdbcType="CHAR" property="sex" />
+    <result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
+    <result column="Nation" jdbcType="VARCHAR" property="nation" />
+    <result column="Political" jdbcType="VARCHAR" property="political" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="CELLPHONE" jdbcType="VARCHAR" property="cellphone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="IS_PHONE_VALIDATE" jdbcType="CHAR" property="isPhoneValidate" />
+    <result column="is_insurance_company" jdbcType="INTEGER" property="isInsuranceCompany" />
+    <result column="Original_company" jdbcType="VARCHAR" property="originalCompany" />
+    <result column="is_quit" jdbcType="INTEGER" property="isQuit" />
+    <result column="is_over_six" jdbcType="CHAR" property="isOverSix" />
+    <result column="native_work_time" jdbcType="VARCHAR" property="nativeWorkTime" />
+    <result column="check_result" jdbcType="CHAR" property="checkResult" />
+    <result column="is_check" jdbcType="CHAR" property="isCheck" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="trial_result" jdbcType="VARCHAR" property="trialResult" />
+    <result column="departure_date" jdbcType="DATE" property="departureDate" />
+    <result column="cheak_option" jdbcType="VARCHAR" property="cheakOption" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="account_id" jdbcType="BIGINT" property="accountId" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="contact_qq" jdbcType="VARCHAR" property="contactQQ" />
+    <result column="protocol_position" jdbcType="VARCHAR" property="protocolPosition" />
+    <result column="family_city" jdbcType="VARCHAR" property="familyCity" />
+     <result column="contact_qq" jdbcType="VARCHAR" property="contactQQ" />
+     <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+     <result column="protocol_position" jdbcType="VARCHAR" property="protocolPosition" />
+     <result column="confirm_position" jdbcType="VARCHAR" property="confirmPosition" />
+     <result column="work_introduction" jdbcType="VARCHAR" property="workIntroduction" />
+     <result column="is_send" jdbcType="VARCHAR" property="isSend" />
+     <result column="domicile_place" jdbcType="VARCHAR" property="domicilePlace" />
+     <result column="job_certificate" jdbcType="VARCHAR" property="jobCertificate" />
+     <result column="total_portfolio" jdbcType="INTEGER" property="totalPortfolio" />
+     <result column="max_coacher" jdbcType="INTEGER" property="maxCoacher" />
+     <result column="bank_branch" jdbcType="VARCHAR" property="bankBranch" />
+     <result column="china_citic_bank" jdbcType="VARCHAR" property="chinaCiticBank" />
+     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+      <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+      <result column="family_addr_detail" jdbcType="VARCHAR" property="familyAddrDetail" />
+      <result column="family_province" jdbcType="VARCHAR" property="familyProvince" />
+      <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="total_work_time" jdbcType="VARCHAR" property="totalWorkTime" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+      <result column="is_close" jdbcType="INTEGER" property="isClose" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  id, agent_code, personnel_TYPE,once_name, personnel_STATUS, IDENTITY_TYPE, IDENTITY_CODE, CTFEXPIRE_DATE, is_close,
+    NAME,age, SEX, BIRTHDAY, Nation, Political, source, channel, EDUCATION, CELLPHONE, EMAIL, 
+    IS_PHONE_VALIDATE, is_insurance_company, Original_company, is_quit, is_over_six, native_work_time,check_result,cheak_option,
+    is_check, create_time, create_user, update_time, update_user,country,trial_result,departure_date,org_id,account_id,
+    wechat,contact_qq,protocol_position,family_city,work_introduction,confirm_position,is_send,domicile_place,job_certificate,
+    total_portfolio,max_coacher,work_introduction,org_name,bank_branch,china_citic_bank,telephone,postcode,family_addr_detail,family_province,company_id
+  </sql>
+  <sql id="Base_Column_List_ED">
+   ep.id as id,ep.agent_code as agent_code, ep.personnel_TYPE as personnel_TYPE, ep.personnel_STATUS as personnel_STATUS, ep.IDENTITY_TYPE as IDENTITY_TYPE, ep.IDENTITY_CODE as IDENTITY_CODE, ep.CTFEXPIRE_DATE as CTFEXPIRE_DATE, 
+    ep.NAME as NAME,ep.age as age, ep.SEX as SEX, ep.BIRTHDAY as BIRTHDAY, ep.Nation as Nation, ep.Political as Political, ep.source as source, ep.channel as channel, ep.CELLPHONE as CELLPHONE, ep.EMAIL as EMAIL, 
+    ep.IS_PHONE_VALIDATE as IS_PHONE_VALIDATE, ep.is_insurance_company as is_insurance_company, ep.Original_company as Original_company, ep.is_quit as is_quit, ep.is_over_six as is_over_six, ep.native_work_time as native_work_time,ep.check_result as check_result,
+    ep.is_check as is_check, ep.create_time as create_time, ep.create_user as create_user, ep.update_time as update_time,ep.update_user as update_user,ep.country as country,ep.trial_result,ep.departure_date as departure_date, ee.EDUCATION as EDUCATION,ep.cheak_option as cheak_option,ep.org_id as org_id,ep.account_id as account_id,
+    ep.wechat as wechat,ep.contact_qq as contact_qq,ep.protocol_position as protocol_position,ep.family_city as family_city,ep.work_introduction as work_introduction,org_name as org_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List_ED" />
+    from 
+    er_personnel ep
+	LEFT JOIN er_educational ee on ep.id = ee.personnel_id
+	where ep.id = #{id,jdbcType=BIGINT} ORDER BY ee.end_time desc LIMIT 1
+  </select>
+  <select id="selectPersonnelStatusById" parameterType="java.lang.Long" resultType="java.lang.String">
+    select 
+    personnel_status
+    from 
+    er_personnel
+	where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from er_personnel
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+<!--   <insert id="insert" parameterType="com.fulan.api.personnel.domain.Personnel">
+    insert into er_personnel (id, agent_code, personnel_TYPE, 
+      personnel_STATUS, IDENTITY_TYPE, IDENTITY_CODE, 
+      CTFEXPIRE_DATE, NAME, SEX, 
+      BIRTHDAY, Nation, Political, 
+      source, channel, EDUCATION, 
+      CELLPHONE, EMAIL, IS_PHONE_VALIDATE, 
+      is_insurance_company, Original_company, is_quit, 
+      is_over_six, native_work_time, is_check, 
+      create_time, create_user, update_time, 
+      update_user,country)
+    values (#{id,jdbcType=BIGINT}, #{agentCode,jdbcType=VARCHAR}, #{personnelType,jdbcType=CHAR}, 
+      #{personnelStatus,jdbcType=CHAR}, #{identityType,jdbcType=CHAR}, #{identityCode,jdbcType=VARCHAR}, 
+      #{ctfexpireDate,jdbcType=DATE}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{birthday,jdbcType=DATE}, #{nation,jdbcType=VARCHAR}, #{political,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{cellphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isPhoneValidate,jdbcType=CHAR}, 
+      #{isInsuranceCompany,jdbcType=INTEGER}, #{originalCompany,jdbcType=VARCHAR}, #{isQuit,jdbcType=INTEGER}, 
+      #{isOverSix,jdbcType=CHAR}, #{nativeWorkTime,jdbcType=VARCHAR}, #{isCheck,jdbcType=CHAR}, 
+      #{createTime,jdbcType=DATE}, #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=DATE}, 
+      #{updateUser,jdbcType=BIGINT},#{country,jdbcType=VARCHAR})
+  </insert> -->
+    
+  <insert id="insertInfo" parameterType="com.fulan.api.personnel.domain.Personnel">
+    insert into er_personnel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="personnelStatus != null">
+        personnel_STATUS,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="isInsuranceCompany != null">
+        is_insurance_company,
+      </if>
+      <if test="originalCompany != null">
+        Original_company,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+       <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if> 
+      <if test="contactQQ != null">
+        contact_qq,
+      </if>
+      <if test="protocolPosition  != null">
+        protocol_Position,
+      </if>
+      <if test="familyCity != null">
+        family_city,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="nativeWorkTime != null">
+        native_work_time,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="personnelStatus != null">
+        #{personnelStatus,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isInsuranceCompany != null">
+        #{isInsuranceCompany,jdbcType=INTEGER},
+      </if>
+      <if test="originalCompany != null">
+        #{originalCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+       <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        now(),
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQQ != null">
+        #{contactQQ,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolPosition != null">
+        #{protocolPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="familyCity != null">
+        #{familyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeWorkTime != null">
+        #{nativeWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.fulan.api.personnel.domain.Personnel">
+    insert into er_personnel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentCode != null">
+        agent_code,
+      </if>
+      <if test="personnelType != null">
+        personnel_TYPE,
+      </if>
+      <if test="personnelStatus != null">
+        personnel_STATUS,
+      </if>
+      <if test="identityType != null">
+        IDENTITY_TYPE,
+      </if>
+      <if test="identityCode != null">
+        IDENTITY_CODE,
+      </if>
+      <if test="ctfexpireDate != null">
+        CTFEXPIRE_DATE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+       <if test="age != null">
+        AGE,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="nation != null">
+        Nation,
+      </if>
+      <if test="political != null">
+        Political,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="education != null">
+        EDUCATION,
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="isPhoneValidate != null">
+        IS_PHONE_VALIDATE,
+      </if>
+      <if test="isInsuranceCompany != null">
+        is_insurance_company,
+      </if>
+      <if test="originalCompany != null">
+        Original_company,
+      </if>
+      <if test="isQuit != null">
+        is_quit,
+      </if>
+      <if test="isOverSix != null">
+        is_over_six,
+      </if>
+      <if test="nativeWorkTime != null">
+        native_work_time,
+      </if>
+      <if test="isCheck != null">
+        is_check,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+       <if test="country != null">
+        country,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="agentCode != null">
+        #{agentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelType != null">
+        #{personnelType,jdbcType=CHAR},
+      </if>
+      <if test="personnelStatus != null">
+        #{personnelStatus,jdbcType=CHAR},
+      </if>
+      <if test="identityType != null">
+        #{identityType,jdbcType=CHAR},
+      </if>
+      <if test="identityCode != null">
+        #{identityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctfexpireDate != null">
+        #{ctfexpireDate,jdbcType=DATE},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{AGE,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="political != null">
+        #{political,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isPhoneValidate != null">
+        #{isPhoneValidate,jdbcType=CHAR},
+      </if>
+      <if test="isInsuranceCompany != null">
+        #{isInsuranceCompany,jdbcType=INTEGER},
+      </if>
+      <if test="originalCompany != null">
+        #{originalCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="isQuit != null">
+        #{isQuit,jdbcType=INTEGER},
+      </if>
+      <if test="isOverSix != null">
+        #{is_over_six,jdbcType=CHAR},
+      </if>
+      <if test="nativeWorkTime != null">
+        #{nativeWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null">
+        #{isCheck,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+       <if test="updateUser != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.personnel.domain.Personnel">
+    update er_personnel
+    <set>
+      <if test="agentCode != null">
+        agent_code = #{agentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelType != null">
+        personnel_TYPE = #{personnelType,jdbcType=CHAR},
+      </if>
+      <if test="personnelStatus != null">
+        personnel_STATUS = #{personnelStatus,jdbcType=CHAR},
+      </if>
+      <if test="identityType != null">
+        IDENTITY_TYPE = #{identityType,jdbcType=CHAR},
+      </if>
+      <if test="identityCode != null">
+        IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctfexpireDate != null">
+        CTFEXPIRE_DATE = #{ctfexpireDate,jdbcType=DATE},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null">
+        Nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="political != null">
+        Political = #{political,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isPhoneValidate != null">
+        IS_PHONE_VALIDATE = #{isPhoneValidate,jdbcType=CHAR},
+      </if>
+      <if test="isInsuranceCompany != null">
+        is_insurance_company = #{isInsuranceCompany,jdbcType=INTEGER},
+      </if>
+      <if test="originalCompany != null">
+        Original_company = #{originalCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="isQuit != null">
+        is_quit = #{isQuit,jdbcType=INTEGER},
+      </if>
+      <if test="isOverSix != null">
+        is_over_six = #{isOverSix,jdbcType=CHAR},
+      </if>
+      <if test="nativeWorkTime != null">
+        native_work_time = #{nativeWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="workIntroduction != null">
+        work_introduction = #{workIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="checkResult != null">
+        check_result = #{checkResult,jdbcType=CHAR},
+      </if>
+      <if test="isCheck != null">
+        is_check = #{isCheck,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = now(),
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+       <if test="cheakOption != null">
+        cheak_option = #{cheakOption,jdbcType=VARCHAR},
+      </if>
+       <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+         account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+       <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if> 
+      <if test="contactQQ != null">
+        contact_qq = #{contactQQ,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolPosition  != null">
+        protocol_Position = #{protocolPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="familyCity != null">
+        family_city = #{familyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="familyProvince != null">
+        family_province = #{familyProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="totalWorkTime != null">
+        total_work_time = #{totalWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPortfolio != null">
+        total_portfolio = #{totalPortfolio,jdbcType=BIGINT},
+      </if>
+      <if test="maxCoacher != null">
+        max_coacher = #{maxCoacher,jdbcType=BIGINT},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPersonnelId" parameterType="com.fulan.api.personnel.domain.Personnel">
+    update er_personnel
+    set  is_insurance_company = #{isInsuranceCompany,jdbcType=VARCHAR},
+    is_over_six = #{isOverSix,jdbcType=VARCHAR},
+    native_work_time = #{nativeWorkTime,jdbcType=VARCHAR},
+    original_company = #{originalCompany,jdbcType=VARCHAR},
+    is_quit = #{isQuit,jdbcType=INTEGER},
+    departure_date = #{departureDate,jdbcType=DATE},
+    account_id = #{accountId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.personnel.domain.Personnel">
+    update er_personnel
+    set agent_code = #{agentCode,jdbcType=VARCHAR},
+      personnel_TYPE = #{personnelType,jdbcType=CHAR},
+      personnel_STATUS = #{personnelStatus,jdbcType=CHAR},
+      IDENTITY_TYPE = #{identityType,jdbcType=CHAR},
+      IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      CTFEXPIRE_DATE = #{ctfexpireDate,jdbcType=DATE},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=CHAR},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      Nation = #{nation,jdbcType=VARCHAR},
+      Political = #{political,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      IS_PHONE_VALIDATE = #{isPhoneValidate,jdbcType=CHAR},
+      is_insurance_company = #{isInsuranceCompany,jdbcType=INTEGER},
+      Original_company = #{originalCompany,jdbcType=VARCHAR},
+      is_quit = #{isQuit,jdbcType=INTEGER},
+      is_over_six = #{isOverSix,jdbcType=CHAR},
+      native_work_time = #{nativeWorkTime,jdbcType=VARCHAR},
+      is_check = #{isCheck,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      country = #{country,jdbcType=VARCHAR},
+       account_id = #{accountId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ <select id="getPersonnelByRecord" parameterType="com.fulan.api.personnel.domain.Personnel" resultType="com.fulan.api.personnel.domain.Personnel">
+ 	select 
+ 	<include refid="Base_Column_List"/>
+ 	from er_personnel
+ 	where
+ 	<if test="name!=null and name!=''">
+ 		name = #{name} and 
+ 	</if>
+ 	<if test="cellphone!=null and cellphone!=''">
+ 		cellphone = #{cellphone} and 
+ 	</if>
+ 	personnel_status != -1;
+ </select>
+  
+  
+  
+  <select id="personnelManageOtherSearchCount" parameterType="java.lang.String" resultType="int">
+  	select count(*) from er_personnel epl where 1=1
+  		and epl.personnel_STATUS !='0'
+		<if test="keyWord != null and keyWord != ''">
+			and epl.NAME LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+		</if>
+  </select>
+  
+  <select id="PersonnelManageOtherSearch" resultType="com.fulan.api.personnel.vo.PersonnelManageVo">
+  		SELECT epl.id as id ,epl.NAME as name, epl.SEX as sex, (SELECT TIMESTAMPDIFF(YEAR, epl.BIRTHDAY, CURDATE())) as age,
+  			   epl.CELLPHONE as cellphone,epl.IDENTITY_CODE as identityCode, eel.EDUCATION as maxEducation, eel.School as school,
+  			   eay.referee_name as RefereeName,null as ReferrerName,epl.check_result as checkResult
+		FROM er_personnel epl
+		LEFT JOIN er_educational eel ON eel.end_time = 
+		(
+		SELECT MAX(end_time)
+		FROM er_educational a where a.personnel_id = epl.id) and eel.personnel_id = epl.id
+		LEFT JOIN er_apply eay ON eay.personnel_id = epl.id
+		where 1=1
+		<if test="keyWord != null and keyWord != ''">
+			and (epl.NAME LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{keyWord}),'%'))
+		</if>
+		and epl.personnel_STATUS !='0'
+		group by epl.id
+  </select>
+  
+  
+  
+  
+  
+   <select id="personnelManageOtherTwoSearchCount" parameterType="java.lang.String" resultType="int">
+  	select count(*) from er_personnel epl where 1=1
+  		and epl.personnel_STATUS !='0'
+  	    and epl.trial_result ='0'
+		<if test="keyWord != null and keyWord != ''">
+			and epl.NAME LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+		</if>
+  </select>
+  
+  <select id="PersonnelManageOtherTwoSearch" resultType="com.fulan.api.personnel.vo.PersonnelManageVo">
+  		SELECT epl.id as id ,epl.NAME as name, epl.SEX as sex, (SELECT TIMESTAMPDIFF(YEAR, epl.BIRTHDAY, CURDATE())) as age,
+  			   epl.CELLPHONE as cellphone,epl.IDENTITY_CODE as identityCode, eel.EDUCATION as maxEducation, eel.School as school,
+  			   eay.referee_name as RefereeName,null as ReferrerName,epl.check_result as checkResult
+		FROM er_personnel epl
+		LEFT JOIN er_educational eel ON eel.end_time = 
+		(
+		SELECT MAX(end_time)
+		FROM er_educational a where a.personnel_id = epl.id) and eel.personnel_id = epl.id
+		LEFT JOIN er_apply eay ON eay.personnel_id = epl.id
+		where 1=1
+		<if test="keyWord != null and keyWord != ''">
+			and epl.NAME LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+		</if>
+		and epl.personnel_STATUS !='0'
+		and epl.trial_result ='0'
+		group by epl.id
+  </select>
+  
+  
+  
+  
+  
+   <!-- 我的增员 -->
+    <select id="PersonnelSearchbyagentCode" resultType="com.fulan.api.personnel.vo.PersonnelAddVo">
+  		SELECT
+				epl.id AS id,
+				epl. NAME AS NAME,
+				epl.SEX AS sex,
+				(
+					SELECT
+						TIMESTAMPDIFF(
+							YEAR,
+							epl.BIRTHDAY,
+							CURDATE()
+						)
+				) AS age,
+				epl.CELLPHONE AS cellphone,
+				eay.talent_plan AS talentPlan,
+				epl.personnel_status  AS personnelStatus,
+				( select fa.step  from  er_interview_action   ia,
+								 er_flow_action  fa
+					where  ia.personnel_id =  epl.id
+					and  fa.id= ia.flow_action_id
+					 ) AS   processProgress
+			FROM
+				er_personnel epl
+			LEFT JOIN er_apply eay ON eay.personnel_id = epl.id 
+			WHERE
+				1 = 1
+		<if test="keyWord != null and  keyWord !=''">
+			and epl.NAME  LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+		</if>
+		<if test="agentCode != null">
+			and epl.agent_code = #{agentCode}
+		</if>
+		ORDER BY epl.create_time DESC
+  </select>
+
+  <!-- 我的面试 -->
+    <select id="PersonnelpaperSearchbyParam" resultType="com.fulan.api.personnel.vo.PersonnelAddVo">
+  		SELECT
+			
+				epl.id AS id,
+				epl. NAME AS NAME,
+				epl.SEX AS sex,
+				(
+					SELECT
+						TIMESTAMPDIFF(
+							YEAR,
+							epl.BIRTHDAY,
+							CURDATE()
+						)
+				) AS age,
+				epl.CELLPHONE AS cellphone,
+				eay.talent_plan AS talentPlan,
+				( select  DISTINCT fa.step  from  er_interview_action   ia,
+								 er_flow_action  fa
+					where  ia.personnel_id =  epl.id
+					and  fa.id= ia.flow_action_id
+					 ) AS   processProgress,
+				CASE 	WHEN pa.paper_type= '1' THEN '初审' 
+		  				WHEN pa.paper_type= '2' THEN '甄选' 
+				 		WHEN pa.paper_type= '3' THEN '决定' 
+		  				ELSE '' END 			 AS currentLink
+			FROM
+					er_paper  pa 
+			LEFT JOIN er_personnel_paper pp   ON  pp.paper_id = pa.id
+			LEFT JOIN er_personnel epl  on  epl.id = pp.personnel_id
+			LEFT JOIN er_apply eay ON eay.personnel_id = epl.id
+			 
+			WHERE
+				1 = 1
+		<if test="keyWord != null and  keyWord !=''">
+			and epl.NAME  LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{keyWord}),'%')
+		</if>
+		<if test="agentCode != null">
+			and epl.agent_code = #{agentCode}
+		</if>
+		ORDER BY epl.create_time DESC
+  </select>
+  
+   <select id="getPersonnelByIdentityCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from er_personnel
+    where identity_code = #{identityCode,jdbcType=BIGINT}
+  </select>
+   <select id="selectByPersonnelId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+	   select 
+	    <include refid="Base_Column_List" />
+	    from er_personnel
+	    where id = #{personnelId,jdbcType=BIGINT}
+   </select>
+   <select id="selectEduByPersonnelId" parameterType="java.lang.Long" resultType="com.fulan.api.personnel.vo.PersonnelEducation">
+	   select   
+	    t1.name,
+        t1.sex,
+        t1.birthday,
+		t1.nation,
+        t2.education,
+        t2.school,
+		t2.start_time as startTime,
+		t2.end_time as endTime,
+        t1.country
+	    from er_personnel t1 left join er_educational t2 on t1.id = t2.personnel_id
+	    where t1.id = #{personnelId,jdbcType=BIGINT}
+ 		order by t2.end_time desc limit 0,1
+   </select>
+
+  
+
+  
+
+
+  
+
+  
+  <resultMap id="PersonnelManageInfoVoMap" type="com.fulan.api.personnel.vo.PersonnelManageInfoVo">
+  	<collection ofType="com.fulan.api.personnel.domain.Personnel" property="personnel" select="com.fulan.application.mapper.PersonnelMapper.selectByPrimaryKey" column="id"/>
+	<collection ofType="com.fulan.api.personnel.domain.Apply" property="apply" select="com.fulan.application.mapper.ApplyMapper.selectByPersonnelId" column="id"/>
+	<collection ofType="com.fulan.api.personnel.domain.Educational" property="educational" select="com.fulan.application.mapper.EducationalMapper.selectByPersonnelId" column="id"/>
+	<collection ofType="com.fulan.api.personnel.domain.FamilyMember" property="familyMember" select="com.fulan.application.mapper.FamilyMemberMapper.selectByPersonnelId" column="id"/>
+	<collection ofType="com.fulan.api.personnel.domain.Tag" property="tag" select="com.fulan.application.mapper.TagMapper.selectByPersonnelId" column="id"/>
+  	<collection ofType="com.fulan.api.personnel.domain.WorkExperience" property="workExperience" select="com.fulan.application.mapper.WorkExperienceMapper.selectByPersonnelId" column="id"/>
+  </resultMap>
+  <select id="checkPersonnelManageInfoById" resultMap="PersonnelManageInfoVoMap">
+  	SELECT id FROM er_personnel 
+	WHERE id = #{personnelId,jdbcType=BIGINT}
+  </select>
+  
+  
+   <select id="selectteamscalecountbyaccountId" resultType="java.lang.Integer" >    
+				   select count(1)  from  er_personnel   pel where pel.create_user in(
+				       <foreach collection="accountIds" separator="," item="accountId" index="index">
+     					 #{accountId}
+    				   </foreach> )
+    				   AND pel.agent_code IS NOT NULL
+					  
+</select>
+  
+  
+  
+  
+  <select id="selectteamYeaycountbyaccountId" resultType="java.lang.Integer" >    
+				   select count(1)  from  er_personnel   pel where pel.create_user in(
+				       <foreach collection="accountIds" separator="," item="accountId" index="index">
+     					 #{accountId}
+    				   </foreach> )
+    				   AND pel.agent_code IS NOT NULL
+					   AND year(pel.create_time) = year(NOW())
+</select>
+		 
+		 <select id="selectteamMouthcountbyaccountId" resultType="java.lang.Integer" >    
+				   select count(1)  from  er_personnel   pel where pel.create_user in(
+				       <foreach collection="accountIds" separator="," item="accountId" index="index">
+     					 #{accountId}
+    				   </foreach> )
+    				   AND pel.agent_code IS NOT NULL
+					   AND month(pel.create_time) =#{searchMonth}
+					   and year(pel.create_time) = year(NOW())
+		 </select>
+  
+  
+  
+  		<select id="rankingbyaccountId" resultType="java.lang.String" >    
+				    select c.rowno from 
+				(SELECT  @rowno:=@rowno + 1 AS rowno,a.*  FROM
+				(SELECT
+					cus.cruntNum,
+					group_concat(cus.create_user) AS mergeId
+				FROM
+					(
+						SELECT
+							t.cruntNum,
+							t.create_user
+						FROM
+							(
+								SELECT
+									count(1) AS cruntNum,
+									p.create_user
+								FROM
+									er_personnel p
+								WHERE
+									p.create_user IN (
+								       <foreach collection="accountIds" separator="," item="searchId" index="index">
+				     					 #{searchId}
+				    				   </foreach> )
+								GROUP BY
+									p.create_user
+							) t
+						ORDER BY
+							t.cruntNum desc
+					) cus,
+					(SELECT(@rowNum := 0)) b
+				GROUP BY
+					cus.cruntNum)a,(SELECT @rowno:=0) b) c  where  find_in_set(#{accountId}, c.mergeId)
+		 </select>
+  
+   <update id="updatePersonnelStatusByPersonnelId" parameterType="com.fulan.api.personnel.domain.Personnel">
+    update er_personnel
+ 	set 
+ 	<if test="trialResult != null and trialResult != ''">
+ 			trial_result = #{trialResult},
+ 	</if>
+ 	personnel_status = #{personnelStatus}
+ 	
+ 	where id = #{id} and  personnel_status != '0' and personnel_status is not null
+  </update>
+  
+  
+  <select id="selectPersonnerById" resultType="com.fulan.api.personnel.vo.PersonnelFlowItemVo" >
+  			SELECT epl.id as id ,epl.NAME as name,epl.family_city AS familyCity, epl.wechat AS wechat,epl.personnel_status AS personnelStatus, epl.work_introduction AS workIntroduction, epl.channel, epl.SEX as sex, (SELECT TIMESTAMPDIFF(YEAR, epl.BIRTHDAY, CURDATE())) as age,
+  			   epl.CELLPHONE as cellphone,epl.IDENTITY_CODE as identityCode,epl.identity_type as identityType, eel.EDUCATION as maxEducation, eel.School as school,
+  			null as referrerName,epl.check_result as checkResult,epl.create_user as createUser,epl.email as email,
+  			   CASE WHEN e5.inform_option='A' THEN '是' WHEN e5.inform_option='B' THEN '否' ELSE '' END as isDisability,CASE WHEN e6.inform_option='A' THEN '是' WHEN e6.inform_option='B' THEN '否' ELSE '' END as isBreakingTheLaw,
+			   CASE WHEN e7.inform_option='A' THEN '是' WHEN e7.inform_option='B' THEN '否' ELSE '' END as isBrokenPromises,epl.total_portfolio as clientNum,epl.max_coacher as maxManageNum,epl.china_citic_bank as chinaCiticBank,epl.bank_branch as bankBranch,
+			   CASE WHEN epl.certificate1='1' THEN '保险代理人证书'  ELSE '' END as relevantIndustryCertificate,
+			   CASE WHEN epl.certificate2='1' THEN '保险经纪人证书'  ELSE '' END as insuranceBrokerCertificate,
+			   CASE WHEN epl.certificate3='1' THEN '保险公估人证书'  ELSE '' END as certificateOfInsurance,
+			   CASE WHEN epl.certificate4='1' THEN 'RFC'  ELSE '' END as rfcImg,
+			   epl.certificate_other as oatehrFicate,epl.protocol_position as protocolPosition,epl.confirm_position as confirmPosition,epl.native_work_time as nativeWorkTime,e8.inform_detail as informDetail,epl.total_work_time as totalWorkTime
+		FROM er_personnel epl
+		LEFT JOIN er_educational eel ON eel.end_time = 
+		(
+		SELECT MAX(end_time)
+		FROM er_educational a where a.personnel_id = epl.id) and eel.personnel_id = epl.id
+		LEFT JOIN er_personnel_inform_info e5 ON e5.personnel_id=epl.id and e5.inform_id=1001
+	    LEFT JOIN er_personnel_inform_info e6 ON e6.personnel_id=epl.id and e6.inform_id=1002
+	    LEFT JOIN er_personnel_inform_info e7 ON e7.personnel_id=epl.id and e7.inform_id=1003
+	    LEFT JOIN er_personnel_inform e8 ON e8.personnel_id=epl.id 
+		where epl.id=#{id}
+		group by epl.id
+  </select>
+  
+  
+  <select id="selectFlowItem" resultType="com.fulan.api.personnel.domain.FlowItem" >
+  		SELECT id,flow_item_name AS flowItemName,flow_item_name_desc AS flowItemNameDesc,system_name AS systemName,business_name AS businessName,moudle_name AS moudleName,moudle_url AS moudleUrl,create_time AS createTime,create_user AS createUser,update_time AS updateTime,update_user AS updateUser
+		FROM er_flow_item group by moudle_name
+  </select>
+  
+   <select id="selectNowItem" resultType="com.fulan.api.personnel.domain.FlowItem" >
+  		SELECT flow_item_name AS flowItemName,moudle_name AS moudleName
+		FROM er_flow_item
+		WHERE moudle_name=(
+		SELECT personnel_status
+		FROM er_personnel
+		WHERE id=#{id})
+  </select>
+  
+   <select id="selectInterviewActionById" resultType="com.fulan.api.personnel.domain.InterviewAction" >
+  		SELECT id as id,processing_person as processingPerson,processing_name AS processingName,processing_status AS processingStatus,processing_desc AS processingDesc,start_time as startTime,flow_item_id as flowItemId
+		FROM er_interview_action
+		WHERE start_time =(
+		SELECT MAX(start_time)
+		FROM er_interview_action where personnel_id=#{id}) and personnel_id=#{id}
+  </select>
+  
+  
+  <select id="PersonnelManageSearch" resultType="com.fulan.api.personnel.vo.PersonnelManageVo" parameterType="com.fulan.api.personnel.vo.SearchPersonnelVo">
+  		SELECT epl.id as id ,epl.NAME as name,epl.channel, epl.SEX as sex, (SELECT TIMESTAMPDIFF(YEAR, epl.BIRTHDAY, CURDATE())) as age,
+  			   epl.CELLPHONE as cellphone,epl.IDENTITY_CODE as identityCode, eel.EDUCATION as maxEducation, eel.School as school,
+  			   eay.referee_name as RefereeName,eay.talent_plan as talentPlan,null as ReferrerName,epl.check_result as checkResult,
+  			   epl.protocol_position as protocolPosition,epl.confirm_position as confirmPosition,epl.personnel_status as personnelStatus,
+  			   epl.create_user as createUser,epl.org_name as orgName,epl.create_time as createTime,epl.company_id as companyId
+		FROM er_personnel epl
+		LEFT JOIN er_educational eel ON eel.end_time = 
+		(
+		SELECT MAX(end_time)
+		FROM er_educational a where a.personnel_id = epl.id) and eel.personnel_id = epl.id
+		LEFT JOIN er_apply eay ON eay.personnel_id = epl.id
+		where 1=1  
+		<if test="condition.keyWord != null and condition.keyWord != ''">
+			and (epl.NAME LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%'))
+		</if>
+		<if test="condition.personnelStatus != null and condition.personnelStatus == '5'.toString()">
+			and epl.personnel_status &gt;3 and epl.personnel_status &lt;6
+		</if>
+		<if test="condition.personnelStatus != null and condition.personnelStatus == '7'.toString()">
+			and epl.check_result=0 and epl.personnel_status=#{condition.personnelStatus}
+		</if>
+		<if test="condition.protocolPosition != null and condition.protocolPosition != ''">
+			and epl.protocol_position LIKE CONCAT(CONCAT('%', #{condition.protocolPosition}),'%')
+		</if>
+		<if test="condition.confirmPosition != null and condition.confirmPosition != ''">
+			and epl.confirm_position LIKE CONCAT(CONCAT('%', #{condition.confirmPosition}),'%')
+		</if>
+		<if test="condition.channel != null and condition.channel != ''">
+			and epl.channel = #{condition.channel}
+		</if>
+		<!-- <if test="condition.orgId != null and condition.orgId  != ''">
+			and epl.org_id =#{condition.orgId}
+		</if> -->
+		<if test="condition.companyId == null or condition.companyId  == ''">
+			and 1=0
+		</if>
+		<if test="condition.companyId != null and condition.companyId  != ''">
+			and epl.company_id in(${condition.companyId})
+		</if>
+		<if test="condition.rank != null and condition.rank != ''">
+			and (epl.protocol_position = #{condition.rank} or epl.confirm_position = #{condition.rank})
+		</if>
+		<if test="condition.nowPlan != null and condition.nowPlan != ''">
+			and epl.personnel_status=#{condition.nowPlan}
+		</if>
+		<if test="condition.personnelSign != null and condition.personnelSign == '0'.toString()">
+			and (epl.check_result &lt;1 or epl.check_result &gt;1 or epl.check_result is null)  and epl.personnel_status &gt;1
+		</if>
+		<if test="condition.personnelSign != null and condition.personnelSign == '1'.toString()">
+			and epl.check_result =1 and epl.personnel_status != -1
+		</if>
+		<if test="condition.orgName != null and condition.orgName  != ''">
+			and epl.org_name LIKE CONCAT(CONCAT('%', #{condition.orgName}),'%')
+		</if>
+		<if test="condition.startDate != null and condition.startDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.create_time,'%Y-%m-%d')>= #{condition.startDate}]]>
+		</if>
+		<if test="condition.endDate != null and condition.endDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.create_time,'%Y-%m-%d')<= #{condition.endDate}]]>
+		</if>
+		<if test="condition.signStartDate != null and condition.signStartDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.update_time,'%Y-%m-%d')>= #{condition.signStartDate}]]>
+		</if>
+		<if test="condition.signEndDate != null and condition.signEndDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.update_time,'%Y-%m-%d')<= #{condition.signEndDate}]]>
+		</if>
+		order by epl.create_time desc  
+  </select>
+  
+  <select id="PersonnelCheckManageSearch" resultType="com.fulan.api.personnel.vo.PersonnelManageVo" parameterType="com.fulan.api.personnel.vo.SearchPersonnelVo">
+  		SELECT epl.id as id ,epl.NAME as name,epl.channel, epl.SEX as sex, (SELECT TIMESTAMPDIFF(YEAR, epl.BIRTHDAY, CURDATE())) as age,
+  			   epl.CELLPHONE as cellphone,epl.IDENTITY_CODE as identityCode, eel.EDUCATION as maxEducation, eel.School as school,
+  			   eay.referee_name as RefereeName,eay.talent_plan as talentPlan,null as ReferrerName,epl.check_result as checkResult,
+  			   epl.protocol_position as protocolPosition,epl.confirm_position as confirmPosition,epl.personnel_status as personnelStatus,
+               epl.is_send as isSend,epl.create_user as createUser,epl.org_name as orgName,epl.company_id as companyId
+		FROM er_personnel epl
+		LEFT JOIN er_educational eel ON eel.end_time = 
+		(
+		SELECT MAX(end_time)
+		FROM er_educational a where a.personnel_id = epl.id) and eel.personnel_id = epl.id
+		LEFT JOIN er_apply eay ON eay.personnel_id = epl.id
+		where 1=1  
+		<!-- <if test="condition.orgId != 'B0311'.toString() or condition.orgId == null or condition.orgId==''">
+			and epl.org_id = #{condition.orgId}
+		</if> -->
+		<if test="condition.keyWord != null and condition.keyWord != ''">
+			and (epl.NAME LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%'))
+		</if>
+		<if test="condition.protocolPosition != null and condition.protocolPosition != ''">
+			and epl.protocol_position LIKE CONCAT(CONCAT('%', #{condition.protocolPosition}),'%')
+		</if>
+		<if test="condition.confirmPosition != null and condition.confirmPosition != ''">
+			and epl.confirm_position LIKE CONCAT(CONCAT('%', #{condition.confirmPosition}),'%')
+		</if>
+		<if test="condition.orgName != null and condition.orgName  != ''">
+			and epl.org_name LIKE CONCAT(CONCAT('%', #{condition.orgName}),'%')
+		</if>
+		<!-- <if test="condition.orgId != null and condition.orgId  != ''">
+			and epl.org_id =#{condition.orgId}
+		</if> -->
+		<if test="condition.companyId == null or condition.companyId  == ''">
+			and 1=0
+		</if>
+		<if test="condition.companyId != null and condition.companyId  != ''">
+			and epl.company_id in(${condition.companyId})
+		</if>
+		<if test="condition.startDate != null and condition.startDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.create_time,'%Y-%m-%d')>= #{condition.startDate}]]>
+		</if>
+		<if test="condition.endDate != null and condition.endDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.create_time,'%Y-%m-%d')<= #{condition.endDate}]]>
+		</if>
+		<if test="condition.signStartDate != null and condition.signStartDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.update_time,'%Y-%m-%d')>= #{condition.signStartDate}]]>
+		</if>
+		<if test="condition.signEndDate != null and condition.signEndDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.update_time,'%Y-%m-%d')<= #{condition.signEndDate}]]>
+		</if>
+		and (epl.personnel_status=6 or (epl.personnel_status=7 and (epl.check_result=2 or epl.check_result=0)))
+		ORDER BY epl.create_time DESC
+  </select>
+  
+   <select id="PersonnelManageSearchCount" parameterType="com.fulan.api.personnel.vo.SearchPersonnelVo" resultType="int">
+		select count(*) from er_personnel epl where 1=1
+		<if test="condition.keyWord != null and condition.keyWord != ''">
+			and (epl.NAME LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or epl.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or epl.CELLPHONE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%'))
+		</if>
+		<if test="condition.personnelStatus != null and condition.personnelStatus == '5'.toString()">
+			and epl.personnel_status &gt;3 and epl.personnel_status &lt;6
+		</if>
+		<if test="condition.personnelStatus != null and condition.personnelStatus == '6'.toString()">
+			and epl.personnel_status=6 OR (epl.personnel_status=7 AND (epl.check_result=2 OR epl.check_result=0))
+		</if>
+		<if test="condition.personnelStatus != null and condition.personnelStatus == '7'.toString()">
+			and epl.check_result=0 and epl.personnel_status=#{condition.personnelStatus}
+		</if>
+		<if test="condition.protocolPosition != null and condition.protocolPosition != ''">
+			and epl.protocol_position LIKE CONCAT(CONCAT('%', #{condition.protocolPosition}),'%')
+		</if>
+		<if test="condition.confirmPosition != null and condition.confirmPosition != ''">
+			and epl.confirm_position LIKE CONCAT(CONCAT('%', #{condition.confirmPosition}),'%')
+		</if>
+		<!-- <if test="condition.orgId != null and condition.orgId  != ''">
+			and epl.org_id =#{condition.orgId}
+		</if> -->
+		<if test="condition.companyId == null or condition.companyId  == ''">
+			and 1=0
+		</if>
+		<if test="condition.companyId != null and condition.companyId  != ''">
+			and epl.company_id in(${condition.companyId})
+		</if>
+		<if test="condition.channel != null and condition.channel != ''">
+			and epl.channel = #{condition.channel}
+		</if>
+		<if test="condition.rank != null and condition.rank != ''">
+			and (epl.protocol_position = #{condition.rank} or epl.confirm_position = #{condition.rank})
+		</if>
+		<if test="condition.nowPlan != null and condition.nowPlan != ''">
+			and epl.personnel_status=#{condition.nowPlan}
+		</if>
+		<if test="condition.personnelSign != null and condition.personnelSign == '0'.toString()">
+			and (epl.check_result &gt;1 or epl.check_result &lt; 1 or epl.check_result is null)
+		</if>
+		<if test="condition.personnelSign != null and condition.personnelSign == '1'.toString()">
+			and epl.check_result =1
+		</if>
+		<if test="condition.orgName != null and condition.orgName  != ''">
+			and epl.org_name LIKE CONCAT(CONCAT('%', #{condition.orgName}),'%')
+		</if>
+		<if test="condition.startDate != null and condition.startDate  != ''">
+			and <![CDATA[DATE_FORMAT(epl.create_time,'%Y-%m-%d')>= #{condition.startDate}]]>
+		</if>
+		<if test="condition.endDate != null and condition.endDate  != ''">
+			and <![CDATA[DATE_FORMAT(epl.create_time,'%Y-%m-%d')<= #{condition.endDate}]]>
+		</if>
+		<if test="condition.signStartDate != null and condition.signStartDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.update_time,'%Y-%m-%d')>= #{condition.signStartDate}]]>
+		</if>
+		<if test="condition.signEndDate != null and condition.signEndDate  != ''">
+			and <![CDATA[ DATE_FORMAT(epl.update_time,'%Y-%m-%d')<= #{condition.signEndDate}]]>
+		</if>
+		and epl.personnel_status &gt;1
+  </select>
+  <select id="checkData" resultType="com.fulan.api.personnel.vo.CheckPersonnelDataVo" >
+  		SELECT e.id,e.name,e.nation,e.once_name AS onceName,e.sex,(
+		SELECT TIMESTAMPDIFF(YEAR, e.BIRTHDAY, CURDATE())) AS age,e.cellphone,e.identity_code AS identityCode,e.ctfexpire_date as identityCodeDate,
+		e.identity_type AS identityType,e.postcode,e.email,e.family_addr_detail AS familyAddrDetail,e.domicile_place AS contactAddress,e.protocol_position as protocolPosition,e.confirm_position as confirmPosition,e.work_introduction as workIntroduction,e.cheak_option as cheakOption
+		FROM er_personnel e
+		where e.id=#{id} 
+  </select>
+  
+  
+  <select id="selectFlowPersonner" resultType="com.fulan.api.personnel.vo.FlowItemActionPersonnerVo" >
+  		SELECT flow_item_name AS flowItemName,moudle_name AS moudleName,processing_status as processingStatus,eia.start_time as startTime,eia.end_time as endTime
+		FROM er_interview_action eia
+		RIGHT JOIN er_flow_item efi ON eia.flow_item_id=efi.id
+		WHERE personnel_id=#{id}
+  </select>
+  
+  <update id="checkDataResult" parameterType="java.lang.String">
+    update er_personnel
+ 	set 
+ 	<if test="cheakPption != null and cheakPption != ''">
+ 		cheak_option = #{cheakPption},
+ 	</if>
+ 	check_result = #{checkResult},update_time = now()
+ 	<if test="checkResult==1">
+      ,agent_code='123456'
+    </if>
+ 	where id = #{id}
+  </update>
+  
+   <update id="updatePersonnelStatus" parameterType="java.lang.String">
+    update er_personnel
+ 	set 
+ 	<if test="personnelStatus != null and personnelStatus != ''">
+ 	personnel_status =#{personnelStatus}
+ 	</if>
+ 	where id =#{id}
+  </update>
+
+   <update id="updatePersonnelisSend" parameterType="java.lang.String">
+    update er_personnel
+ 	set 
+ 	is_send =1
+ 	where id =#{id}
+  </update>
+  
+   <select id="selectExportExcel" resultType="com.fulan.api.personnel.vo.ExportPersonnelVo" parameterType="com.fulan.api.personnel.vo.SearchPersonnelVo">
+  	SELECT el.id,el.name,e1.processing_name AS firstReading,e2.processing_name AS reexamination,el.sex,el.once_name AS onceName,el.cellphone,el.identity_type AS identityType,el.identity_code AS identityCode,el.postcode,el.email,el.domicile_place AS domicilePlace,el.family_addr_detail AS contactAddress,el.agent_code AS employeeNum,
+  			el.telephone AS telephone,el.org_name AS syb,el.native_work_time AS bxTime,el.create_user AS creatUser,el.protocol_position AS protocolPosition,el.confirm_position AS confirmPosition,
+			el.wechat as weChat,el.birthday as birthYear,el.nation as nation,e3.education as culture,el.political as politicsStatus,el.china_citic_bank as chinaCiticBank,el.bank_branch as bankBranch,el.total_portfolio as clientNum,el.max_coacher as maxManageNum,e3.school as school,
+			e3.education as education,e3.specialty as specialty,e3.degree as degree,e4.flow_item_name as nowItem,CASE WHEN e5.inform_option='A' THEN '是' WHEN e5.inform_option='B' THEN '否' ELSE '' END as isDisability,CASE WHEN e6.inform_option='A' THEN '是' WHEN e6.inform_option='B' THEN '否' ELSE '' END as isBreakingTheLaw,
+			CASE WHEN e7.inform_option='A' THEN '是' WHEN e7.inform_option='B' THEN '否' ELSE '' END as isBrokenPromises,e3.start_time as startTime,e3.end_time as endTime,CASE WHEN el.certificate1='1' THEN '有' WHEN el.certificate1='0' THEN '无' ELSE '无' END as relevantIndustryCertificate,
+			CASE WHEN el.certificate2='1' THEN '有' WHEN el.certificate2='0' THEN '无' ELSE '无' END as insuranceBrokerCertificate,
+			CASE WHEN el.certificate3='1' THEN '有' WHEN el.certificate3='0' THEN '无' ELSE '无' END as certificateOfInsurance,
+			CASE WHEN el.certificate4='1' THEN '有' WHEN el.certificate4='0' THEN '无' ELSE '无' END as rfcImg,
+			CASE WHEN el.certificate_other IS null THEN '无'  ELSE el.certificate_other END as oatherImg,el.company_id as businessUnit,
+            CASE WHEN e8.end_time IS null THEN '无'  ELSE e8.end_time END as entryTime
+	FROM er_personnel el
+	LEFT JOIN er_interview_action e1 ON el.id=e1.personnel_id AND e1.flow_item_id=2
+	LEFT JOIN er_interview_action e2 ON el.id=e2.personnel_id AND e2.flow_item_id=3
+     LEFT JOIN er_interview_action e8 ON el.id=e8.personnel_id AND e8.flow_item_id=7
+	LEFT JOIN er_educational  e3 on el.id=e3.personnel_id
+	LEFT JOIN er_flow_item e4 ON el.personnel_status=e4.id
+	LEFT JOIN er_personnel_inform_info e5 ON e5.personnel_id=el.id and e5.inform_id=1001
+	LEFT JOIN er_personnel_inform_info e6 ON e6.personnel_id=el.id and e6.inform_id=1002
+	LEFT JOIN er_personnel_inform_info e7 ON e7.personnel_id=el.id and e7.inform_id=1003
+	where 1=1 
+		<if test="condition.keyWord != null and `.keyWord != ''">
+			and (el.NAME LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or el.IDENTITY_CODE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%')
+			or el.CELLPHONE LIKE CONCAT(CONCAT('%', #{condition.keyWord}),'%'))
+		</if>
+		<if test="condition.channel != null and condition.channel != ''">
+			and el.channel = #{condition.channel}
+		</if>
+		<if test="condition.rank != null and condition.rank != ''">
+			and (el.protocol_position = #{condition.rank} or el.confirm_position = #{condition.rank})
+		</if>
+		<if test="condition.nowPlan != null and condition.nowPlan != ''">
+			and el.personnel_status=#{condition.nowPlan}
+		</if>
+		<if test="condition.companyId == null or condition.companyId  == ''">
+			and 1=0
+		</if>
+		<if test="condition.personnelSign != null and condition.personnelSign == '0'.toString()">
+			and (el.check_result &lt;1 or el.check_result &gt;1 or el.check_result is null)
+		</if>
+		<if test="condition.personnelSign != null and condition.personnelSign == '1'.toString()">
+			and el.check_result =1
+		</if>
+		<if test="condition.orgName != null and condition.orgName != '' ">
+			and el.org_name LIKE CONCAT(CONCAT('%', #{condition.orgName}),'%')
+		</if>
+		<if test="condition.startDate != null and condition.startDate  != ''">
+			and <![CDATA[ DATE_FORMAT(el.create_time,'%Y-%m-%d')>= #{condition.startDate}]]>
+		</if>
+		<if test="condition.endDate != null and condition.endDate  != ''">
+			and <![CDATA[ DATE_FORMAT(el.create_time,'%Y-%m-%d')<= #{condition.endDate}]]>
+		</if>
+		<if test="condition.signStartDate != null and condition.signStartDate  != ''">
+			and <![CDATA[ DATE_FORMAT(el.update_time,'%Y-%m-%d')>= #{condition.signStartDate}]]>
+		</if>
+		<if test="condition.signEndDate != null and condition.signEndDate  != ''">
+			and <![CDATA[ DATE_FORMAT(el.update_time,'%Y-%m-%d')<= #{condition.signEndDate}]]>
+		</if>
+        and el.personnel_status &gt;1
+         <if test="condition.companyId != null and condition.companyId  != ''">
+           and el.company_id in(${condition.companyId})
+         </if>
+		group by el.id
+  </select>
+  <update id="updatePersonnelById" parameterType="com.fulan.api.personnel.vo.InterviewActionVo">
+    update er_personnel
+ 	set 
+ 	<if test="source != null and source != ''">
+ 			source = #{source},
+ 	</if>
+ 	<if test="orgId != null and orgId != ''">
+ 			org_id = #{orgId},
+ 	</if>
+ 	<if test="orgName != null and orgName != ''">
+ 			org_name = #{orgName}
+ 	</if>
+ 	where id = #{personnelId} 
+  </update>
+  
+  
+   <update id="updateBatchPersonnelisSend" >
+    update er_personnel
+ 	set is_send =1
+ 	where id in
+ 	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+  </update>
+
+  <!--    跑批人员-流程30不变动的人员    -->
+  <select id="selectPersonnelIdList" resultType="java.lang.String" >
+  		select id from er_personnel  where personnel_status &gt;1 and personnel_status &lt;7 and is_close != 1
+  </select>
+
+    <select id="selectPersonnerOneById"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    er_personnel where id=#{id}
+  </select>
+  
+  <select id="SelectPersonnerElCount" resultType="java.lang.Integer">
+  		SELECT  count(*) from er_personnel where personnel_status=4
+  </select>
+  
+  <select id="SelectPersonnerEl" resultMap="BaseResultMap">
+  		select 
+    <include refid="Base_Column_List" />
+    from 
+    er_personnel where  personnel_status=4
+  </select>
+
+  <update id="dele" parameterType="java.lang.String">
+    update er_personnel
+ 	set
+ 	personnel_status = -1,
+ 	create_user = null
+ 	where id =#{id}
+  </update>
+
+
+  <select id="personnelList" parameterType="com.fulan.api.personnel.vo.PersonnelSearchVo" resultType="com.fulan.api.personnel.vo.PersonnelResultVo">
+    select
+    ep.id,name,TIMESTAMPDIFF(YEAR, ep.BIRTHDAY, CURDATE()) as age,sex,ee.education as education,
+    ep.create_user as createUser,protocol_position as protocolPosition,confirm_position as confirmPosition,cellphone as cellphone,
+    personnel_status as personnelStatus,ep.create_time as createTime,identity_code as idNum,ep.org_name as createUserOrgName,
+    ep.check_result as checkResult,is_send as isSend ,agent_code as agentCode,ep.company_id as companyId,
+    create_user_name as createUserName,ep.is_close as isClose,
+    case personnel_status when 2 then '初审' when 3 then '复审' when 4 then '培训审核' when 6 then case is_send when 1 then "已转发" else '签约转发' end when 7 then case isnull(agent_code) when 1 then     case ep.check_result when 2 then '核查未通过' when 1 then '核查通过' else '待核查' end  else '已完成' end else '' end  as personnelStatusName
+    from er_personnel ep
+    -- 	（LEFT JOIN er_educational ee on (ep.id = ee.personnel_id and ee.end_time = (SELECT MAX(end_time) from er_educational where personnel_id = ep.id) )）
+    LEFT JOIN er_educational ee on (ep.id = ee.personnel_id and ((ee.end_time = (SELECT MAX(end_time) from er_educational where personnel_id = ep.id)) or ee.end_time is null) )
+    where
+    ep.personnel_status != -1 and ep.personnel_status != 1
+    <if test="personnelSearchVo.isClose==1">
+--     (刷选已关闭状态)
+      and is_close = #{personnelSearchVo.isClose}
+    </if>
+    <if test="personnelSearchVo.isClose!=1">
+--     (刷选未关闭状态)
+      and (is_close != 1 or is_close is null)
+    </if>
+    <if test="personnelSearchVo.personnelStatus != null">
+      and ep.personnel_status = #{personnelSearchVo.personnelStatus}
+    </if>
+    <if test="personnelSearchVo.personnelStatus1 != null">
+
+      <if test="personnelSearchVo.personnelStatus1 == 9">
+--  （       and ep.personnel_status != 7）
+        and ep.agent_code is null
+      </if>
+      <if test="personnelSearchVo.personnelStatus1 == 8">
+        and ep.personnel_status = 7 and ep.agent_code is not null
+      </if>
+      <if test="personnelSearchVo.personnelStatus1 == 7">
+        and ep.personnel_status = #{personnelSearchVo.personnelStatus1}
+        and ep.agent_code is null
+      </if>
+    </if>
+    <if test="personnelSearchVo.keyWord != null">
+      and (ep.cellphone like CONCAT(CONCAT('%', #{personnelSearchVo.keyWord}),'%')
+        or ep.name like CONCAT(CONCAT('%', #{personnelSearchVo.keyWord}),'%')
+        or ep.identity_code like CONCAT(CONCAT('%', #{personnelSearchVo.keyWord}),'%'))
+    </if>
+    <if test="personnelSearchVo.createUser != null">
+      and (ep.create_user_name like CONCAT(CONCAT('%', #{personnelSearchVo.createUser}),'%')
+      or ep.create_user like CONCAT(CONCAT('%', #{personnelSearchVo.createUser}),'%'))
+    </if>
+    <if test="personnelSearchVo.confirmPosition != null">
+      and ep.confirm_position = #{personnelSearchVo.confirmPosition}
+    </if>
+    <if test="personnelSearchVo.protocolPosition != null">
+      and ep.protocol_position = #{personnelSearchVo.protocolPosition}
+    </if>
+    <if test="personnelSearchVo.personnelStatus2 != null">
+--    （初审 2，复审 3，培训 4 ，签约转发  6）
+      <if test="personnelSearchVo.personnelStatus2 != null and personnelSearchVo.personnelStatus2 != 7 and personnelSearchVo.personnelStatus2 != 8 ">
+        and ep.personnel_status = #{personnelSearchVo.personnelStatus2}
+      </if>
+
+--  （   签约核查   7）
+      <if test="personnelSearchVo.personnelStatus2 == 7">
+        and ep.personnel_status = #{personnelSearchVo.personnelStatus2}
+        and ep.agent_code is null
+      </if>
+
+--  （   已经签约  8）
+      <if test="personnelSearchVo.personnelStatus2 == 8">
+        and ep.personnel_status = 7
+        and ep.agent_code is not null
+      </if>
+
+    </if>
+    <if test="personnelSearchVo.createTimeStart != null">
+      and <![CDATA[ DATE_FORMAT(ep.create_time,'%Y-%m-%d')>= #{personnelSearchVo.createTimeStart}]]>
+    </if>
+    <if test="personnelSearchVo.createTimeEnd != null">
+      and <![CDATA[ DATE_FORMAT(ep.create_time,'%Y-%m-%d')<= #{personnelSearchVo.createTimeEnd}]]>
+    </if>
+--  （事业部刷选）
+    <if test="personnelSearchVo.companyId1 != null">
+--    （companyId1）
+      and ep.company_id in
+      <foreach collection="personnelSearchVo.companyId1.split(',')" index="index" item="item"
+               open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+-- （ 分公司刷选 ）
+    <if test="personnelSearchVo.companyId1 == null and personnelSearchVo.companyId != null">
+--    （companyId）
+      and ep.company_id in
+      <foreach collection="personnelSearchVo.companyId.split(',')" index="index" item="item"
+               open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="personnelSearchVo.checkResult != null">
+
+--    （核查状态未做筛选）
+      <if test="personnelSearchVo.checkResult == 1">
+--      （已核查）
+        and ep.check_result = 1
+      </if>
+      <if test="personnelSearchVo.checkResult == 0">
+--      （未核查）
+        and ep.personnel_status = 7 and (ep.check_result is null or ep.check_result = 0 )
+      </if>
+
+    </if>
+    <if test="personnelSearchVo.education != null">
+      and ee.education = #{personnelSearchVo.education}
+    </if>
+
+    <if test="personnelSearchVo.companyId1 == null and personnelSearchVo.companyId == null and personnelSearchVo.subOrgId != null">
+--  （subOrgId）
+    and ep.company_id in <foreach collection="personnelSearchVo.subOrgId" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    </if> order by ep.create_time Desc
+  </select>
+
+  <select id="exportPersonnelExcel" parameterType="com.fulan.api.personnel.vo.PersonnelSearchVo" resultType="com.fulan.api.personnel.vo.ExportPersonnelVo">
+    SELECT ep.id,ep.name,e1.processing_name AS firstReading,e2.processing_name AS reexamination,ep.sex,ep.once_name AS onceName,ep.cellphone,ep.identity_type AS identityType,ep.identity_code AS identityCode,ep.postcode,ep.email,ep.domicile_place AS domicilePlace,ep.family_addr_detail AS contactAddress,ep.agent_code AS employeeNum,
+    ep.telephone AS telephone,ep.org_name AS syb,ep.native_work_time AS bxTime,ep.create_user AS creatUser,ep.protocol_position AS protocolPosition,ep.confirm_position AS confirmPosition,
+    ep.wechat as weChat,ep.birthday as birthYear,ep.nation as nation,e3.education as culture,ep.political as politicsStatus,ep.china_citic_bank as chinaCiticBank,ep.bank_branch as bankBranch,ep.total_portfolio as clientNum,ep.max_coacher as maxManageNum,e3.school as school,
+    e3.education as education,e3.specialty as specialty,e3.degree as degree,e4.flow_item_name as nowItem,CASE WHEN e5.inform_option='A' THEN '是' WHEN e5.inform_option='B' THEN '否' ELSE '' END as isDisability,CASE WHEN e6.inform_option='A' THEN '是' WHEN e6.inform_option='B' THEN '否' ELSE '' END as isBreakingTheLaw,
+    CASE WHEN e7.inform_option='A' THEN '是' WHEN e7.inform_option='B' THEN '否' ELSE '' END as isBrokenPromises,e3.start_time as startTime,e3.end_time as endTime,CASE WHEN ep.certificate1='1' THEN '有' WHEN ep.certificate1='0' THEN '无' ELSE '无' END as relevantIndustryCertificate,
+    CASE WHEN ep.certificate2='1' THEN '有' WHEN ep.certificate2='0' THEN '无' ELSE '无' END as insuranceBrokerCertificate,
+    CASE WHEN ep.certificate3='1' THEN '有' WHEN ep.certificate3='0' THEN '无' ELSE '无' END as certificateOfInsurance,
+    CASE WHEN ep.certificate4='1' THEN '有' WHEN ep.certificate4='0' THEN '无' ELSE '无' END as rfcImg,
+    CASE WHEN ep.certificate_other IS null THEN '无'  ELSE ep.certificate_other END as oatherImg,ep.company_id as businessUnit,
+    CASE WHEN e8.end_time IS null THEN '无'  ELSE e8.end_time END as entryTime
+    FROM er_personnel ep
+    LEFT JOIN er_interview_action e1 ON ep.id=e1.personnel_id AND e1.flow_item_id=2
+    LEFT JOIN er_interview_action e2 ON ep.id=e2.personnel_id AND e2.flow_item_id=3
+    LEFT JOIN er_interview_action e8 ON ep.id=e8.personnel_id AND e8.flow_item_id=7
+    LEFT JOIN er_educational  e3 on ep.id=e3.personnel_id
+    LEFT JOIN er_flow_item e4 ON ep.personnel_status=e4.id
+    LEFT JOIN er_personnel_inform_info e5 ON e5.personnel_id=ep.id and e5.inform_id=1001
+    LEFT JOIN er_personnel_inform_info e6 ON e6.personnel_id=ep.id and e6.inform_id=1002
+    LEFT JOIN er_personnel_inform_info e7 ON e7.personnel_id=ep.id and e7.inform_id=1003
+    LEFT JOIN er_educational ee on (ep.id = ee.personnel_id and ee.end_time = (SELECT MAX(end_time) from er_educational where personnel_id = ep.id) )
+    where
+    personnel_status != -1 and personnel_status != 1
+--  (关闭功能影响导出数据)
+    <if test="personnelSearchVo.isClose==1">
+      --     (刷选已关闭状态)
+      and is_close = #{personnelSearchVo.isClose}
+    </if>
+    <if test="personnelSearchVo.isClose!=1">
+      --     (刷选未关闭状态)
+
+      and (is_close != 1 or is_close is null)
+    </if>
+    <if test="personnelSearchVo.personnelStatus != null">
+      and ep.personnel_status = #{personnelSearchVo.personnelStatus}
+    </if>
+    <if test="personnelSearchVo.personnelStatus1 != null">
+
+      <if test="personnelSearchVo.personnelStatus1 == 9">
+        --         and ep.personnel_status != 7
+        and ep.agent_code is null
+      </if>
+      <if test="personnelSearchVo.personnelStatus1 == 8">
+        and ep.personnel_status = 7 and ep.agent_code is not null
+      </if>
+      <if test="personnelSearchVo.personnelStatus1 == 7">
+        and ep.personnel_status = #{personnelSearchVo.personnelStatus1}
+        and ep.agent_code is null
+      </if>
+    </if>
+    <if test="personnelSearchVo.keyWord != null">
+      and (ep.cellphone like CONCAT(CONCAT('%', #{personnelSearchVo.keyWord}),'%')
+      or ep.name like CONCAT(CONCAT('%', #{personnelSearchVo.keyWord}),'%')
+      or ep.identity_code like CONCAT(CONCAT('%', #{personnelSearchVo.keyWord}),'%'))
+    </if>
+    <if test="personnelSearchVo.createUser != null">
+      and (ep.create_user_name like CONCAT(CONCAT('%', #{personnelSearchVo.createUser}),'%')
+      or ep.create_user like CONCAT(CONCAT('%', #{personnelSearchVo.createUser}),'%'))
+    </if>
+    <if test="personnelSearchVo.confirmPosition != null">
+      and ep.confirm_position = #{personnelSearchVo.confirmPosition}
+    </if>
+    <if test="personnelSearchVo.protocolPosition != null">
+      and ep.protocol_position = #{personnelSearchVo.protocolPosition}
+    </if>
+    <if test="personnelSearchVo.personnelStatus2 != null">
+      --    初审 2，复审 3，培训 4 ，签约转发  6
+      <if test="personnelSearchVo.personnelStatus2 != null and personnelSearchVo.personnelStatus2 != 7 and personnelSearchVo.personnelStatus2 != 8 ">
+        and ep.personnel_status = #{personnelSearchVo.personnelStatus2}
+      </if>
+
+      --     签约核查   7
+      <if test="personnelSearchVo.personnelStatus2 == 7">
+        and ep.personnel_status = #{personnelSearchVo.personnelStatus2}
+        and ep.agent_code is null
+      </if>
+
+      --     已经签约  8
+      <if test="personnelSearchVo.personnelStatus2 == 8">
+        and ep.personnel_status = 7
+        and ep.agent_code is not null
+      </if>
+
+    </if>
+    <if test="personnelSearchVo.createTimeStart != null">
+      and <![CDATA[ DATE_FORMAT(ep.create_time,'%Y-%m-%d')>= #{personnelSearchVo.createTimeStart}]]>
+    </if>
+    <if test="personnelSearchVo.createTimeEnd != null">
+      and <![CDATA[ DATE_FORMAT(ep.create_time,'%Y-%m-%d')<= #{personnelSearchVo.createTimeEnd}]]>
+    </if>
+    --  事业部刷选
+    <if test="personnelSearchVo.companyId1 != null">
+      --    companyId1
+      and ep.company_id in
+      <foreach collection="personnelSearchVo.companyId1.split(',')" index="index" item="item"
+               open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    --  分公司刷选
+    <if test="personnelSearchVo.companyId1 == null and personnelSearchVo.companyId != null">
+      --    companyId
+      and ep.company_id in
+      <foreach collection="personnelSearchVo.companyId.split(',')" index="index" item="item"
+               open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="personnelSearchVo.checkResult != null">
+
+      --    核查状态未做筛选
+      <if test="personnelSearchVo.checkResult == 1">
+        --      已核查
+        and ep.check_result = 1
+      </if>
+      <if test="personnelSearchVo.checkResult == 0">
+        --      未核查
+        and ep.personnel_status = 7 and (ep.check_result is null or ep.check_result = 0 )
+      </if>
+
+    </if>
+    <if test="personnelSearchVo.education != null">
+      and ee.education = #{personnelSearchVo.education}
+    </if>
+
+    <if test="personnelSearchVo.companyId1 == null and personnelSearchVo.companyId == null and personnelSearchVo.subOrgId != null">
+      --  subOrgId
+      and ep.company_id in <foreach collection="personnelSearchVo.subOrgId" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    </if> order by ep.create_time Desc
+  </select>
+
+  <select id="selectFlowItem1" resultType="com.fulan.api.personnel.domain.FlowItem" >
+  		SELECT id,flow_item_name AS flowItemName,flow_item_name_desc AS flowItemNameDesc,system_name AS systemName,business_name AS businessName,moudle_name AS moudleName,moudle_url AS moudleUrl,create_time AS createTime,create_user AS createUser,update_time AS updateTime,update_user AS updateUser
+		FROM er_flow_item  where id!=1 and id != 5 group by moudle_name
+  </select>
+
+  <update id="backFlow" parameterType="com.fulan.api.personnel.domain.InterviewAction">
+      update er_personnel
+      set personnel_status = #{flowItemId},
+      is_send = 0,
+      check_result = null
+      where id = #{personnelId}
+  </update>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.mobile.mapper.CustomizedMapper">
+
+    <!--  自定义~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~***********************  -->
+    <select id="selectClickCount" parameterType="String" resultType="Integer">
+        select sum(click) from share_information where tel_phone=#{telPhone} and status = '1'
+    </select>
+
+    <insert id="insertData" parameterType="com.bpic.common.core.domain.entity.ShareInformation">
+        insert into share_information(
+        share_product_ID,sharer_superior_name,sharer_superior_empno,sharer_superior_phone,sharer_empno,sharer_name,tel_phone,type,product_code,status)
+         values (#{shareProductId},#{sharerSuperiorName},#{sharerSuperiorEmpno},
+         #{sharerSuperiorPhone},#{sharerEmpno},#{sharerName},#{telPhone},#{type},#{productCode},#{status})
+    </insert>
+
+    <update id="updateTelPhone" parameterType="com.bpic.common.core.domain.entity.ShareInformation">
+        update share_information s
+        set s.tel_phone=#{telPhone}
+        where share_product_id=#{shareProductId}
+    </update>
+
+    <delete id="deleteData" parameterType="com.bpic.common.core.domain.entity.ShareInformation">
+        delete from share_information where share_product_id=#{shareProductId}
+    </delete>
+
+
+<!--    <select id="selectClickCount" parameterType="String" resultType="String">-->
+<!--        select sum(click) from share_information where share_product_id = #{shareProductId}-->
+<!--    </select>-->
+
+</mapper>

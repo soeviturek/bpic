@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "bpic",
+      "type": "com.bpic.common.config.BpicConfig",
+      "sourceType": "com.bpic.common.config.BpicConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "bpic.copyright-year",
+      "type": "java.lang.String",
+      "description": "版权年份",
+      "sourceType": "com.bpic.common.config.BpicConfig"
+    },
+    {
+      "name": "bpic.demo-enabled",
+      "type": "java.lang.Boolean",
+      "description": "实例演示开关",
+      "sourceType": "com.bpic.common.config.BpicConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "bpic.name",
+      "type": "java.lang.String",
+      "description": "项目名称",
+      "sourceType": "com.bpic.common.config.BpicConfig"
+    },
+    {
+      "name": "bpic.version",
+      "type": "java.lang.String",
+      "description": "版本",
+      "sourceType": "com.bpic.common.config.BpicConfig"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bpic-insure-Interface" />
+        <module name="bpic-insure-api" />
+        <module name="bpic-framework" />
+        <module name="bpic-insure-mobile" />
+        <module name="bpic-recruit-api" />
+        <module name="bpic-common" />
+        <module name="bpic-system" />
+        <module name="bpic-insure-pc" />
+        <module name="bpic-quartz" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bpic" target="1.8" />
+      <module name="bpic-common" target="1.8" />
+      <module name="bpic-framework" target="1.8" />
+      <module name="bpic-insure-api" target="1.8" />
+      <module name="bpic-insure-Interface" target="1.8" />
+      <module name="bpic-insure-mobile" target="1.8" />
+      <module name="bpic-insure-pc" target="1.8" />
+      <module name="bpic-quartz" target="1.8" />
+      <module name="bpic-recruit-api" target="1.8" />
+      <module name="bpic-system" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

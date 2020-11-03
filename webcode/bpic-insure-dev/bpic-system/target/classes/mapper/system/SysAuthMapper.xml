@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.SysAuthMapper">
+
+    <select id="select" resultType="AuthenticationVo" parameterType="AuthenticationVo">
+        select s.user_name offlineName,s.c_emp_cnm salesman,s.c_emp_cde ,s.c_tel_mob cTelMob,t.c_dpt_cde deptId,t.c_salegrp_cde team,a.create_time commitDate,a.audit_status  status from audit_image a
+        left join sys_login_user s  on a.c_tel_mob=s.c_tel_mob
+        left join t_emp_cde_sales t on s.c_emp_cde = t.c_emp_cde
+        where 1 = 1
+        <if test="offlineName != null and offlineName != ''">
+            AND s.user_name like concat('%', #{offlineName}, '%')
+        </if>
+        <if test="salesman != null and salesman != ''">
+            AND s.c_emp_cnm like concat('%', #{salesman}, '%')
+        </if>
+        <if test="commitDate != null and commitDate != ''">
+            AND a.create_time = #{commitDate}
+        </if>
+        <if test="status != null and status != ''">
+            and a.audit_status =#{status}
+        </if>
+        <if test="deptList !=null and deptList.size>0 ">
+            and t.c_dpt_cde in
+            <foreach collection="deptList" item="item" index="index"
+                     separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <update id="audit" parameterType="AuthenticationVo" >
+        update audit_image set audit_status=#{status} ,advice =#{advice} ,update_time=sysdate() where c_tel_mob=#{cTelMob}
+    </update>
+
+    <select id="check" parameterType="AuthenticationVo" resultType="AuditImage">
+       select * from  audit_image a where a.c_tel_mob=#{telPhone}
+    </select>
+</mapper>

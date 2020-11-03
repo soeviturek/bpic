@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bpic.iml" filepath="$PROJECT_DIR$/bpic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-common/bpic-common.iml" filepath="$PROJECT_DIR$/bpic-common/bpic-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-framework/bpic-framework.iml" filepath="$PROJECT_DIR$/bpic-framework/bpic-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-insure-Interface/bpic-insure-Interface.iml" filepath="$PROJECT_DIR$/bpic-insure-Interface/bpic-insure-Interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-insure-api/bpic-insure-api.iml" filepath="$PROJECT_DIR$/bpic-insure-api/bpic-insure-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-insure-mobile/bpic-insure-mobile.iml" filepath="$PROJECT_DIR$/bpic-insure-mobile/bpic-insure-mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-insure-pc/bpic-insure-pc.iml" filepath="$PROJECT_DIR$/bpic-insure-pc/bpic-insure-pc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-quartz/bpic-quartz.iml" filepath="$PROJECT_DIR$/bpic-quartz/bpic-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-recruit-api/bpic-recruit-api.iml" filepath="$PROJECT_DIR$/bpic-recruit-api/bpic-recruit-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bpic-system/bpic-system.iml" filepath="$PROJECT_DIR$/bpic-system/bpic-system.iml" />
+    </modules>
+  </component>
+</project>

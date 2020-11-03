@@ -1,0 +1,96 @@
+<div class="sign-check-view">
+    <div class="head clearfix">
+        <div class="left">
+            <div class="portrait">
+                <i class="iconfont {{=it.sex == "M" ? 'icon-male':'icon-female'}}"></i>
+            </div>
+            <div class="rank">
+                <p>{{=it.name || ''}}</p>
+                <!-- <p>{{=it.cellphone || ''}}</p> -->
+                <!-- <p>推荐人：{{=it.createUserName || ''}}</p> -->
+            </div>
+        </div>
+        <div class="right recheck-post">
+            <i class="iconfont icon-character-success"></i>
+            <span>{{=it.position}}</span>
+            <span>核定</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-details clearfix">
+            <div class="content-details-left fl">
+                <p>
+                    <i class="iconfont icon-wechat"></i>
+                    <span>{{=it.wechat || ''}}</span>
+                </p>
+                <p>
+                    <i class="iconfont icon-phone"></i>
+                    <span>{{=it.cellphone || ''}}</span>
+                </p>
+                
+                <!-- <p>
+                    <i class="iconfont icon-tengxunqq"></i>
+                    <span>{{=it.contactQq || ''}}</span>
+                </p>
+                <p>
+                    <i class="iconfont icon-youjian2"></i>
+                    <span>{{=it.email || ''}}</span>
+                </p> -->
+            </div>
+            <div class="content-details-right fr">
+                <i class="iconfont icon-profile"></i>
+            </div>
+            <div class="work">
+                <p>同业经历：</p>
+                <span>{{=it.workExperience || ""}}</span>
+            </div>
+        </div>
+        <div class="arrow">
+            <i class="iconfont icon-jiantou-copy-copy-copy">
+
+            </i>
+        </div>
+        <div class="bottom-content">
+            <div class="details">
+                <ul>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time fl">
+                            核定职级
+                        </strong>
+                        <div class="left-fathter fr">
+                            <div class="ipt-select">
+                                <i class="iconfont icon-jiantouarrow483"></i>
+                                <input type="text" class="ipt-text" placeholder="请选择核定职级" value="{{=it.position}}">
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="fl">
+                            推荐人：{{=it.createUserName || ''}}
+                        </strong>
+
+
+                    </li>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time">
+                            审核评语
+                        </strong>
+                        <textarea id="comment" rows="" cols=""></textarea>
+
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <button type="button" class="fl" data-result="N">不通过</button>
+        <button type="button" class="fl" data-result="Y">通过</button>
+    </div>
+</div>

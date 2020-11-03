@@ -1,0 +1,135 @@
+<div class="app-container">
+    <div class="search-box">
+        <div class="search-input">
+            <input type="text" id="search-text" placeholder="搜索">
+            <i class="iconfont  icon-sousuo-copy"></i>
+        </div>
+        <div class="process-select">
+            筛选
+            <i class="iconfont icon-filter"></i>
+        </div>
+    </div>
+    <div class="select-box">
+        <div>
+           <div class="slider-box">
+               <div  class="drop-tips"><img src="../../images/drop-tip.png"><span>下拉刷新</span></div>
+               <div class="se-con">
+                   <!--<div class="select-item">-->
+                   <!--<h2>-->
+                   <!--<span class="sex-name">王</span>-->
+                   <!--<i class="iconfont icon-xingbienan"></i>-->
+                   <!--</h2>-->
+                   <!--<h3>-->
+                   <!--<p class="user-name">王晓明</p>-->
+                   <!--<p class="user-tel">13712340987</p>-->
+                   <!--</h3>-->
+                   <!--<h4>-->
+                   <!--<p class="ywzr">业务主任</p>-->
+                   <!--<p>-->
+                   <!--<span class="sh-status">初审 </span>-->
+                   <!--<span class="select-status pending">进行中</span>-->
+                   <!--</p>-->
+                   <!--</h4>-->
+                   <!--</div>-->
+               </div>
+               <div class="loading-more">
+                   <img class="loading-img" src="../../images/loading-list.gif" alt=""><span class="loading-text">加载更多！</span>
+               </div>
+           </div>
+        </div>
+
+    </div>
+    <div class="zhezhao" style="display: none"></div>
+    <div class="select-content">
+        <div class="select-options">
+            <div class="option option1">
+                <p>姓名</p>
+                <input type="text" class="name-option">
+            </div>
+            <div class="option option2">
+                <p>状态</p>
+                <ul class="option-status status1">
+                    <li>进行中</li>
+                    <li>待签约</li>
+                    <li>待审核</li>
+                    <li>已通过</li>
+                    <li>未通过</li>
+                </ul>
+            </div>
+<!--            <div class="option option3">-->
+<!--                <p>职级</p>-->
+<!--                <ul class="option-status status1">-->
+<!--                    <li>业务主任</li>-->
+<!--                    <li>业务经理</li>-->
+<!--                    <li>高级业务经理</li>-->
+<!--                    <li>业务总监</li>-->
+<!--                    <li>高级业务总监</li>-->
+<!--                    <li>业务副总</li>-->
+<!--                </ul>-->
+<!--            </div>-->
+        </div>
+        <div class="job-resu">
+            <ul class="option-status">
+                <li>高级行销总监</li>
+                <li>行销副总</li>
+            </ul>
+        </div>
+        <div class="select-button">
+            <a id="preset-select">重置</a>
+            <a id="sure-select">确定</a>
+        </div>
+    </div>
+    <div class="filter-box">
+        <div class="filter-content">
+            <div class="filter-item">
+                <p class="filter-item-title">姓名</p>
+                <div class="filter-item-content">
+                    <input name="name" type="text">
+                </div>
+            </div>
+            <div class="filter-item">
+                <p class="filter-item-title">手机号</p>
+                <div class="filter-item-content">
+                    <input name="phone" type="number">
+                </div>
+            </div>
+            <div class="filter-item">
+                <p class="filter-item-title">状态</p>
+                <div class="filter-item-content checkbox-wrapper">
+                    <div class="checkbox-item status-item">进行中</div>
+                    <div class="checkbox-item status-item">已签约</div>
+                    <div class="checkbox-item status-item">未通过</div>
+                </div>
+            </div>
+<!--            <div class="filter-item">-->
+<!--                <p class="filter-item-title">职级</p>-->
+<!--                <div class="filter-item-content checkbox-wrapper">-->
+<!--                	 <div class="checkbox-item post-item" data-type="保险顾问">保险顾问</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="业务主任">业务主任</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="业务经理">业务经理</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="高级业务经理">高级业务经理</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="业务总监">业务总监</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="高级业务总监">高级业务总监</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="业务副总">业务副总</div>-->
+<!--                    <div class="checkbox-item post-item" data-type="行销副总">行销副总</div>-->
+<!--			        <div class="checkbox-item post-item" data-type="高级行销总监">高级行销总监</div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="filter-item">
+                <p class="filter-item-title">接受邀请时间</p>
+                <div class="filter-item-content checkbox-wrapper">
+                <input type="text" data-time="on" value="" name="startTime"
+                    class="" placeholder="开始时间" readonly="">
+                    <span>~</span>
+                    <input type="text" data-time="on" value="" name="endTime" class=""
+                    placeholder="结束时间" readonly="">
+                </div>
+            </div>
+            <div class="filter-btn-group">
+                <button type="button" class="filter-reset">重置</button>
+                <button type="button" class="filter-confirm">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+

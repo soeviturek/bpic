@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.SysProductConfigMapper">
+
+    <select id="getProductConfigList" parameterType="com.bpic.system.domain.vo.ProductConfigVo" resultType="ProductConfig">
+        select p.id,p.config_code configCode,p.config_name configName,p.auth_start_time authStartTime,p.auth_end_time authEndTime,
+        p.message,p.creater,p.create_time createTime,p.status status
+        from product_config p where 1=1
+        <if  test="list != null and list.size>0 ">
+            and p.config_code in (
+            select c.config_code from config_sales c where c.dept_code in
+            <foreach collection="list" item="item" index="index"
+                     separator="," open="(" close=")">
+                #{item,jdbcType=VARCHAR}
+            </foreach>
+            )
+        </if>
+        <if test="configName != null and configName != ''">
+            AND config_name like concat('%', #{configName}, '%')
+        </if>
+        <if test="creater != null and creater != ''">
+            AND creater = #{creater}
+        </if>
+        <if test="status != null and status != ''">
+            AND status =#{status}
+        </if>
+        <if test="authStartTime != null and authStartTime != ''">
+            AND date_format(auth_start_time,'%y%m%d') &gt;= date_format(#{authStartTime},'%y%m%d')
+        </if>
+        <if test="authEndTime != null and authEndTime != ''"><!-- 结束时间检索 -->
+            AND date_format(auth_end_time,'%y%m%d') &lt;= date_format(#{authEndTime},'%y%m%d')
+        </if>
+    </select>
+
+    <select id="findProductConfigById" parameterType="String" resultType="ProductConfig">
+        select p.id,p.config_code configCode,p.config_name configName,p.auth_start_time authStartTime,p.auth_end_time authEndTime,
+         p.message,p.creater,p.create_time createTime,p.status status from product_config p where p.config_code=#{configCode}
+    </select>
+
+    <delete id="deleteProductConfig" parameterType="Long">
+        delete from product_config where config_code=#{configCode}
+    </delete>
+
+    <delete id="deleteProduct" parameterType="Long">
+        delete from product where config_code=#{configCode}
+    </delete>
+
+    <update id="updateStatus" parameterType="String">
+      update product_config set status='0' where config_code=#{configCode}
+    </update>
+
+    <select id="selectProductList" parameterType="String" resultType="com.bpic.common.core.domain.entity.Product">
+        SELECT t.product_code productCode,t.channel_code channelCode,t.poundage poundage,
+        t.performance performance,t.acquisition_fee acquisitionFee,t.incentive_fee incentiveFee, t.config_code configCode,t.product_name productCName,t.group_id groupId FROM product t WHERE t.config_code IN
+        (
+        SELECT p.config_code FROM product_config p LEFT JOIN config_sales c ON p.config_code=c.config_code WHERE c.sales=#{saleCode} and p.status = '1'
+        )
+    </select>
+
+    <delete id="deleteSales" parameterType="Long">
+        delete from config_sales where config_code=#{configCode}
+    </delete>
+    <select id="findProductById" parameterType="String" resultType="com.bpic.common.core.domain.entity.Product">
+        SELECT p.product_code productCode,p.channel_code channelCode,p.poundage poundage,
+        p.performance performance,p.acquisition_fee acquisitionFee,p.incentive_fee incentiveFee, p.config_code configCode,p.product_name productCName,
+        p.group_id groupId FROM product p WHERE p.config_code=#{configCode}
+        <if test="productCode != null and productCode != ''">
+            AND p.product_code = #{productCode}
+        </if>
+        <if test="productName != null and productName != ''">
+            AND p.product_name like concat('%', #{productName}, '%')
+        </if>
+    </select>
+
+    <select id="findIdByCode" parameterType="String" resultType="Integer">
+        select id from config_sales where config_code=#{configCode} and sales=#{sales}
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from config_sales  where id =#{id}
+    </delete>
+
+    <select id="findSales" parameterType="String" resultType="com.bpic.system.domain.vo.SalesVo">
+        select c.config_code configCode,c.dept_name deptName,c.sales sales,t.c_emp_cnm cEmpCnm,t.c_salegrp_cde cSalegrpCde from config_sales c left join t_emp_cde_sales t on c.sales=t.c_emp_cde
+         where c.config_code=#{configCode}
+        <if test="sales != null and sales != ''">
+            AND c.sales = #{sales}
+        </if>
+        <if test="salesName != null and salesName != ''">
+            AND t.c_emp_cnm like concat('%', #{salesName}, '%')
+        </if>
+    </select>
+
+    <insert id="insertSales" parameterType="java.util.List">
+        insert into config_sales(config_code,dept_name,sales,dept_code) values
+        <foreach collection="salesList" item="item" index="index" separator=",">
+           (#{item.configCode},#{item.deptName},#{item.sales},#{item.deptCode})
+        </foreach>
+    </insert>
+
+    <insert id="insertProductConfig" parameterType="ProductConfig">
+        insert into product_config(config_code,config_name,auth_start_time,auth_end_time,message,creater,create_time,status) values
+        (#{configCode},#{configName},#{authStartTime},#{authEndTime},#{message},#{creater},#{createTime},#{status})
+    </insert>
+
+    <insert id="insertProduct" parameterType="java.util.List">
+        insert into product(product_code,poundage,performance,acquisition_fee,incentive_fee,config_code,channel_code,product_name,group_id) values
+        <foreach collection="productList" item="item" index="index" separator=",">
+            (#{item.productCode},#{item.poundage},#{item.performance},#{item.acquisitionFee},#{item.incentiveFee},#{item.configCode},#{item.channelCode},#{item.productCName},#{item.groupId})
+        </foreach>
+    </insert>
+
+    <select id="selectSales" resultType="com.bpic.system.domain.vo.TempCdeSalesVo">
+        select * from t_emp_cde_sales t where t.c_emp_cde in
+        <foreach collection="split" item="userId" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+        <if test="sales != null and sales != ''">
+            AND t.c_emp_cde = #{sales}
+        </if>
+        <if test="salesName != null and salesName != ''">
+            AND t.c_emp_cnm like concat('%', #{salesName}, '%')
+        </if>
+    </select>
+
+    <select id="findProductConfig" resultType="ProductConfig">
+        select p.id,p.config_code configCode,p.config_name configName,p.auth_start_time authStartTime,p.auth_end_time authEndTime,
+        p.message,p.creater,p.create_time createTime,p.status status
+        from product_config p
+    </select>
+
+    <update id="updateStatusByList" parameterType="java.util.List" >
+       update product_config set status='0' where config_code in
+       <foreach collection="list" close=")" open="(" separator="," item="item">
+            #{item}
+       </foreach>
+       </update>
+</mapper>

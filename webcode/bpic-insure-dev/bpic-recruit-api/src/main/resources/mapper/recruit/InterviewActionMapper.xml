@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fulan.application.mapper.InterviewActionMapper" >
+  <resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.InterviewAction" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="personnel_id" property="personnelId" jdbcType="BIGINT" />
+    <result column="flow_action_id" property="flowActionId" jdbcType="BIGINT" />
+    <result column="flow_item_id" property="flowItemId" jdbcType="BIGINT" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="processing_person" property="processingPerson" jdbcType="VARCHAR" />
+    <result column="processing_status" property="processingStatus" jdbcType="CHAR" />
+    <result column="processing_desc" property="processingDesc" jdbcType="VARCHAR" />
+    <result column="processing_name" property="processingName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, personnel_id, flow_action_id, flow_item_id, start_time, end_time, processing_person, 
+    processing_status, processing_desc, create_time, create_user, update_user, update_time
+  </sql>
+  <sql id="FlowItemInterviewActionVo" >
+    e2.id, 
+    e2.personnel_id as personnelId,  
+    e2.flow_action_id as flowActionId, 
+    e2.flow_item_id as flowItemId,  
+    e2.start_time as startTime,  
+    e2.end_time as endTime,  
+    e2.processing_person as processingPerson,  
+    e2.processing_name as processingName,  
+    e2.processing_status as processingStatus,  
+    e2.processing_desc as processingDesc, 
+    e2.create_time as createTime,  
+    e2.create_user as createUser,  
+    e2.update_user as updateUser,   
+    e2.update_time as updateTime, 
+    e1.flow_Item_Name as flowItemName,  
+    e1.flow_Item_Name_Desc as flowItemNameDesc,  
+    e1.system_Name as systemName,  
+    e1.business_name as businessName, 
+    e1.moudle_name as moudleName, 
+    e1.moudle_url as moudleUrl
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_interview_action
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByPersonnelId" resultType="com.fulan.api.flow.vo.FlowItemInterviewActionVo" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    select 
+    <include refid="FlowItemInterviewActionVo" />
+    from er_flow_item as e1
+    LEFT JOIN er_interview_action as e2
+    ON e1.id =e2.flow_item_id
+    where e2.personnel_id = #{personnelId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from er_interview_action
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    insert into er_interview_action (id, personnel_id, flow_action_id, 
+      flow_item_id, start_time, end_time, 
+      processing_person,processing_name, processing_status, processing_desc, 
+      create_time, create_user, update_user, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{personnelId,jdbcType=BIGINT}, #{flowActionId,jdbcType=BIGINT}, 
+      #{flowItemId,jdbcType=BIGINT}, now(), #{endTime,jdbcType=DATE}, 
+      #{processingPerson,jdbcType=VARCHAR},#{processingName,jdbcType=VARCHAR}, #{processingStatus,jdbcType=CHAR}, #{processingDesc,jdbcType=VARCHAR}, 
+      now(), #{createUser,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    insert into er_interview_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="personnelId != null" >
+        personnel_id,
+      </if>
+      <if test="flowActionId != null" >
+        flow_action_id,
+      </if>
+      <if test="flowItemId != null" >
+        flow_item_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="processingPerson != null" >
+        processing_person,
+      </if>
+      <if test="processingStatus != null" >
+        processing_status,
+      </if>
+      <if test="processingDesc != null" >
+        processing_desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="personnelId != null" >
+        #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="flowActionId != null" >
+        #{flowActionId,jdbcType=BIGINT},
+      </if>
+      <if test="flowItemId != null" >
+        #{flowItemId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="processingPerson != null" >
+        #{processingPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="processingStatus != null" >
+        #{processingStatus,jdbcType=CHAR},
+      </if>
+      <if test="processingDesc != null" >
+        #{processingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    update er_interview_action
+    <set >
+      <if test="personnelId != null" >
+        personnel_id = #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="flowActionId != null" >
+        flow_action_id = #{flowActionId,jdbcType=BIGINT},
+      </if>
+      <if test="flowItemId != null" >
+        flow_item_id = #{flowItemId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="processingPerson != null" >
+        processing_person = #{processingPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="processingStatus != null" >
+        processing_status = #{processingStatus,jdbcType=CHAR},
+      </if>
+      <if test="processingDesc != null" >
+        processing_desc = #{processingDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    update er_interview_action
+    set personnel_id = #{personnelId,jdbcType=BIGINT},
+      flow_action_id = #{flowActionId,jdbcType=BIGINT},
+      flow_item_id = #{flowItemId,jdbcType=BIGINT},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      processing_person = #{processingPerson,jdbcType=VARCHAR},
+      processing_status = #{processingStatus,jdbcType=CHAR},
+      processing_desc = #{processingDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_time = now()
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryPersonnel" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    update er_interview_action
+    set
+      end_time = now(),
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_time = now(),
+      processing_status = #{processingStatus,jdbcType=CHAR},
+      processing_desc = #{processingDesc,jdbcType=VARCHAR}
+    where personnel_id = #{personnelId,jdbcType=BIGINT} and end_time is null
+  </update>
+
+  <update id="completeStudy" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    update er_interview_action
+    set
+      end_time = now(),
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_time = now(),
+      processing_status = #{processingStatus,jdbcType=CHAR},
+      processing_person = #{processingPerson,jdbcType=VARCHAR},
+      processing_name = #{processingName,jdbcType=VARCHAR},
+      processing_desc = #{processingDesc,jdbcType=VARCHAR}
+    where personnel_id = #{personnelId,jdbcType=BIGINT} and flow_item_id = 4 ;
+  </update>
+  
+  
+   <insert id="insertInterviewAction" parameterType="com.fulan.api.personnel.vo.InterviewActionVo">
+	     insert into er_interview_action
+	     <trim prefix="(" suffix=")" suffixOverrides=",">
+	     	 <if test="id != null">
+		        id,
+		      </if>
+		      <if test="personnelId != null and personnelId != ''">
+		        personnel_id,
+		      </if>
+		      <if test="flowItemId != null and flowItemId !=''">
+		        flow_item_id,
+		      </if>
+		      <if test="processingPerson != null and processingPerson !=''" >
+		        processing_person,
+		      </if>
+		      <if test="processingName != null and processingName !=''">
+		        processing_name,
+		      </if>
+		      <if test="startTime != null">
+		        start_time,
+		      </if>
+	     </trim>
+	     <trim prefix="values (" suffix=")" suffixOverrides=",">
+	     	  <if test="id != null">
+		        #{id,jdbcType=BIGINT},
+		      </if>
+		      <if test="personnelId != null and personnelId != ''">
+		        #{personnelId},
+		      </if>
+		      <if test="flowItemId != null and flowItemId !=''">
+		        #{flowItemId},
+		      </if>
+		      <if test="processingPerson != null and processingPerson !=''">
+		        #{processingPerson},
+		      </if>
+		      <if test="processingName != null and processingName !=''">
+		        #{processingName},
+		      </if>
+		      <if test="startTime != null">
+		        #{startTime},
+		      </if>
+	     </trim>
+	</insert>
+	
+	<update id="updateNowPersonnerStaus" parameterType="com.fulan.api.personnel.vo.InterviewActionVo">
+    update er_interview_action
+ 	set 
+ 	processing_status = 1,
+ 	end_time=#{endTime}
+ 	where personnel_id = #{personnelId} and flow_item_id = #{nowItem}
+  </update>
+    <select id="selectByPersonnelIdAndFlowItemId" resultMap="BaseResultMap" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_interview_action
+    where personnel_id = #{personnelId,jdbcType=BIGINT} and flow_item_id = #{flowItemId}
+  </select>
+  
+  
+   <update id="updateSpecific" parameterType="com.fulan.api.personnel.vo.InterviewActionVo" >
+    update er_interview_action
+    <set >
+      <if test="processingPerson != null" >
+        processing_person = #{processingPerson},
+      </if>
+      <if test="processingName != null" >
+        processing_name = #{processingName},
+      </if>
+       <if test="processingStatus != null" >
+        processing_status = #{processingStatus},
+      </if>
+       <if test="processingDesc != null" >
+        processing_desc = #{processingDesc},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime},
+      </if>
+    </set>
+    where personnel_id = #{personnelId} and flow_item_id =#{nowItem}
+  </update>
+  
+  <update id="updateInterviewActionByIdCode" >
+    update er_interview_action
+ 	set 
+ 	processing_status = #{status},
+ 	end_time=#{endTime}
+ 	where personnel_id = #{id} and flow_item_id = #{nowItem}
+  </update>
+  
+  <select id="getFirstInterviewAction" resultMap="BaseResultMap" parameterType="com.fulan.api.personnel.domain.InterviewAction" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_interview_action
+    where personnel_id = #{personnelId,jdbcType=BIGINT} and flow_item_id !="1" and processing_person is not null order by flow_item_id asc limit 1
+  </select>
+  <delete id="deleteByPersonnelID" parameterType="java.lang.String" >
+    delete from er_interview_action
+    where personnel_id = #{id} and flow_item_id=#{nowItem}
+  </delete>
+
+  <select id="getInterviewActionResult" parameterType="com.fulan.api.personnel.domain.InterviewAction" resultMap="BaseResultMap" >
+      select *
+      from er_interview_action
+      where personnel_id = #{personnelId} and flow_item_id = #{flowItemId}
+  </select>
+
+  <select id="getNowInterviewAction" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select *
+    from  er_interview_action
+    where personnel_id = #{personnelId}
+    and flow_item_id = (SELECT MAX(flow_item_id) from er_interview_action where personnel_id = #{personnelId})
+  </select>
+
+  <update id="backInterviewAction" parameterType="com.fulan.api.personnel.domain.InterviewAction">
+    update er_interview_action
+    set end_time = null,
+    processing_status = null,
+    processing_desc = null
+    where personnel_id = #{personnelId} and flow_item_id = #{flowItemId}
+  </update>
+  <update id="updateInterviewAction" parameterType="com.fulan.api.personnel.domain.InterviewAction">
+      UPDATE er_interview_action
+      set processing_desc = CONCAT(processing_desc,";流程向前指派取消已走过的流程",personnel_id),
+      personnel_id = null
+      where personnel_id = #{personnelId} and flow_item_id != #{flowItemId}
+  </update>
+</mapper>

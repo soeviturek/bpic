@@ -1,0 +1,49 @@
+.main{height: auto !important;background-color: #fff;padding-bottom: 50px}
+.word{display: none;width: 90%;margin: 0 auto;}
+.word p{font-size: 16px;margin-bottom:5px}
+.word .title{font-size: 22px;line-height: 28px;padding: 10px 0;}
+.word .sub{font-size: 14px;padding-left: 20px}
+.sign-img{width: 90%;height: 200px;border: 1px solid #d4d4d4;margin: 10px auto;background-color: #ffffff}
+.sign-img p{width: 100%;font-size: 40px;text-align: center;padding-top: 70px;color: #d0d0d0}
+.sign-img img{width: 100%;height: 100%}
+.sign-btn-save{display: block;width: 90%;margin: 20px auto 0;background-color: #004098;color: #ffffff;border-radius: 5px;padding: 10px 0;}
+
+.sign-popup{position: fixed;width: 100%;height: 100%;background: #ffffff;top: 0;left: 50%;transform: translateX(-50%);z-index: 11;}
+.sigClose{position: absolute;top: 10px;left: 10px;width: 30px;height: 30px;border-radius: 15px;box-shadow: 2px 3px 13px 0px rgba(0,0,0,.2);color: #004098;line-height: 30px;text-align: center;}
+.ToResetCode {
+    position: fixed;
+    width: 50%;
+    font-size: 17px;
+    color: #222;
+    line-height: 55px;
+    height: 55px;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    z-index: 200;
+    background-color: #fff;
+    border-top: solid 1px #ddd;
+    border-right: solid 1px #ddd;
+}
+
+.toCreatCode {
+    position: fixed;
+    width: 50%;
+    font-size: 17px;
+    color: #222;
+    line-height: 55px;
+    height: 55px;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    z-index: 200;
+    background-color: #fff;
+    border-top: solid 1px #ddd;
+    color: #005bac;
+}
+.time{
+	text-align: right;padding: 0px 40px;
+}
+.personnelName{
+	 text-decoration: underline;padding: 0px 10px;
+}

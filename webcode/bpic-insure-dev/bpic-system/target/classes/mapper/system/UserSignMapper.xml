@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.UserSignMapper">
+
+    <insert id="save" parameterType="com.bpic.system.domain.UserSign">
+        insert into user_sign(
+        <if test="user_mob != null and user_mob != ''">user_mob,</if>
+        <if test="sign_date != null and sign_date != ''">sign_date,</if>
+        <if test="is_signed != null and is_signed != ''">is_signed,</if>
+        <if test="maxs != null and maxs != ''">maxs,</if>
+        update_time
+        )
+        values(
+        <if test="user_mob != null and user_mob != ''">#{user_mob},</if>
+        <if test="sign_date != null and sign_date != ''">#{sign_date},</if>
+        <if test="is_signed != null and is_signed != ''">#{is_signed},</if>
+        <if test="maxs != null and maxs != ''">#{maxs},</if>
+        sysdate())
+    </insert>
+
+    <select id="queryUserSign" parameterType="String" resultType="com.bpic.system.domain.UserSign">
+        select
+            user_mob,sign_date,is_signed,maxs,update_time
+        from user_sign
+        where user_mob = #{cellphone}
+    </select>
+
+    <delete id="resetUserSign">
+        delete from user_sign
+    </delete>
+
+    <select id="queryMaxDay" resultType="Integer">
+        select max(maxs) from user_sign where user_mob = #{cellphone}
+    </select>
+
+    <select id="queryToday" resultType="com.bpic.system.domain.UserSign">
+        SELECT user_mob,sign_date,is_signed,maxs,update_time FROM user_sign WHERE DATE_FORMAT( update_time,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d');
+    </select>
+
+    <select id="queryYesteday" resultType="com.bpic.system.domain.UserSign">
+        SELECT user_mob,sign_date,is_signed,maxs,update_time FROM user_sign WHERE DATE_FORMAT( update_time,'%Y-%m-%d') = DATE_FORMAT(CURDATE()-1,'%Y-%m-%d');
+    </select>
+
+    <select id="queryEarly" resultType="com.bpic.system.domain.vo.UserSignVo">
+       SELECT
+            obj.id,obj.sign_date,obj.user_mob,@rownum := @rownum + 1 AS rownum
+        FROM
+            (SELECT
+            id,
+            sign_date,
+            user_mob
+            FROM
+                `user_sign`
+            where
+                DATE_FORMAT( update_time,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')
+            order by
+                DATE_FORMAT( sign_date,'%Y-%m-%d') DESC
+            ) AS obj,
+        (SELECT @rownum := 0) r
+    </select>
+
+</mapper>

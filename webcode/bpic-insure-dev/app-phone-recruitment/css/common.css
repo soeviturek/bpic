@@ -1,0 +1,167 @@
+.nav-header{
+    width: 100%;
+    background: #004098;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+
+}
+.nav-header>i{
+    display: inline-block;
+    color: #ffffff;
+    width: 10%;
+    text-align: center;
+}
+.nav-header>span{
+    display: inline-block;
+    width:80% ;
+    text-align: center;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.info-process{
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    background: #F2F2F2;
+}
+.info-bar{
+    position: relative;
+}
+.info-process p:nth-of-type(1){
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 12px;
+}
+.info-process p:nth-of-type(1) span{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    display: inline-block;
+    position: absolute;
+    background: #E5E5E5;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.step-1::after,.step-2::after,.step-3::after{
+content: '';
+    position: absolute;
+    width: 76px;
+    height: 2px;
+    background: #E5E5E5;
+    left: 34px;
+    top: 5px;
+}
+
+.info-process .step-active{
+    color: #004098
+}
+.info-process .step-active p:nth-of-type(1){
+    background: rgba(0,64,152,0.22);
+}
+.info-process .step-active p:nth-of-type(1) span{
+    background: #004098;
+}
+
+
+/*审核进度*/
+/*进行中*/
+.pending{
+    color: #4A90E2;
+}
+/*未通过*/
+.fail-pass{
+    color: #E03449;
+}
+/*已通过*/
+.has-passed{
+    color: #009172;
+}
+/*筛选激活按钮*/
+.option-active{
+    background: #1c94ea!important;
+    color: #ffffff !important;
+}
+.loading-more{
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+}
+.loading-more>img{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/*职级色彩*/
+
+.bus-contoller {
+    border: 1px solid #FDD700;
+    color: #FDD700;
+}
+.bus-manager {
+    border: 1px solid #3CC3B2;
+    color: #3CC3B2;
+}
+.high-bus-manager {
+    border: 1px solid #009976;
+    color: #009976;
+}
+.bus-major {
+    border: 1px solid #F5B5CE;
+    color: #F5B5CE;
+}
+.high-bus-major {
+    border: 1px solid #C3172D;
+    color: #C3172D;
+}
+.bus-deputy-general-manager {
+    border: 1px solid #092F87;
+    color: #092F87;
+}
+.high-sell-major {
+    border: 1px solid #1F9BDE;
+    color: #1F9BDE;
+}
+.sell-deputy-general-manager {
+    border: 1px solid #FD8204;
+    color: #FD8204;
+}
+.pass{
+    color: #4DBBAA;
+}
+.under-way{
+	color: #4A90E2;
+}
+.no-pass{
+	color: #E03449;
+}
+
+.pass .current-node .left {
+	 border: 1px solid #4DBBAA 
+}
+.under-way .current-node .left{
+	 border: 1px solid #4A90E2 
+}
+.no-pass .current-node .left{
+	 border: 1px solid #E03449 
+}
+
+.pass .current-node i {
+	 color:  #4DBBAA !important;
+}
+.under-way .current-node i{
+	 color:  #4A90E2 !important;
+}
+.no-pass .current-node i{
+	 color:  #E03449 !important;
+}

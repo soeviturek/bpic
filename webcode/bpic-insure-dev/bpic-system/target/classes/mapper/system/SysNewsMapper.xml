@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.SysNewsMapper">
+
+    <select id="selectNews" resultType="com.bpic.common.core.domain.entity.News">
+        select n.id,n.type,n.title,n.content,n.send_time sendTime from news n
+    </select>
+
+    <update id="updateBanner" parameterType="com.bpic.common.core.domain.entity.News">
+        update news set title=#{title},content=#{content},send_time=sysdate() where type='2'
+    </update>
+
+    <update id="updateNews" parameterType="com.bpic.common.core.domain.entity.News">
+        update new set title=#{title},content=#{content},send_time=sysdate() where type=#{type}
+    </update>
+
+</mapper>

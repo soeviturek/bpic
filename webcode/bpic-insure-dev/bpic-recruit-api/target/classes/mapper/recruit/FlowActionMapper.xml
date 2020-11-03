@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fulan.application.mapper.FlowActionMapper" >
+  <resultMap id="BaseResultMap" type="com.fulan.api.flow.domain.FlowAction" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="flow_id" property="flowId" jdbcType="BIGINT" />
+    <result column="flow_item_id" property="flowItemId" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="processing_role" property="processingRole" jdbcType="BIGINT" />
+    <result column="condition" property="condition" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, flow_id, flow_item_id, org_id, step, processing_role, condition, create_time, 
+    create_user, update_time, update_user
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from er_flow_action
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.api.flow.domain.FlowAction" >
+    insert into er_flow_action (id, flow_id, flow_item_id, 
+      org_id, step, processing_role, 
+      condition, create_time, create_user, 
+      update_time, update_user)
+    values (#{id,jdbcType=BIGINT}, #{flowId,jdbcType=BIGINT}, #{flowItemId,jdbcType=BIGINT}, 
+      #{orgId,jdbcType=BIGINT}, #{step,jdbcType=INTEGER}, #{processingRole,jdbcType=BIGINT}, 
+      #{condition,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createUser,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fulan.api.flow.domain.FlowAction" >
+    insert into er_flow_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="flowItemId != null" >
+        flow_item_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="step != null" >
+        step,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+      <if test="processingRole != null" >
+        processing_role,
+      </if>
+      <if test="condition != null" >
+        condition,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=BIGINT},
+      </if>
+      <if test="flowItemId != null" >
+        #{flowItemId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=INTEGER},
+      </if>
+      <if test="processingRole != null" >
+        #{processingRole,jdbcType=BIGINT},
+      </if>
+      <if test="condition != null" >
+        #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.flow.domain.FlowAction" >
+    update er_flow_action
+    <set >
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=BIGINT},
+      </if>
+      <if test="flowItemId != null" >
+        flow_item_id = #{flowItemId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="step != null" >
+        step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="processingRole != null" >
+        processing_role = #{processingRole,jdbcType=BIGINT},
+      </if>
+      <if test="condition != null" >
+        condition = #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.flow.domain.FlowAction" >
+    update er_flow_action
+    set flow_id = #{flowId,jdbcType=BIGINT},
+      flow_item_id = #{flowItemId,jdbcType=BIGINT},
+      org_id = #{orgId,jdbcType=BIGINT},
+      step = #{step,jdbcType=INTEGER},
+      processing_role = #{processingRole,jdbcType=BIGINT},
+      condition = #{condition,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+    <resultMap id="BaseVoMap" type="com.fulan.api.flow.vo.FlowActionVo" >
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="flow_id" property="flowId" jdbcType="BIGINT" />
+    <result column="flow_item_id" property="flowItemId" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="isCheck" property="isCheck" jdbcType="INTEGER" />
+    <result column="processing_role" property="processingRole" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+     <result column="flow_item_name" property="flowItemName" jdbcType="VARCHAR" />
+  </resultMap>
+   <sql id="BaseVo_Column_List" >
+   efa.id as id, efa.flow_id as flowId,efa.flow_item_id as flowItemId, efa.org_id as orgId, efa.step as step, efa.processing_role as processingRole,  efa.create_time as createTime, 
+    efa.create_user as createUser, efa.update_time as updateTime, efa.update_user as updateUser,efi.flow_item_name as flowItemName, efa.is_check as isCheck
+  </sql>
+  
+  <select id="getFlowActionVoList" resultType="com.fulan.api.flow.vo.FlowActionVo" parameterType="com.fulan.api.flow.vo.FlowActionVo" >
+    select 
+    <include refid="BaseVo_Column_List" />
+   	from er_flow_action efa
+    left join er_flow_item  efi on efa.flow_item_id = efi.id
+    where 
+    <if test="id !=null and id != ''">
+    	efa.id = #{id,jdbcType=BIGINT} and
+    </if>
+     <if test="flowId !=null and flowId != ''">
+    	efa.flow_id = #{flowId,jdbcType=BIGINT} and
+    </if>
+    1=1
+    order by step asc
+  </select>
+  
+   <select id="getFlowActionByOrgIdAndStep" resultMap="BaseResultMap"  parameterType="java.util.Map">
+   			select
+			efa.id as id, efa.flow_id as flow_id , efa.flow_item_id as flow_item_id, efa.org_id as org_id,efa.step as step, efa.processing_role as processing_role,  efa.create_time as create_time,
+   			 efa.create_user as create_user, efa.update_time as update_time, efa.update_user as update_user
+			from er_flow_action efa 
+			LEFT JOIN er_flow ef on efa.flow_id = ef.id
+			where 
+			case (select count(*) from er_flow where org_id=#{orgId} )
+			when 0 
+			then 
+				ef.head_flag="Y"
+			else
+			 	ef.org_id =#{orgId}
+			end
+			and efa.flow_item_id <![CDATA[ >= ]]> #{step}  
+			ORDER BY efa.step asc LIMIT 1
+  </select>
+</mapper>

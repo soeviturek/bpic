@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.application.mapper.WorkExperienceMapper">
+  <resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.WorkExperience">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="personnel_id" jdbcType="BIGINT" property="personnelId" />
+    <result column="start_time" jdbcType="DATE" property="startTime" />
+    <result column="end_time" jdbcType="DATE" property="endTime" />
+    <result column="work_time" jdbcType="DECIMAL" property="workTime" />
+    <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="annual_income" jdbcType="BIGINT" property="annualIncome" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="trial_result" jdbcType="VARCHAR" property="trialResult" />
+    <result column="work_introduction" jdbcType="VARCHAR" property="workIntroduction" />
+    <result column="original_company_department" jdbcType="VARCHAR" property="originalCompanyDepartment" />
+    <result column="is_insurance_work" jdbcType="VARCHAR" property="isInsuranceWork" />
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, personnel_id, start_time, end_time, work_time, occupation, post, company, annual_income, 
+    create_time, create_user, update_time, update_user,trial_result, work_introduction,original_company_department,is_insurance_work
+  </sql>
+  
+  <insert id="insertInfo" parameterType="com.fulan.api.personnel.domain.WorkExperience">
+  	insert into er_work_experience
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+   		<if test="id != null">
+       		id,
+     	</if>
+     	<if test="company != null">
+       		company,
+     	</if>
+     	<if test="createTime != null">
+       		create_time,
+     	</if>
+     	<if test="createUser != null">
+       		create_user,
+     	</if>
+     	<if test="personnelId != null">
+       		personnel_id,
+     	</if> 
+     	<if test="post != null">
+       		post,
+     	</if>
+     	<if test="workIntroduction != null">
+       		work_Introduction,
+     	</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+    	<if test="id != null">
+          #{id,jdbcType=BIGINT},
+	    </if>
+	    <if test="company != null">
+	      #{company,jdbcType=VARCHAR},
+	    </if>
+	    <if test="createTime != null">
+	    	#{createTime,jdbcType=DATE},
+     	</if>
+     	<if test="createUser != null">
+     	 	#{createUser,jdbcType=BIGINT},
+     	</if>
+	    <if test="personnelId != null">
+	      #{personnelId,jdbcType=BIGINT},
+	    </if>
+	    <if test="post != null">
+	      #{post,jdbcType=VARCHAR},
+	    </if>
+	    <if test="workIntroduction != null">
+	      #{workIntroduction,jdbcType=VARCHAR},
+	    </if>
+    </trim>
+  </insert>
+  
+  <select id="selectByPersonnelId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from er_work_experience
+    where personnel_id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from er_work_experience
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from er_work_experience
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByPersonnelId" parameterType="java.lang.Long">
+    delete from er_work_experience
+    where personnel_id = #{personnelId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.api.personnel.domain.WorkExperience">
+    insert into er_work_experience (id, personnel_id, start_time, 
+      end_time, work_time, occupation, 
+      post, company, annual_income, 
+      create_time, create_user, update_time, 
+      update_user)
+    values (#{id,jdbcType=BIGINT}, #{personnelId,jdbcType=BIGINT}, #{startTime,jdbcType=DATE}, 
+      #{endTime,jdbcType=DATE}, #{workTime,jdbcType=DECIMAL}, #{occupation,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{annualIncome,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=DATE}, #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=DATE}, 
+      #{updateUser,jdbcType=BIGINT})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.fulan.api.personnel.domain.WorkExperience">
+    insert into er_work_experience
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="personnelId != null">
+        personnel_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="workTime != null">
+        work_time,
+      </if>
+      <if test="occupation != null">
+        occupation,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="annualIncome != null">
+        annual_income,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="originalCompanyDepartment != null">
+        original_company_department,
+      </if>
+      <if test="isInsuranceWork != null">
+        is_insurance_work,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="workTime != null">
+        #{workTime,jdbcType=DECIMAL},
+      </if>
+      <if test="occupation != null">
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="annualIncome != null">
+        #{annualIncome,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="originalCompanyDepartment != null">
+        #{originalCompanyDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="isInsuranceWork != null">
+        #{isInsuranceWork,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.personnel.domain.WorkExperience">
+    update er_work_experience
+    <set>
+      <if test="personnelId != null">
+        personnel_id = #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="workTime != null">
+        work_time = #{workTime,jdbcType=DECIMAL},
+      </if>
+      <if test="occupation != null">
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="annualIncome != null">
+        annual_income = #{annualIncome,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPersonnelId" parameterType="com.fulan.api.personnel.domain.WorkExperience">
+    update er_work_experience
+    <set>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="workIntroduction != null">
+        work_introduction = #{workIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where personnel_Id = #{personnelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.personnel.domain.WorkExperience">
+    update er_work_experience
+    set personnel_id = #{personnelId,jdbcType=BIGINT},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      work_time = #{workTime,jdbcType=DECIMAL},
+      occupation = #{occupation,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      annual_income = #{annualIncome,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <delete id="backFlow" parameterType="com.fulan.api.personnel.domain.InterviewAction">
+    delete from er_work_experience
+    where personnel_id = #{personnelId} and start_time is null and end_time is null and company is null
+  </delete>
+
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.application.mapper.EducationalMapper">
+  <resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.Educational">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="personnel_id" jdbcType="BIGINT" property="personnelId" />
+    <result column="start_time" jdbcType="DATE" property="startTime" />
+    <result column="end_time" jdbcType="DATE" property="endTime" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="trial_result" jdbcType="VARCHAR" property="trialResult" />
+    <result column="specialty" jdbcType="VARCHAR" property="specialty" />
+    <result column="degree" jdbcType="VARCHAR" property="degree" />
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, personnel_id, start_time, end_time, education, school, create_time, create_user, 
+    update_time, update_user,trial_result,specialty,degree
+  </sql>
+  <select id="selectByPersonnelId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from er_educational
+    where personnel_id = #{personnelId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from er_educational
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from er_educational
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByPersonnelId" parameterType="java.lang.Long">
+    delete from er_educational
+    where personnel_id = #{personnelId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.api.personnel.domain.Educational">
+    insert into er_educational (id, personnel_id, start_time, 
+      end_time, education, school, 
+      create_time, create_user, update_time, 
+      update_user)
+    values (#{id,jdbcType=BIGINT}, #{personnelId,jdbcType=BIGINT}, #{startTime,jdbcType=DATE}, 
+      #{endTime,jdbcType=DATE}, #{education,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=DATE}, 
+      #{updateUser,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fulan.api.personnel.domain.Educational">
+    insert into er_educational
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="personnelId != null">
+        personnel_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+       <if test="specialty != null">
+        specialty,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+        <if test="degree != null">
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.personnel.domain.Educational">
+    update er_educational
+    <set>
+      <if test="personnelId != null">
+        personnel_id = #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.personnel.domain.Educational">
+    update er_educational
+    set personnel_id = #{personnelId,jdbcType=BIGINT},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      education = #{education,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

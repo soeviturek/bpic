@@ -1,0 +1,149 @@
+.login-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("../images/login-bg.jpg") no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+}
+.login-wrapper #login-form {
+    position: relative;
+    margin: 16% auto;
+    width: 360px;
+    height: 384px;
+    background-color: rgba(0, 0, 0, .5);
+    overflow: hidden;
+}
+#login-form .form-tab {
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+}
+#login-form .form-tab li {
+    float: left;
+    width: 50%;
+    text-align: center;
+    height: 100%;
+    line-height: 60px;
+    font-size: 18px;
+    color: #E3E3E3;
+    border-bottom: 2px solid #FFFFFF;
+}
+#login-form .form-tab li.active {
+    color: #E87722;
+    border-color: #E87722;
+}
+#login-form .go-left {
+    opacity: 0!important;
+    z-index: -1!important;
+    transform: translate(100%, 0);
+}
+#login-form .face-recognition {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    height: 324px;
+    z-index: 1;
+    opacity: 1;
+    transition: all .8s ease;
+}
+.face-recognition .face-login {
+    width: 70%;
+    height: 70%;
+    margin: 30px auto 0;
+}
+.face-login img {
+    width: 100%;
+    height: 100%;
+}
+.face-recognition .face-tip {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 56px;
+    line-height: 56px;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 100%;
+    text-align: center;
+}
+#login-form .user-password {
+    position: absolute;
+    top: 60px;
+    right: -100%;
+    opacity: 0;
+    z-index: -1;
+    width: 100%;
+    height: 324px;
+    transition: all .8s ease;
+}
+#login-form .go-right {
+    transform: translate(-100%, 0);
+    opacity: 1!important;
+    z-index: 1!important;
+}
+.system-type {
+    width: 100%;
+    margin-bottom: 25px;
+}
+.system-type>div.ipt-select {
+    width: 100%;
+}
+.system-type>div.ipt-select input {
+    text-indent: 0;
+}
+.user-password .user-account {
+    position: relative;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 25px;
+}
+.user-password .user-pass {
+    position: relative;
+    margin-bottom: 25px;
+}
+.user-password input {
+    width: 100%;
+    height: 46px;
+    text-indent: 74px;
+    background-color: #FFFFFF;
+}
+.icon-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 54px;
+    height: 100%;
+    background-color: #CACACA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-img i {
+    color: #F3F3F3;
+    font-size: 24px;
+}
+.user-password .submit-form {
+    width: 100%;
+    height: 46px;
+    margin-top: 25px;
+}
+.submit-form button {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(-90deg, #E87722 0%, #FB5340 100%);
+    border-radius: 5px;
+    color: #FFFFFF;
+    line-height: 46px;
+    text-align: center;
+}
+.copyright {
+    position: fixed;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #969696;
+}

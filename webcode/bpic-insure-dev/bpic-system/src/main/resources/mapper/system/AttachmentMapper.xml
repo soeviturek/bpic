@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.AttachmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bpic.system.domain.Attachment">
+        <id column="id" property="id" />
+        <result column="table_name" property="tableName" />
+        <result column="host_id" property="hostId" />
+        <result column="name" property="name" />
+        <result column="size" property="size" />
+        <result column="path" property="path" />
+        <result column="description" property="description" />
+        <result column="file_ext" property="fileExt" />
+        <result column="original_name" property="originalName" />
+        <result column="seq" property="seq" />
+        <result column="type" property="type" />
+        <result column="category" property="category" />
+        <result column="url" property="url" />
+        <result column="state" property="state" />
+        <result column="is_delete" property="isDelete" />
+        <result column="create_user" property="createUser" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+
+ <sql id="Base_Column_List" >
+    id,table_name,host_id,NAME,size,path,description,file_ext,original_name,seq,type,
+    category,url,state,is_delete,create_user,gmt_create
+  </sql>
+
+ <select id="selectByhostId"  resultMap="BaseResultMap" >
+     SELECT 
+     <include refid="Base_Column_List" />
+      FROM attachment where category=24 and cast(host_id AS SIGNED)=#{hostId} and is_delete=1 order by gmt_create desc
+      
+ </select>
+
+
+<select id="findByTableAndHostId"  resultMap="BaseResultMap" >
+     SELECT 
+     <include refid="Base_Column_List" />
+      FROM attachment where category=#{category} and cast(host_id AS SIGNED)=#{hostId} and is_delete=1
+</select>
+
+    <select id="selectByIdAndIsDelete"  resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM attachment where id=#{id} and is_delete=1
+    </select>
+
+
+<select id="findImgListByTableAndHostId" parameterType="java.util.Map"   resultMap="BaseResultMap" >
+		SELECT path,category,url  FROM attachment WHERE 1=1 
+		<if test="list != null  ">
+					 AND category in
+					<foreach collection="list" index="index" item="category" open="(" separator="," close=")">
+				            #{category}
+					</foreach>
+		</if>
+		AND cast(host_id AS SIGNED)=#{hostId} and is_delete=1
+</select>
+
+
+ <select id="selectContractNum"  resultMap="BaseResultMap" >
+     SELECT 
+     <include refid="Base_Column_List" />
+      FROM attachment where cast(host_id AS SIGNED)=#{id} and description is not null and  description !='' and is_delete=1
+ </select>
+
+    <update id="dele" parameterType="java.lang.String">
+      update attachment
+      set is_delete = 0
+      where host_id = #{id}
+    </update>
+    
+    <select id="selectByNoteId"  resultMap="BaseResultMap" >
+     SELECT 
+     <include refid="Base_Column_List" />
+      FROM attachment  where id=#{id} and is_delete=1
+      
+ </select>
+    
+</mapper>

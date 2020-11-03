@@ -1,0 +1,507 @@
+<div class="base-info">
+    <div class="info-process">
+        <div class="info-bar step-1 step-active">
+            <p>
+                <span></span>
+            </p>
+            <p>基础信息</p>
+        </div>
+        <div class="info-bar step-2">
+            <p>
+                <span></span>
+            </p>
+            <p>告知事项</p>
+        </div>
+        <div class="info-bar step-3">
+            <p>
+                <span></span>
+            </p>
+            <p>证件影像</p>
+        </div>
+        <div class="info-bar step-4">
+            <p>
+                <span></span>
+            </p>
+            <p>签约资料</p>
+        </div>
+    </div>
+    <form id="formData" action="">
+        <div class="info-list">
+            <div class="info-text must-sign">
+                <label>姓名</label>
+                <input type="text" data-must="1" data-mustname="姓名" name="name" class="name-label"
+                    value="{{=it.personnel.name || ''}}" placeholder="请输入姓名" maxlength="50">
+                <!--<i class="iconfont icon-jiantou narrow"></i>-->
+            </div>
+            <div class="info-text">
+                <label>性别</label>
+                <div class="sex-text">
+                    <div class="sex-common{{=it.personnel.sex=='M'?' active':''}}" data-val="M"><i
+                            class="iconfont icon-male"></i> 男
+                    </div>
+                    <div class="sex-common{{=it.personnel.sex=='F'?' active':''}}" data-val="F"><i
+                            class="iconfont icon-female"></i> 女
+                    </div>
+                </div>
+            </div>
+<!--            <div class="info-text">-->
+<!--                <label>曾用名</label>-->
+<!--                <input type="text" value="{{=it.personnel.onceName || ''}}" name="onceName" class="namever-label"-->
+<!--                    maxlength="50">-->
+<!--            </div>-->
+            <div class="info-text must-sign">
+                <label>出生日期</label>
+                <input type="text" data-must="1" data-mustname="出生日期" value="{{=it.personnel.birthday || ''}}"
+                    name="birthday" class="" placeholder="请输入出生日期" readonly>
+            </div>
+            <div class="info-text must-sign">
+                <label>手机号</label>
+                <input type="text" data-must="1" data-mustname="签约人手机号" maxlength="11"
+                    value="{{=it.personnel.cellphone || ''}}" name="cellphone" class="tel-label" placeholder="请输入手机号">
+            </div>
+            <div class="info-text">
+                <label>微信号</label>
+                <input type="text" data-mustname="微信号" value="{{=it.personnel.wechat || ''}}" name="wechat"
+                    class="WeChat-label" maxlength="50">
+            </div>
+            <!-- <div class="info-text">
+                <label>电话</label>
+                <input type="text" value="{{=it.personnel.telephone || ''}}" placeholder="请输入电话" name="telephone"
+                       class="phone-label" maxlength="50">
+            </div> -->
+            <div class="info-text must-sign">
+                <label>证件类型</label>
+                <div class="ipt-select">
+                    <input style="width:100%" type="text" class="ipt-text"
+                        value="{{=it.personnel.identityType=='111'?" 居民身份证":it.personnel.identityType=='414'?"普通护照":it.personnel.identityType=='114'?"军官证":it.personnel.identityType=='516'?"港澳同胞回乡证(通行卡)":it.personnel.identityType=='616'?"士兵证":it.personnel.identityType=='717'?"警官证":it.personnel.identityType=='818'?"台湾居民来往大陆通行证":it.personnel.identityType=='919'?"香港身份证":""}}"
+                        placeholder="请选择证件类型" readonly>
+                    <select name="identityType" data-must="1" data-mustname="证件类型">
+                        <option value="" {{?!it.personnel.identityType}}selected{{?}}>请选择证件类型</option>
+                        <option value="111" {{?it.personnel.identityType=='111'}}selected{{?}}>居民身份证</option>
+                        <option value="414" {{?it.personnel.identityType=='414'}}selected{{?}}>普通护照</option>
+                        <option value="516" {{?it.personnel.identityType=='516'}}selected{{?}}>港澳同胞回乡证(通行卡)</option>
+                        <option value="818" {{?it.personnel.identityType=='818'}}selected{{?}}>台湾居民来往大陆通行证</option>
+                    </select>
+                </div>
+                <!-- <select name="identityType">
+                    <option disabled value="" {{?!it.identityType}}selected{{?}}>请选择证件类型</option>
+                    <option value="111" {{?it.identityType=='111'}}selected{{?}}>身份证</option>
+                    <option value="414"{{?it.identityType=='414'}}selected{{?}}>护照</option>
+                    <option value="511"{{?it.identityType=='511'}}selected{{?}}>台胞证</option>
+                </select> -->
+                <i class="iconfont icon-jiantou narrow"></i>
+            </div>
+            <div class="info-text must-sign">
+                <label>证件号码</label>
+                <input type="text" data-must="1" data-mustname="证件号码" name="identityCode"
+                    value="{{=it.personnel.identityCode || ''}}" type="text" class="idno-label" placeholder="未绑定"
+                    maxlength="20">
+            </div>
+            <div class="info-text must-sign">
+                <label>政治面貌</label>
+                <div class="ipt-select">
+                    <input type="text" data-must="1" data-mustname="政治面貌" class="ipt-text"
+                        value="{{=it.personnel.political || ''}}" name="political" placeholder="请选择政治面貌" readonly>
+                    <select class="political">
+                        <option disabled value="" selected>请选择政治面貌</option>
+                    </select>
+                </div>
+                <i class="iconfont icon-jiantou narrow"></i>
+            </div>
+            <div class="info-text must-sign">
+                <label>民族</label>
+                <div class="ipt-select">
+                    <input type="text" data-must="1" data-mustname="民族" class="ipt-text"
+                        value="{{=it.personnel.nation || ''}}" name="nation" placeholder="请选择民族" readonly>
+                    <select class="nation">
+                        <option disabled value="" selected>请选择民族</option>
+                    </select>
+                </div>
+                <i class="iconfont icon-jiantou narrow"></i>
+            </div>
+            <div class="info-text must-sign">
+                <label>联系地址</label>
+                <input type="text" data-must="1" data-mustname="联系地址" value="{{=it.personnel.familyAddrDetail || ''}}"
+                    name="familyAddrDetail" class="home-label" maxlength="200">
+            </div>
+            <div class="info-text">
+                <label>户口所在地</label>
+                <input type="text" value="{{=it.personnel.domicilePlace || ''}}" name="domicilePlace"
+                    class="adress-label" maxlength="200">
+            </div>
+            <div class="info-text">
+                <label>邮政编码</label>
+                <input type="text" value="{{=it.personnel.postcode || ''}}" name="postcode" class="post-label"
+                    maxlength="50">
+            </div>
+            <div class="info-text must-sign">
+                <label>电子邮箱</label>
+                <input type="text" data-must="1" data-mustname="电子邮箱" value="{{=it.personnel.email || ''}}" name="email"
+                    class="email-label" maxlength="50">
+            </div>
+
+
+
+        </div>
+
+        <div class="info-list">
+            <h3>储蓄卡信息<span>（所属银行/储蓄卡卡号）</span></h3>
+            <div class="info-text bank-select">
+                <label>银行</label>
+                <div class="ipt-select">
+                    <select style="opacity: 1;">
+                        <option value="">请选择开户银行卡</option>
+                        <!-- <option value="CCBANK">银行</option>
+                        <option value="">中国建设银行</option>-->
+                    </select>
+                </div>
+                <i class="iconfont icon-jiantou narrow"></i>
+            </div>
+
+
+            <div class="info-text">
+                <label>选择支行</label>
+                <input type="text" tittle="{{=it.personnel.bankBranch || ''}}" value="{{=it.personnel.bankBranch || ''}}" name="bank-branch" class="select-bank"
+                    readonly>
+
+                <div class="bank-content">
+                    <ul class="bank-box">
+                        <li><input type="text" class="bank-branch" placeholder="请输入所在支行"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-text ipt-select">
+                <label>银行卡卡号</label>
+                <input type="number" value="{{=it.personnel.chinaCiticBank || ''}}" name="bank-cardno" class="bank-cardno"
+                    maxlength="30">
+            </div>
+            <p class="info_tip"><span>!</span>银行支行和银行卡号不填写或填写错误，都可能影响工资的正常发放</p>
+        </div>
+
+
+<!--        <div class="educa-box">-->
+<!--            {{?it.educationalList.length > 0}}-->
+<!--            {{~it.educationalList:val:index}}-->
+<!--            <div class="info-list educa-info">-->
+<!--                <h3>学历信息<span>（请填写最高学历）</span></h3>-->
+<!--                <div class="info-text time-text must-sign">-->
+<!--                    <label>时间</label>-->
+<!--                    <input type="text" value="{{=val.endTime || ''}}" name="endTime" class="datepicker"-->
+<!--                        placeholder="结束时间" readonly>-->
+<!--                    <input type="text" value="{{=val.startTime || ''}}" name="startTime" class="datepicker"-->
+<!--                        placeholder="开始时间" readonly>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>学校名称</label>-->
+<!--                    <input type="text" value="{{=val.school || ''}}" name="shooclName" class="" maxlength="100">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>学历</label>-->
+<!--                    <div class="ipt-select">-->
+<!--                        <input type="text" class="ipt-text" value="{{=val.education || ''}}" name="education"-->
+<!--                            placeholder="请选择学历" readonly>-->
+<!--                        <select class="education">-->
+<!--                            <option disabled value="" selected>请选择学历</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <i class="iconfont icon-jiantou narrow"></i>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>专业</label>-->
+<!--                    <input type="text" value="{{=val.specialty || ''}}" name="specialty" class="" maxlength="144">-->
+<!--                </div>-->
+<!--                <div class="info-text">-->
+<!--                    <label>学位</label>-->
+<!--                    <input type="text" value="{{=val.degree || ''}}" name="degree" class="" maxlength="10">-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; <div class="add-del clearfix">-->
+<!--                    {{?index == it.educationalList.length-1}}-->
+<!--                    <div class="add-panel" data-type="educa">+&nbsp;继续添加学历信息</div>-->
+<!--                    {{?}}-->
+<!--                    {{?index == 0}}-->
+<!--                    <div class="del-panel" data-type="educa" hidden>X&nbsp;删除学历信息</div>-->
+<!--                    {{??}}-->
+<!--                    <div class="del-panel" data-type="educa">X&nbsp;删除学历信息</div>-->
+<!--                    {{?}}-->
+<!--                </div> &ndash;&gt;-->
+<!--            </div>-->
+<!--            {{~}}-->
+<!--            {{??}}-->
+<!--            <div class="info-list educa-info">-->
+<!--                <h3>学历信息</h3>-->
+<!--                <div class="info-text time-text must-sign">-->
+<!--                    <label>时间</label>-->
+<!--                    <input type="text" value="" name="endTime" class="datepicker" placeholder="结束时间" readonly>-->
+<!--                    <input type="text" value="" name="startTime" class="datepicker" placeholder="开始时间" readonly>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>学校名称</label>-->
+<!--                    <input type="text" value="" name="shooclName" class="" maxlength="100">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>学历</label>-->
+<!--                    <div class="ipt-select">-->
+<!--                        <input type="text" class="ipt-text" value="" name="education" placeholder="请选择学历" readonly>-->
+<!--                        <select class="education">-->
+<!--                            <option disabled value="" selected>请选择学历</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <i class="iconfont icon-jiantou narrow"></i>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>专业</label>-->
+<!--                    <input type="text" value="" name="specialty" class="" maxlength="144">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>学位</label>-->
+<!--                    <input type="text" value="" name="degree" class="" maxlength="10">-->
+<!--                </div>-->
+<!--                &lt;!&ndash; <div class="add-del clearfix">-->
+<!--                    <div class="add-panel" data-type="educa">+&nbsp;继续添加学历信息</div>-->
+<!--                    <div class="del-panel" data-type="educa" hidden>x&nbsp;删除学历信息</div>-->
+<!--                </div> &ndash;&gt;-->
+<!--            </div>-->
+<!--            {{?}}-->
+<!--        </div>-->
+        <div class="info-list">
+            <div class="info-text">
+                <label>是否持有金融业相关从业证书</label>
+
+                <div class="ok-text">
+                    <div class="ok-common{{=it.personnel.jobCertificate=='1'?' active':''}}" data-val="1"><span></span>是
+                    </div>
+                    <div class="ok-common{{=it.personnel.jobCertificate=='0'?' active':''}}" data-val="0"><span></span>否
+                    </div>
+                </div>
+            </div>
+            <div class="zs-check" {{=it.personnel.jobCertificate=='1' ?
+            '' : 'hidden'}}>
+                <input type="checkbox" name="certificate1" value="1" id="check-1" {{=it.personnel.certificate1=='1' ?
+            'checked' : ''}}>
+                <label for="check-1">保险代理人证书</label>
+                <input type="checkbox" name="certificate2" value="1" id="check-2" {{=it.personnel.certificate2=='1' ?
+            'checked' : ''}}>
+                <label for="check-2">保险经纪人证书</label>
+                <input type="checkbox" name="certificate3" value="1" id="check-3" {{=it.personnel.certificate3=='1' ?
+            'checked' : ''}}>
+                <label for="check-3">保险公估人证书</label>
+                <input type="checkbox" name="certificate4" value="1" id="check-4" {{=it.personnel.certificate4=='1' ?
+            'checked' : ''}}>
+                <label for="check-4">RFC</label>
+                其他<input type="text" name="certificate_other" value="{{=it.personnel.certificateOther || ''}}"
+                    maxlength="90">
+            </div>
+        </div>
+<!--        <div class="job-box">-->-
+<!--            {{?it.workExperienceList.length > 0}}-->
+<!--            {{~it.workExperienceList:val:index}}-->
+<!--            <div class="info-list job-info">-->
+<!--                <h3>工作经历<span>（请填写最近工作经历）</span></h3>-->
+<!--                {{? index=='0'}}-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>工作总年限</label>-->
+<!--                    <input type="text" value="{{=it.personnel.totalWorkTime||''}}" name="totalyears" class="totalyears" maxlength="2">-->
+<!--                </div>-->
+<!--                {{?}}-->
+<!--                <div class="info-text time-text must-sign">-->
+<!--                    <label>时间</label>-->
+<!--                    <input type="text" data-time="on" value="{{=val.endTime || ''}}" name="endTime" class=""-->
+<!--                        placeholder="结束时间" readonly>-->
+<!--                    <input type="text" data-time="on" value="{{=val.startTime || ''}}" name="startTime" class=""-->
+<!--                        placeholder="开始时间" readonly>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>公司</label>-->
+<!--                    <input type="text" value="{{=val.company || ''}}" name="company" class="" maxlength="100">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>部门</label>-->
+<!--                    <input type="text" value="{{=val.occupation || ''}}" name="department" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>职位</label>-->
+<!--                    <input type="text" value="{{=val.post || ''}}" name="position" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="add-del clearfix">-->
+<!--                    {{?index == it.workExperienceList.length-1&&index!=2}}-->
+<!--                    <div class="add-panel" data-type="job">+&nbsp;继续添加工作经历</div>-->
+<!--                    {{??}}-->
+<!--                    <div class="add-panel" data-type="job" hidden>+&nbsp;继续添加工作经历</div>-->
+<!--                    {{?}}-->
+<!--                    {{?it.workExperienceList.length > 1&&index!=0}}-->
+<!--                    <div class="del-panel" data-type="job">X&nbsp;删除工作经历</div>-->
+<!--                    {{??}}-->
+<!--                    <div class="del-panel" data-type="job" hidden>X&nbsp;删除工作经历</div>-->
+<!--                    {{?}}-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            {{~}}-->
+<!--            {{??}}-->
+<!--            <div class="info-list job-info">-->
+<!--                <h3>工作经历</h3>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>工作总年限</label>-->
+<!--                    <input type="text" value="{{=it.personnel.totalWorkTime||''}}" name="totalyears" class="totalyears" maxlength="2">-->
+<!--                </div>-->
+<!--                <div class="info-text time-text must-sign">-->
+<!--                    <label>时间</label>-->
+<!--                    <input type="text" data-time="on" value="" name="endTime" class="" placeholder="结束时间" readonly>-->
+<!--                    <input type="text" data-time="on" value="" name="startTime" class="" placeholder="开始时间" readonly>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>公司</label>-->
+<!--                    <input type="text" value="" name="company" class="" placeholder="请填写最近工作经历" maxlength="100">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>部门</label>-->
+<!--                    <input type="text" value="" name="department" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>职位</label>-->
+<!--                    <input type="text" value="" name="position" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="add-del clearfix">-->
+<!--                    <div class="add-panel" data-type="job">+&nbsp;继续添加工作经历</div>-->
+<!--                    <div class="del-panel" data-type="job" hidden>X&nbsp;删除工作经历</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {{?}}-->
+<!--        </div>-->
+<!--        <div class="info-list insurance_work" data-isinsurancework="{{=it.insuranceWorkExperience.length?it.insuranceWorkExperience[0].isInsuranceWork||'0':'0'}}">-->
+<!--            <h3>保险从业经历<span>(如有请填写，否则请跳过本项)</span></h3>-->
+<!--            <div class="info-text work-years">-->
+<!--                <label>保险从业年限</label>-->
+<!--                <select>-->
+<!--                    <option value="" {{?it.personnel.nativeWorkTime==''}}selected{{?}}>请选择保险从业年限</option>-->
+<!--                    <option value="1年以下" {{?it.personnel.nativeWorkTime=='1年以下'}}selected{{?}}>1年以下</option>-->
+<!--                    <option value="1-3年" {{?it.personnel.nativeWorkTime=='1-3年'}}selected{{?}}>1-3年</option>-->
+<!--                    <option value="3-5年" {{?it.personnel.nativeWorkTime=='3-5年'}}selected{{?}}>3-5年</option>-->
+<!--                    <option value="5-7年" {{?it.personnel.nativeWorkTime=='5-7年'}}selected{{?}}>5-7年</option>-->
+<!--                    <option value="7-10年" {{?it.personnel.nativeWorkTime=='7-10年'}}selected{{?}}>7-10年</option>-->
+<!--                    <option value="10年以上" {{?it.personnel.nativeWorkTime=='10年以上'}}selected{{?}}>10年以上</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="info-text">-->
+<!--                <label>累计签寿险单的客户量(人)</label>-->
+<!--                <input type="number" value="{{=it.personnel.totalPortfolio || ''}}" name="totalPortfolio" class=""-->
+<!--                    style="width: 40%" oninput="if(value.length>5)value=value.slice(0,5)">-->
+<!--            </div>-->
+<!--            <div class="info-text">-->
+<!--                <label>最多同时辅导/管理人力(人）</label>-->
+<!--                <input type="number" value="{{=it.personnel.maxCoacher || ''}}" name="maxCoacher" class=""-->
+<!--                    style="width: 40%" oninput="if(value.length>5)value=value.slice(0,5)">-->
+<!--            </div>-->
+<!--            <div class="info-text time-text">-->
+<!--                <label>时间</label>-->
+<!--                <input type="text" data-time="on" value="{{=it.insuranceWorkExperience.length?it.insuranceWorkExperience[0].endTime||'':''}}" name="endTime" class="" placeholder="结束时间" readonly="">-->
+<!--                <input type="text" data-time="on" value="{{=it.insuranceWorkExperience.length?it.insuranceWorkExperience[0].startTime||'':''}}" name="startTime" class="" placeholder="开始时间" readonly="">-->
+<!--            </div>-->
+<!--            <div class="info-text company">-->
+<!--                <label>公司</label><input type="text" value="{{=it.insuranceWorkExperience.length?it.insuranceWorkExperience[0].company || '':''}}">-->
+<!--            </div>-->
+<!--            <div class="info-text department">-->
+<!--                <label>部门</label><input type="text" value="{{=it.insuranceWorkExperience.length?it.insuranceWorkExperience[0].occupation || '':''}}">-->
+<!--            </div>-->
+<!--            <div class="info-text job">-->
+<!--                <label>职位</label><input type="text" value="{{=it.insuranceWorkExperience.length?it.insuranceWorkExperience[0].post || '':''}}">-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="contacts-box">-->
+<!--            {{?it.familyMemberList.length > 0}}-->
+<!--            {{~it.familyMemberList:val:index}}-->
+<!--            <div class="info-list contacts-info">-->
+<!--                <h3>紧急事件联系人<span>(至少填写一名紧急联络人)</span></h3>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>姓名</label>-->
+<!--                    <input type="text" value="{{=val.name || ''}}" name="name" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>关系</label>-->
+<!--                    <div class="ipt-select">-->
+<!--                        <input type="text" class="ipt-text" value="{{=val.relationship || ''}}" name="relation"-->
+<!--                            placeholder="请选择关系" readonly>-->
+<!--                        <select class="relationship">-->
+<!--                            <option disabled value="" selected>请选择关系</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <i class="iconfont icon-jiantou narrow"></i>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>手机号</label>-->
+<!--                    <input type="text" maxlength="11" value="{{=val.telephone || ''}}" name="phone" class=""-->
+<!--                        maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="add-del clearfix">-->
+<!--                    &lt;!&ndash;{{?index == it.familyMemberList.length-1}}&ndash;&gt;-->
+<!--                    &lt;!&ndash;{{?}}&ndash;&gt;-->
+<!--                    <div class="add-panel" data-type="contacts">+&nbsp;继续添加紧急联系人</div>-->
+
+<!--                    {{?it.familyMemberList.length > 2}}-->
+<!--                    <div class="del-panel" data-type="contacts">X&nbsp;删除紧急联系人</div>-->
+<!--                    {{??}}-->
+<!--                    <div class="del-panel" data-type="contacts" hidden>X&nbsp;删除紧急联系人</div>-->
+<!--                    {{?}}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {{~}}-->
+<!--            {{??}}-->
+<!--            <div class="info-list contacts-info">-->
+<!--                <h3>紧急事件联系人<span>(必须填写至少1名至多2名紧急联络人)</span></h3>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>姓名</label>-->
+<!--                    <input type="text" value="" name="name" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>关系</label>-->
+<!--                    <div class="ipt-select">-->
+<!--                        <input type="text" class="ipt-text" value="" name="relation" placeholder="请选择关系" readonly>-->
+<!--                        <select class="relationship">-->
+<!--                            <option disabled value="" selected>请选择关系</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <i class="iconfont icon-jiantou narrow"></i>-->
+<!--                </div>-->
+<!--                <div class="info-text must-sign">-->
+<!--                    <label>手机号</label>-->
+<!--                    <input type="text" value="" maxlength="11" name="phone" class="" maxlength="50">-->
+<!--                </div>-->
+<!--                <div class="add-del clearfix">-->
+<!--                    <div class="add-panel" data-type="contacts">+&nbsp;继续添加紧急联系人</div>-->
+<!--                    <div class="del-panel" data-type="contacts" hidden>X&nbsp;删除紧急联系人</div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!--<div class="info-list contacts-info">-->
+            <!--<h3>紧急事件联系人<span>(必须填写2名紧急联络人)</span></h3>-->
+            <!--<div class="info-text">-->
+            <!--<label>姓名</label>-->
+            <!--<input type="text" value="" name="name" class="">-->
+            <!--</div>-->
+            <!--<div class="info-text">-->
+            <!--<label>关系</label>-->
+            <!--<div class="ipt-select">-->
+            <!--<input type="text" class="ipt-text" value="" name="relation" placeholder="请选择关系" readonly>-->
+            <!--<select class="relationship">-->
+            <!--<option disabled value="" selected>请选择关系</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--<i class="iconfont icon-jiantou narrow"></i>-->
+            <!--</div>-->
+            <!--<div class="info-text">-->
+            <!--<label>联系电话</label>-->
+            <!--<input type="text" value="" maxlength="11" name="phone" class="">-->
+            <!--</div>-->
+            <!--<div class="add-del clearfix">-->
+            <!--<div class="add-panel" data-type="contacts">+&nbsp;继续添加紧急联系人</div>-->
+            <!--<div class="del-panel" data-type="contacts" hidden>X&nbsp;删除紧急联系人</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            {{?}}
+        </div>
+    </form>
+
+    <div id="next-page">下一步</div>
+
+</div>

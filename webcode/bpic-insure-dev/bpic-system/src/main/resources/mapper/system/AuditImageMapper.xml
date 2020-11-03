@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.AuditImageMapper">
+    <insert id="insertAuditImage" parameterType="com.bpic.system.domain.AuditImage">
+        insert into
+        audit_image (
+        <if test="c_tel_mob != null and c_tel_mob != ''">c_tel_mob,</if>
+        <if test="front_path != null and front_path != ''">front_path,</if>
+        <if test="back_path != null and back_path != ''">back_path,</if>
+        <if test="audit_status != null and audit_status != ''">audit_status,</if>
+        <if test="create_by != null and create_by != ''">create_by,</if>
+        <if test="update_by != null and update_by != ''">update_by,</if>
+        <if test="update_time != null and update_time != ''">update_time,</if>
+        <if test="del_flag != null and del_flag != ''">del_flag,</if>
+        <if test="advice != null and advice != ''">advice,</if>
+        create_time)
+        values (
+        <if test="c_tel_mob != null and c_tel_mob != ''">#{c_tel_mob},</if>
+        <if test="front_path != null and front_path != ''">#{front_path},</if>
+        <if test="back_path != null and back_path != ''">#{back_path},</if>
+        <if test="audit_status != null and audit_status != ''">#{audit_status},</if>
+        <if test="create_by != null and create_by != ''">#{create_by},</if>
+        <if test="update_by != null and update_by != ''">#{update_by},</if>
+        <if test="update_time != null and update_time != ''">#{update_time},</if>
+        <if test="del_flag != null and del_flag != ''">#{del_flag},</if>
+        <if test="advice != null and advice != ''">#{advice},</if>
+        sysdate());
+    </insert>
+
+    <update id="updateAuditImage" parameterType="com.bpic.system.domain.AuditImage">
+        update audit_image
+        <set>
+            <if test="front_path != null and front_path != ''">front_path = #{front_path},</if>
+            <if test="back_path != null and back_path != ''">back_path = #{back_path},</if>
+            <if test="audit_status != null and audit_status != ''">audit_status = #{audit_status},</if>
+            <if test="advice != null and advice != ''">advice = #{advice}</if>
+        </set>
+        where c_tel_mob = #{c_tel_mob}
+    </update>
+
+    <select id="selectAuditImage" resultType="com.bpic.system.domain.vo.AuditImageVo">
+        select
+            c_tel_mob,front_path,back_path,audit_status,create_time,advice
+        from
+            audit_image
+        where c_tel_mob = #{cellphone}
+    </select>
+
+
+    <delete id="deleteAuditImage">
+        delete from audit_image where c_tel_mob = #{cellphone}
+    </delete>
+
+</mapper>

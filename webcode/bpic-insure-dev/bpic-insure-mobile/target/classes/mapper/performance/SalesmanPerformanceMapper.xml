@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.bpic.mobile.mapper.SalesmanPerformanceMapper">
+    <resultMap id="BaseResult" type="com.bpic.common.core.domain.entity.SalesmanPerformance">
+        <id property="policyNo" column="policy_no"/>
+        <result property="insureNo" column="insure_no" />
+        <result property="policyAmount" column="policy_amount" />
+        <result property="transactionTime" column="transaction_time" />
+        <result property="productName" column="product_name" />
+        <result property="productCode" column="product_code" />
+        <result property="policyMark" column="policy_mark" />
+        <result property="dealTime" column="deal_time" />
+        <result property="salesmanNo" column="salesman_no" />
+        <result property="salesmanName" column="salesman_name" />
+        <result property="salesmanPhone" column="salesman_phone" />
+        <result property="createTime" column="create_time" />
+        <result property="createFrom" column="create_from" />
+        <result property="updateTime" column="update_time" />
+        <result property="updateFrom" column="update_from" />
+        <result property="shareProductId" column="share_product_id"/>
+        <result property="offlineName" column="sharer_name"/>
+        <result property="imgUrl" column="img_url"/>
+    </resultMap>
+
+    <sql id="baseColumns">
+        policy_no,insure_no,policy_amount,transaction_time,product_name,product_code,policy_mark,deal_time,salesman_no,
+        salesman_phone,create_time,create_from,update_time,update_from,share_product_id
+    </sql>
+
+    <select id="querySalesmanPolicyList" parameterType="String" resultMap="BaseResult">
+        SELECT sp.product_name,sp.policy_amount,sp.policy_mark,sp.deal_time,sp.salesman_no,sp.create_time,sp.share_product_id,si.sharer_name,si.img_url FROM salesman_performance sp
+        left join share_information si on sp.share_product_ID=si.share_product_id  WHERE  1=1
+        <if test="isSales==0">
+            and si.sharer_empno = #{salesmanNo}
+        </if>
+        <if test="isSales==1">
+            and si.sharer_superior_empno = #{salesmanNo}
+        </if>
+        <if test="name != null and name != ''">
+            AND sp.product_name LIKE CONCAT('%',#{name},'%')
+        </if>
+        <if test="mark !=null and mark!='' ">
+            AND sp.policy_mark =#{mark}
+        </if>
+        <if test="priceSorted !=null and priceSorted!='' ">
+            order by sp.policy_amount Desc
+        </if>
+        <if test="timeSorted !=null and timeSorted!='' ">
+            ORDER BY sp.transaction_time Desc
+        </if>
+
+    </select>
+
+    <select id="queryVolume" parameterType="String" resultType="com.bpic.mobile.domain.vo.VolumeVo">
+         SELECT SUM(sp.policy_amount) amount,COUNT(sp.policy_mark) mark,CASE sp.policy_mark WHEN 'n' THEN '待结算' WHEN 'y' THEN '已结算' END status FROM  salesman_performance sp
+        left join share_information si on sp.share_product_ID=si.share_product_id  WHERE  1=1
+        <if test="isSales==0">
+            and si.sharer_empno = #{salesmanNo}
+        </if>
+        <if test="isSales==1">
+            and si.sharer_superior_empno = #{salesmanNo}
+        </if>
+        <if test='type == "n"'>
+            and sp.policy_mark='n'
+        </if>
+        <if test='type == "y"'>
+            and sp.policy_mark='y'
+        </if>
+    </select>
+
+    <select id="queryVolumeByEmpNoCount" parameterType="String" resultType="com.bpic.mobile.domain.vo.VolumeVo">
+    SELECT SUM(sp.policy_amount) amount,COUNT(sp.policy_mark) mark,CASE sp.policy_mark WHEN 'n' THEN '待结算' WHEN 'y' THEN '已结算' END status FROM  salesman_performance sp
+    left join share_information si on sp.share_product_ID=si.share_product_id  WHERE  1=1
+    and (si.sharer_empno = #{salesmanNo} or si.sharer_superior_empno = #{salesmanNo} )
+    and sp.policy_mark='y'  and  sp.transaction_time >=DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+</select>
+
+    <select id="queryVolumeByTelCount" parameterType="String" resultType="com.bpic.mobile.domain.vo.VolumeVo">
+        SELECT SUM(sp.policy_amount) amount,COUNT(sp.policy_mark) mark,CASE sp.policy_mark WHEN 'n' THEN '待结算' WHEN 'y' THEN '已结算' END status FROM  salesman_performance sp
+        left join share_information si on sp.share_product_ID=si.share_product_id  WHERE  1=1
+        <if test="telPhone != null and telPhone != ''">
+            and sp.share_product_ID in
+            (select s.share_product_id
+            from share_information s where s.tel_phone=#{telPhone}
+            and s.status='1'
+            )
+        </if>
+            and sp.policy_mark='y'
+           and  sp.transaction_time >=DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+    </select>
+
+
+    <select id="queryVolumeByTel" parameterType="String" resultType="com.bpic.mobile.domain.vo.VolumeVo">
+        SELECT SUM(sp.policy_amount) amount,COUNT(sp.policy_mark) mark,CASE sp.policy_mark WHEN 'n' THEN '待结算' WHEN 'y' THEN '已结算' END status FROM  salesman_performance sp
+        left join share_information si on sp.share_product_ID=si.share_product_id  WHERE  1=1
+        <if test="telPhone != null and telPhone != ''">
+            and sp.share_product_ID in
+            (select s.share_product_id
+            from share_information s where s.tel_phone=#{telPhone}
+            and s.status='1'
+            )
+        </if>
+        <if test='type == "n"'>
+            and sp.policy_mark='n'
+        </if>
+        <if test='type == "y"'>
+            and sp.policy_mark='y'
+        </if>
+    </select>
+
+    <select id="queryCountByMarky" resultType="int" parameterType="String">
+      SELECT COUNT(sp1.policy_mark) FROM salesman_performance sp1
+        left join share_information si on sp1.share_product_ID=si.share_product_id
+        WHERE sp1.`policy_mark` ='y'
+        <if test="isSales==0">
+            and si.sharer_empno = #{salesmanNo}
+        </if>
+        <if test="isSales==1">
+            and si.sharer_superior_empno = #{salesmanNo}
+        </if>
+    </select>
+
+
+    <select id="queryByShareId" parameterType="String" resultMap="BaseResult">
+        SELECT sp.product_name,sp.policy_amount,sp.policy_mark,sp.deal_time,sp.salesman_no,sp.create_time,sp.share_product_id,si.sharer_name,si.img_url FROM salesman_performance sp
+        left join share_information si on sp.share_product_ID=si.share_product_id  WHERE  1=1
+        <if test="telPhone != null and telPhone != ''">
+            and sp.share_product_ID in
+            (select s.share_product_id
+             from share_information s where s.tel_phone=#{telPhone}
+                and s.status='1'
+           )
+        </if>
+        <if test="name != null and name != ''">
+            AND sp.product_name LIKE CONCAT('%',#{name},'%')
+        </if>
+        <if test="mark !=null and mark!='' ">
+            AND sp.policy_mark =#{mark}
+        </if>
+        <if test="priceSorted !=null and priceSorted!='' ">
+            order by sp.policy_amount Desc
+        </if>
+        <if test="timeSorted !=null and timeSorted!='' ">
+            ORDER BY sp.transaction_time Desc
+        </if>
+
+    </select>
+
+    <select id="queryCountByTelMarkn" resultType="int" parameterType="String">
+        SELECT COUNT(sp1.policy_mark) FROM salesman_performance sp1
+        left join share_information si on sp1.share_product_ID=si.share_product_id
+        WHERE sp1.`policy_mark` ='n'
+        <if test="telPhone != null and telPhone != ''">
+            and sp1.share_product_ID in
+            (select s.share_product_id
+            from share_information s where s.tel_phone=#{telPhone}
+            and s.status='1'
+            )
+        </if>
+    </select>
+
+    <select id="queryCountByTelMarky" resultType="int" parameterType="String">
+        SELECT COUNT(sp1.policy_mark) FROM salesman_performance sp1
+        left join share_information si on sp1.share_product_ID=si.share_product_id
+        WHERE sp1.`policy_mark` ='y'
+        <if test="telPhone != null and telPhone != ''">
+            and sp1.share_product_ID in
+            (select s.share_product_id
+            from share_information s where s.tel_phone=#{telPhone}
+            and s.status='1'
+            )
+        </if>
+    </select>
+
+    <select id="queryCountByMarkn" resultType="int" parameterType="String">
+      SELECT COUNT(sp1.policy_mark) FROM salesman_performance sp1
+      left join share_information si on sp1.share_product_ID=si.share_product_id
+      WHERE sp1.`policy_mark` ='n'
+        <if test="isSales==0">
+            and si.sharer_empno = #{salesmanNo}
+        </if>
+        <if test="isSales==1">
+            and si.sharer_superior_empno = #{salesmanNo}
+        </if>
+    </select>
+
+    <update id="updateSalesmanPolicyInfo" parameterType="com.bpic.common.core.domain.entity.SalesmanPerformance">
+        UPDATE salesman_performance SET policy_mark = #{policy_mark}, update_time = SYSDATE(),
+        create_from = 'BPIC-SYSTEM' WHERE policy_no = #{policyNo}
+    </update>
+
+    <insert id="addSalesmanPolicyInfo" parameterType="com.bpic.common.core.domain.entity.SalesmanPerformance">
+        INSERT INTO salesman_performance(policy_no,insure_no,policy_amount,transaction_time,product_name,product_code,policy_mark,deal_tim,salesman_no,salesman_phone,create_time,create_from)
+        VALUES(#{policyNo}, #{insureNo}, #{policyAmount}, #{transactionTime}, #{productName}, #{productCode}, #{policyMark}, #{dealTime}, #{salesmanNo}, #{salesmanName}, #{salesmanPhone}, SYSDATE(), 'BH-XG')
+    </insert>
+
+
+    <select id="queryVolumeById" parameterType="String" resultType="com.bpic.mobile.domain.vo.SalesmanPerformanceVo">
+        select s.policy_amount policyAmount,CASE s.policy_mark WHEN 'n' THEN '待结算' WHEN 'y' THEN '已结算' END policyMark,s.deal_time dealTime,
+        s.transaction_time transactionTime from  salesman_performance s where s.share_product_ID = #{id}
+    </select>
+
+</mapper>

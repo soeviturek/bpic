@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.WechatMapper">
+    <insert id="insertWechatUser" parameterType="com.bpic.system.domain.WechatUser">
+        insert
+        wechat_user(open_id,nick_name,sex,province,city,country,head_img_url,privilege,union_id)
+        values
+        (#{open_id},#{nick_name},#{sex},#{province},#{city},#{country},#{head_img_url},#{privilege},#{union_id});
+    </insert>
+
+    <select id="selectByOpenId" parameterType="String" resultType="com.bpic.system.domain.WechatUser">
+        select open_id,nick_name,sex,province,city,cellphone,country,head_img_url,privilege,union_id
+        from
+            wechat_user
+        where
+            open_id = #{open_id}
+    </select>
+
+    <update id="updateByCellphone" parameterType="com.bpic.system.domain.WechatUser">
+        update wechat_user set cellphone = #{cellphone} where open_id = #{open_id}
+    </update>
+
+
+    <update id="updateByOpenId" parameterType="com.bpic.system.domain.WechatUser">
+        update wechat_user
+        <set>
+            <if test="nick_name != null and nick_name != ''">nick_name = #{nick_name},</if>
+            <if test="sex != null and sex != ''">sex = #{sex},</if>
+            <if test="province != null and province != ''">province = #{province},</if>
+            <if test="city != null and city != ''">city = #{city},</if>
+            <if test="country != null and country != ''">country = #{country},</if>
+            <if test="head_img_url != null and head_img_url != ''">head_img_url = #{head_img_url},</if>
+            <if test="privilege != null and privilege != ''">privilege = #{privilege},</if>
+            <if test="cellphone != null and cellphone != ''">cellphone = #{cellphone},</if>
+            <if test="union_id != null and union_id != ''">union_id = #{union_id},</if>
+            update_time = sysdate()
+        </set>
+        where open_id = #{open_id}
+    </update>
+
+
+
+
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bpic</artifactId>
+        <groupId>com.bpic</groupId>
+        <version>3.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <artifactId>bpic-recruit-api</artifactId>
+
+
+    <dependencies>
+
+        <!-- spring-boot-devtools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional> <!-- 表示依赖不会传递 -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.bpic</groupId>
+            <artifactId>bpic-common</artifactId>
+            <version>3.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.pagehelper</groupId>
+                    <artifactId>pagehelper-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bpic</groupId>
+            <artifactId>bpic-system</artifactId>
+            <version>3.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.bpic</groupId>
+                    <artifactId>bpic-common</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 核心模块-->
+        <dependency>
+            <groupId>com.bpic</groupId>
+            <artifactId>bpic-framework</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.bpic</groupId>
+                    <artifactId>bpic-common</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--lombok插件-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+
+        <!-- 代码生成-->
+<!--        <dependency>-->
+<!--            <groupId>com.bpic</groupId>-->
+<!--            <artifactId>bpic-generator</artifactId>-->
+<!--        </dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>   
+                <groupId>org.apache.maven.plugins</groupId>   
+                <artifactId>maven-war-plugin</artifactId>   
+                <version>3.0.0</version>   
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>${project.artifactId}</warName>
+                </configuration>   
+           </plugin>   
+        </plugins>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
+</project>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.mobile.mapper.ShareInformationMapper">
+
+    <resultMap id="ShareInformationResult" type="com.bpic.common.core.domain.entity.ShareInformation">
+        <id property="shareProductId" column="share_product_ID"/>
+        <result property="sharerSuperiorEmpno" column="sharer_superior_empno" />
+        <result property="sharerSuperiorName" column="sharer_superior_name" />
+        <result property="sharerSuperiorPhone" column="sharer_superior_phone" />
+        <result property="sharerName" column="sharer_name" />
+        <result property="sharerEmpno" column="sharer_empno" />
+        <result property="imgUrl" column="img_url" />
+        <result property="productCode" column="product_code" />
+        <result property="volume" column="volume" />
+        <result property="click" column="click" />
+        <result property="shareTime" column="share_time" />
+        <result property="shareName" column="share_name" />
+        <result property="shareUrl" column="share_url" />
+        <result property="telPhone" column="tel_phone" />
+        <result property="status" column="status"/>
+        <result property="type" column="type"/>
+        <result property="describe" column="describe"/>
+        <result property="title" column="title"/>
+        <result property="isShare" column="is_share"/>
+    </resultMap>
+
+    <select id="selectByTel" parameterType="String" resultMap="ShareInformationResult">
+        select s.*
+        from share_information s where s.tel_phone=#{telPhone}
+         <if test="status == 1">
+             and s.status='1'
+         </if>
+         order by s.share_time desc limit 0,10
+    </select>
+
+    <select id="selectVolume" parameterType="String" resultType="String">
+        select sum(sp.policy_amount) from salesman_performance sp where sp.share_product_ID=#{id} and
+        sp.policy_mark='y'
+    </select>
+
+    <update id="refreshClick" parameterType="com.bpic.common.core.domain.entity.ShareInformation">
+        update share_information s set s.click=#{click},s.status='1' where s.share_product_ID = #{shareProductId}
+    </update>
+
+    <select id="selectClick" parameterType="com.bpic.common.core.domain.entity.ShareInformation" resultType="Integer">
+      select s.click from share_information s where s.share_product_ID = #{shareProductId}
+    </select>
+
+    <select id="selectByProductId" parameterType="String" resultMap="ShareInformationResult">
+        select * from share_information where share_product_ID=#{productId}
+    </select>
+
+    <insert id="insertByProductId" parameterType="com.bpic.common.core.domain.entity.ShareInformation">
+        insert into share_information(
+        share_product_ID,sharer_superior_name,sharer_superior_empno,sharer_superior_phone,sharer_empno,sharer_name,tel_phone,type,product_code,status,is_share)
+         values (#{shareProductId},#{sharerSuperiorName},#{sharerSuperiorEmpno},
+         #{sharerSuperiorPhone},#{sharerEmpno},#{sharerName},#{telPhone},#{type},#{productCode},'0','0')
+    </insert>
+
+    <update id="insertShareInformation" parameterType="com.bpic.common.core.domain.entity.ShareInformation">
+        update share_information s
+        <set>
+        <if test="telPhone != null and telPhone != ''">s.tel_phone=#{telPhone},</if>
+        <if test="shareUrl != null and shareUrl != ''">s.share_url=#{shareUrl},</if>
+        <if test="shareName != null and shareName != ''">s.share_name=#{shareName},</if>
+        <if test="click != null and click != 0">s.click=#{click},</if>
+        <if test="volume != null and volume != 0">s.volume=#{volume},</if>
+        <if test="productCode != null and productCode != ''">s.product_code=#{productCode},</if>
+        <if test="imgUrl != null and imgUrl != ''">s.img_url=#{imgUrl},</if>
+        <if test="sharerEmpno != null and sharerEmpno != ''">s.sharer_empno=#{sharerEmpno},</if>
+        <if test="sharerName != null and sharerName != ''">s.sharer_name=#{sharerName},</if>
+        <if test="sharerSuperiorPhone != null and sharerSuperiorPhone != ''">s.sharer_superior_phone=#{sharerSuperiorPhone},</if>
+        <if test="sharerSuperiorName != null and sharerSuperiorName != ''">s.sharer_superior_name=#{sharerSuperiorName},</if>
+        <if test="sharerSuperiorEmpno != null and sharerSuperiorEmpno != ''">s.sharer_superior_empno=#{sharerSuperiorEmpno},</if>
+        <if test="shareProductId != null and shareProductId != ''">s.share_product_id=#{shareProductId},</if>
+        <if test="type != null and type != ''">s.type=#{type},</if>
+        <if test="describe != null and describe != ''">s.describe=#{describe},</if>
+        <if test="title != null and title != ''">s.title=#{title},</if>
+            s.share_time = sysdate()
+        </set>
+        where s.share_product_ID = #{shareProductId}
+    </update>
+
+    <select id="selectTotal" parameterType="String" resultType="Integer">
+        select sum(click) from  share_information where tel_phone=#{telPhone} and status='1'
+    </select>
+
+<!--  自定义~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~***********************  -->
+    <select id="selectTotalAllReplicate" parameterType="String" resultType="Integer">
+        select sum(click) from share_information where tel_phone=#{telPhone} and status = '1'
+    </select>
+
+    <delete id="deleteByTel" parameterType="String">
+        delete from share_information where tel_phone=#{telPhone}
+    </delete>
+
+    <select id="selectByEmpNo" parameterType="String" resultType="com.bpic.common.core.domain.entity.ShareInformation">
+        select * from share_information where sharer_empno=#{salesmanNo}
+    </select>
+
+    <select id="selectBySupEmpNo" parameterType="String" resultType="com.bpic.common.core.domain.entity.ShareInformation">
+        select * from share_information where sharer_superior_empno=#{salesmanNo}
+    </select>
+
+    <update id="updateIsShare" parameterType="String" >
+         update share_information s set s.is_share=#{isShare} where s.share_product_ID = #{id}
+    </update>
+</mapper>

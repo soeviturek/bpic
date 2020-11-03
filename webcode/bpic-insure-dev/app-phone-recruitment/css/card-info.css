@@ -1,0 +1,180 @@
+body{
+    background: #ffffff;
+}
+.card-content{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 21px;
+    background: #ffffff;
+    padding-bottom: 46px;
+}
+.card-box{
+    overflow: hidden;
+    justify-content: space-around;
+}
+.card-box > div{float: left;}
+.card-box > div:first-child{margin-right: 8px}
+
+.card-item{
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    color: #666666;
+    letter-spacing: 0;
+    /*float: left;*/
+    /*margin-right: .08px;*/
+    margin-bottom: 14px;
+}
+.card-item>div img{
+    width: 100%;
+    height: 100%;
+}
+.card-item:nth-of-type(2n){
+    margin-right: 0;
+}
+.card-item>p{
+    height: 18px;
+    font-size: 14px;
+    color: #333333;
+}
+.card-item>div{
+    width: 160px;
+    height: 117px;
+    border-radius: 4px;
+    border: 1px dashed #CFCFCF;
+    position: relative;
+    margin-top: 12px;
+}
+.add{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 32px;
+    color: #E7E7E7;
+}
+.card-item>div>p{
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666666;
+    white-space: nowrap;
+}
+label{
+    font-size: 12px;
+}
+.honver-card{
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+.init-check{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border: 1px solid #003D9A;
+    position: absolute;
+    float: left;
+}
+.init-check::after{
+    content: '';
+    width: 5px;
+    height: 8px;
+    display: block;
+    border-right: 1px solid #004098;
+    border-bottom: 1px solid #004098;
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+#check-honver:checked+label::after{
+    content: '';
+    opacity: 1;
+}
+.check-text{
+    float: left;
+    margin-left: 30px;
+}
+.click-button{
+    width: 100%;
+    height: 46px;
+    font-family: MicrosoftYaHei;
+    font-size: 14px;
+    color: #FFFFFF;
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.click-button>a{
+    flex: 1;
+    text-align: center;
+    line-height: 46px;
+    color: #ffffff
+}
+.next-page{
+    background: #004098 ;
+}
+.active-heng::after{
+	 background: #004098 ;
+}
+.prev-page{
+    background: #dddddd;
+}
+
+.card-on{position: relative}
+.card-on input{display: block;width: 100%;height: 100%;opacity: 0;position: absolute;top: 0;left: 0}
+.school-card{
+	width: 100%;
+}
+.card-mdrt-hidden{
+	overflow: hidden;
+	display: none !important;
+}
+.card-honver{
+	display: block;
+}
+
+.sign-popup{position: fixed;width: 100%;height: 100%;background: #ffffff;top: 0;left: 50%;transform: translateX(-50%);z-index: 11;}
+.sigClose{position: absolute;top: 10px;left: 10px;width: 30px;height: 30px;border-radius: 15px;box-shadow: 2px 3px 13px 0px rgba(0,0,0,.2);color: #004098;line-height: 30px;text-align: center;}
+.ToResetCode {
+    position: fixed;
+    width: 50%;
+    font-size: 17px;
+    color: #222;
+    line-height: 55px;
+    height: 55px;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    z-index: 200;
+    background-color: #fff;
+    border-top: solid 1px #ddd;
+    border-right: solid 1px #ddd;
+}
+
+.toCreatCode {
+    position: fixed;
+    width: 50%;
+    font-size: 17px;
+    color: #222;
+    line-height: 55px;
+    height: 55px;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    z-index: 200;
+    background-color: #fff;
+    border-top: solid 1px #ddd;
+    color: #005bac;
+}
+
+.signImg p{width: 100%;font-size: 40px;text-align: center;padding-top: 32px;color: #d0d0d0}
+.signImg img{
+	width: 100%;
+	height: 100%;
+    display: none;
+}
+.inform-panel .time span{width:100px;height: 100px;}

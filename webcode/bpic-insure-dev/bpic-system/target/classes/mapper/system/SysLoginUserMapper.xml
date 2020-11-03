@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.SysLoginUserMapper">
+
+    <insert id="insertUser" parameterType="com.bpic.common.core.domain.entity.SysLoginUser">
+        insert into
+            sys_login_user (
+            <if test="c_emp_cde2 != null and c_emp_cde2 != ''">c_emp_cde2,</if>
+            <if test="c_emp_cnm != null and c_emp_cnm != ''">c_emp_cnm,</if>
+            <if test="c_dpt_cde != null and c_dpt_cde != ''">c_dpt_cde,</if>
+            <if test="user_name != null and user_name != ''">user_name,</if>
+            <if test="cphone != null and cphone != ''">cphone,</if>
+            <if test="c_tel_mob != null and c_tel_mob != ''">c_tel_mob,</if>
+            <if test="c_emp_cde != null and c_emp_cde != ''">c_emp_cde,</if>
+            <if test="sex != null and sex != ''">sex,</if>
+            <if test="c_passwd != null and c_passwd != ''">c_passwd,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="c_title_cde != null and c_title_cde != ''">c_title_cde,</if>
+            <if test="login_ip != null and login_ip != ''">login_ip,</if>
+            <if test="login_date != null and login_date != ''">login_date,</if>
+            <if test="create_by != null and create_by != ''">create_by,</if>
+            <if test="update_by != null and update_by != ''">update_by,</if>
+            <if test="update_time != null and update_time != ''">update_time,</if>
+            <if test="remark != null and remark != ''">remark,</if>
+            develop_time,
+            <if test="img != null and img != ''">img,</if>
+            create_time)
+        values (
+            <if test="c_emp_cde2 != null and c_emp_cde2 != ''">#{c_emp_cde2},</if>
+            <if test="c_emp_cnm != null and c_emp_cnm != ''">#{c_emp_cnm},</if>
+            <if test="c_dpt_cde != null and c_dpt_cde != ''">#{c_dpt_cde},</if>
+            <if test="user_name != null and user_name != ''">#{user_name},</if>
+            <if test="cphone != null and cphone != ''">#{cphone},</if>
+            <if test="c_tel_mob != null and c_tel_mob != ''">#{c_tel_mob},</if>
+            <if test="c_emp_cde != null and c_emp_cde != ''">#{c_emp_cde},</if>
+            <if test="sex != null and sex != ''">#{sex},</if>
+            <if test="c_passwd != null and c_passwd != ''">#{c_passwd},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="c_title_cde != null and c_title_cde != ''">c_title_cde,</if>
+            <if test="login_ip != null and login_ip != ''">#{login_ip},</if>
+            <if test="login_date != null and login_date != ''">#{login_date},</if>
+            <if test="create_by != null and create_by != ''">#{create_by},</if>
+            <if test="update_by != null and update_by != ''">#{update_by},</if>
+            <if test="update_time != null and update_time != ''">#{update_time},</if>
+            <if test="remark != null and remark != ''">#{remark},</if>
+            sysdate(),
+            <if test="img != null and img != ''">#{img},</if>
+            sysdate());
+    </insert>
+
+    <update id="updateUserByCellphone" parameterType="com.bpic.common.core.domain.entity.SysLoginUser">
+        update sys_login_user
+        <set>
+            <if test="c_emp_cde2 != null and c_emp_cde2 != ''">c_emp_cde2 = #{c_emp_cde2},</if>
+            <if test="c_emp_cnm != null and c_emp_cnm != ''">c_emp_cnm = #{c_emp_cnm},</if>
+            <if test="user_name != null and user_name != ''">user_name = #{user_name},</if>
+            <if test="c_dpt_cde != null and c_dpt_cde != ''">c_dpt_cde = #{c_dpt_cde},</if>
+            <if test="cphone != null and cphone != ''">cphone = #{cphone},</if>
+            <if test="sex != null and sex != ''">sex = #{sex},</if>
+            <if test="c_passwd != null and c_passwd != ''">c_passwd = #{c_passwd},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="c_emp_cde != null and c_emp_cde != ''">c_emp_cde = #{c_emp_cde},</if>
+            <if test="c_title_cde != null and c_title_cde != ''">c_title_cde = #{c_title_cde},</if>
+            <if test="login_ip != null and login_ip != ''">login_ip = #{login_ip},</if>
+            <if test="login_date != null and login_date != ''">login_date = #{login_date},</if>
+            <if test="create_by != null and create_by != ''">create_by = #{create_by},</if>
+            <if test="create_time != null and create_time != ''">create_time = #{create_time},</if>
+            <if test="del_flag != null and del_flag != ''">del_flag = #{del_flag},</if>
+            <if test="update_by != null and update_by != ''">update_by = #{update_by},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            <if test="develop_time != null and develop_time != ''">develop_time = #{develop_time},</if>
+            <if test="img != null and img != ''">img = #{img},</if>
+            update_time = sysdate()
+        </set>
+            where c_tel_mob = #{c_tel_mob}
+    </update>
+
+    <select id="selectByCellphone" resultType="com.bpic.system.domain.vo.SysLoginUserVo">
+        select
+            s.c_emp_cde2,
+            s.c_emp_cnm,
+            s.user_name,
+            s.c_passwd,
+            s.c_dpt_cde,
+            s.cphone,
+            s.c_tel_mob,
+            s.c_emp_cde,
+            s.sex,
+            s.status,
+            s.del_flag,
+            s.c_title_cde,
+            s.develop_time,
+            s.img
+        from
+            sys_login_user s
+        where
+            s.c_tel_mob = #{c_tel_mob}
+    </select>
+
+    <select id="queryUnionId" parameterType="com.bpic.common.core.domain.entity.SysLoginUser" resultType="String">
+        select
+           w.union_id
+        from
+            sys_login_user s LEFT JOIN wechat_user w on s.c_tel_mob = w.cellphone
+        where
+            s.c_tel_mob = #{c_tel_mob}
+    </select>
+
+    <update id="updatePwd" parameterType="com.bpic.common.core.domain.entity.SysLoginUser">
+        update sys_login_user set c_passwd = #{c_passwd} where c_tel_mob = #{c_tel_mob}
+    </update>
+
+    <delete id="deleteUserByCellphone">
+        delete from sys_login_user where c_tel_mob = #{cellphone}
+    </delete>
+    <!--传上线员工手机号，即当前登陆人的手机号-->
+    <select id="selectSxUser" parameterType="String" resultType="com.bpic.common.core.domain.entity.SysLoginUser">
+        select
+        s.c_emp_cde2,
+        s.c_emp_cnm,
+        s.user_name,
+        s.c_dpt_cde,
+        s.cphone,
+        s.c_tel_mob,
+        s.c_emp_cde,
+        s.sex,
+        s.status,
+        s.del_flag,
+        s.c_title_cde,
+        s.develop_time,
+        w.head_img_url img
+        from sys_login_user s left join wechat_user w on  s.c_tel_mob = w.cellphone
+        where
+            s.cphone = #{cellphone}
+        <if test="user_name != null and user_name != ''">
+            AND user_name like concat('%', #{user_name}, '%')
+        </if>
+        <if test="start_time != null and start_time != ''">
+            AND date_format(develop_time,'%y%m%d') >= date_format(#{start_time},'%y%m%d')
+        </if>
+        <if test="end_time != null and end_time != ''">
+            AND date_format(develop_time,'%y%m%d') &lt;= date_format(#{end_time},'%y%m%d')
+        </if>
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="java.lang.Integer">
+        select count(1) from sys_login_user where cphone = #{cellphone}
+    </select>
+
+    <select id="selectUserByAgentCode" resultType="com.bpic.common.core.domain.entity.SysLoginUser">
+         select
+            s.c_emp_cde2,
+            s.c_emp_cnm,
+            s.user_name,
+            s.c_dpt_cde,
+            s.cphone,
+            s.c_tel_mob,
+            s.c_emp_cde,
+            s.sex,
+            s.status,
+            s.c_title_cde,
+            s.develop_time,
+            s.img
+        from
+            sys_login_user s
+        where
+            s.c_emp_cde2 = #{agentCode}
+            limit 1
+    </select>
+
+    <select id="queryrelationList"  parameterType="String" resultType="com.bpic.system.domain.vo.SysLoginUserVo">
+        select
+        s.c_emp_cde2,
+        s.c_emp_cnm,
+        s.user_name,
+        s.c_dpt_cde,
+        s.cphone,
+        s.c_tel_mob,
+        s.c_emp_cde,
+        s.status
+        from sys_login_user s where 1 = 1
+            and c_emp_cnm != null or  c_emp_cnm != ''
+            <if test="user_name != null and user_name != ''">
+                and s.user_name like concat('%', #{user_name}, '%')
+            </if>
+            <if test="cellphone != null and cellphone != ''">
+                AND s.c_tel_mob = #{cellphone}
+            </if>
+    </select>
+
+    <update id="updateOnlineUser" parameterType="com.bpic.system.domain.vo.SysLoginUserVo">
+        update sys_login_user
+        <set>
+            <if test="c_emp_cnm != null and c_emp_cnm != ''">c_emp_cnm = #{c_emp_cnm},</if>
+            <if test="c_dpt_cde != null and c_dpt_cde != ''">c_dpt_cde = #{c_dpt_cde},</if>
+            <if test="cphone != null and cphone != ''">cphone = #{cphone},</if>
+            <if test="c_emp_cde != null and c_emp_cde != ''">c_emp_cde = #{c_emp_cde},</if>
+            update_time = sysdate()
+        </set>
+        where c_tel_mob = #{c_tel_mob}
+    </update>
+</mapper>

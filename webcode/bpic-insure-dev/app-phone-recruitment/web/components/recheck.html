@@ -1,0 +1,149 @@
+<div class="recheck-view">
+    <div class="head clearfix">
+        <div class="left">
+            <div class="portrait">
+                <img src="{{=it.sex == "M" ? '../../images/top-pic.jpg':'../../images/feman-top.jpg'}}"">
+                <i class="iconfont {{=it.sex == "M" ? 'icon-male':'icon-female'}}"></i>
+            </div>
+            <div class="rank">
+                <p>{{=it.name ||''}}</p>
+                <!-- <p>{{=it.cellphone || ''}}</p> -->
+                <p></p>
+            </div>
+        </div>
+        <div class="right recheck-post">
+            <i class="iconfont icon-character-success"></i>
+            <span>{{=it.position||''}}</span>
+            <span class="postType"></span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-details clearfix">
+            <div class="content-details-left fl">
+                <p>
+                    <i class="iconfont icon-wechat"></i>
+                    <span>{{=it.wechat || ''}}</span>
+                </p>
+                <p>
+                    <i class="iconfont icon-phone"></i>
+                    <span>{{=it.cellphone || ''}}</span>
+                </p>
+              <!--  <div class="work">
+                    <i class="iconfont icon-work"></i>
+                    <span>{{=it.workExperience || ""}}</span>
+                </div>-->
+                <!-- <p>
+                    <i class="iconfont icon-tengxunqq"></i>
+                    <span>{{=it.contactQq || ''}}</span>
+                </p>
+                <p>
+                    <i class="iconfont icon-youjian2"></i>
+                    <span>{{=it.email || ''}}</span>
+                </p> -->
+            </div>
+            <div class="content-details-right fr">
+                <!--<i class="iconfont icon-profile"></i>-->
+            </div>
+        </div>
+        <!-- <div class="content-work" data-tempname="{{=it.name}}">
+            <p>同业经历：</p>
+            <span>{{=it.workExperience || ""}}</span>
+        </div> -->
+        <div class="arrow">
+            <i class="iconfont icon-jiantou-copy-copy-copy">
+
+            </i>
+        </div>
+        <div class="bottom-content">
+            <div class="details">
+                <ul>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time fl">
+                            核定职级
+                        </strong>
+                        <div class="left-fathter fr">
+                            <div class="ipt-select">
+                                <i class="iconfont icon-jiantouarrow483"></i>
+                                <input type="text" class="ipt-text" placeholder="请选择核定职级" readonly="">
+                                <select name="confirmPosition">
+                                    <option disabled="">请选择核定职级</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="fl">
+                                邀请人：{{=it.createUserName ||''}}
+                        </strong>
+                    </li>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time">
+                                学历信息
+                        </strong>
+                        <img class="right_icon" src="../../images/right_icon3.png" alt="">
+                        <div class="work_msg">
+                            <p><span>最高学历</span><span>{{=it.educationalList.length?it.educationalList[0].education:''}}</span></p>
+                        </div>
+                    </li>
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time">工作经历</strong>
+                        <img class="right_icon" src="../../images/right_icon2.png" alt="">
+                        <div class="work_msg">
+                            <p><span>工作总年限</span><span>{{=it.totalWorkTime||'0'}}年</span></p>
+                            <p><span>是否有保险公司工作经验</span><span>{{?it.insuranceWorkExperience.length>0&&it.insuranceWorkExperience[0].isInsuranceWork}}是{{??}}否{{?}}</span></p>
+                            {{?it.insuranceWorkExperience.length>0&&it.insuranceWorkExperience[0].isInsuranceWork}}
+                            <p><span>保险从业年限</span><span>{{=it.nativeWorkTime||'0'}}</span></p>
+                            <p><span>累计签寿险单的客户量（人）</span><span>{{=it.totalPortfolio||'0'}}人</span></p>
+                            <p><span>最多同时辅导/管理人力（人）</span><span>{{=it.maxCoacher||'0'}}人</span></p>
+                            {{~it.insuranceWorkExperience:v:i}}
+                            <p><span>起止时间</span><span>{{=v.startTime.replace('-','年').replace('-01','月')}}-{{=v.endTime.replace('-','年').replace('-01','月')}}</span></p>
+                            <p><span>公司</span><span>{{=v.company||''}}</span></p>
+                            <p><span>部门</span><span>{{=v.occupation||''}}</span></p>
+                            <p><span>职位</span><span>{{=v.post||''}}</span></p>
+                            {{~}}
+                            {{?}}
+                        </div>
+                        
+                    </li>
+                    {{?it.workExperienceList.length&&(!it.insuranceWorkExperience.length||!it.insuranceWorkExperience[0].isInsuranceWork)}}
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time">
+                            最近一份工作经历
+                        </strong>
+                        <img class="right_icon" src="../../images/right_icon1.png" alt="">
+                        <div class="work_msg">
+                            {{~it.workExperienceList:v:i}}
+                            <p><span>起止时间</span><span>{{=v.startTime.replace('-','年').replace('-01','月')}}-{{=v.endTime.replace('-','年').replace('-01','月')}}</span></p>
+                            <p><span>公司</span><span>{{=v.company||''}}</span></p>
+                            <p><span>部门</span><span>{{=v.occupation||''}}</span></p>
+                            <p><span>职位</span><span>{{=v.post||''}}</span></p>
+                            {{~}}
+                        </div>
+                    </li>
+                    {{?}}
+                    <li data-orgid="B0311" data-flowitemid="1" data-flowactionid="983591981479362560" data-accountid="957903427172564992" data-moudlename="1"
+                        class="clearfix">
+                        <strong class="time">
+                            审核评语
+                        </strong>
+                        <textarea id="comment" rows="" cols="" maxlength="500"></textarea>
+
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <button type="button" class="fl" data-result="N">不通过</button>
+        <button type="button" class="fl" data-result="Y">通过</button>
+    </div>
+</div>

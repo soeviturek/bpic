@@ -1,0 +1,221 @@
+.fl{
+  float: left;
+  color: #D0D0D0;
+}
+.fr{
+  float: right;
+}
+ul,li{
+  list-style:none
+}
+.head{
+  padding: 20px;
+  background-image: linear-gradient(-180deg, #004098 0%, #0056CB 99%);
+  height: 70px;
+}
+.head .left{
+  float: left;
+}
+.head .right{
+  float: right;
+  margin-top: 17px;
+/*  width: 100px;*/
+  height: 28px;
+  line-height: 28px;
+  background:rgba(0,0,0,0.043);
+  border: 1px solid #FFFFFF;
+  border-radius: 52px;
+  font-size: 9px;
+  color: #fff;
+  padding: 0 5px;
+}
+.head .portrait{
+  border-radius: 50%;
+  background: #ccc;
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
+  float: left;
+  position: relative;
+}
+
+.head .portrait i{
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 3px;
+    bottom: 5px;
+    color: #4A90E2
+}
+.head .rank{
+  font-family: PingFangHK-Medium;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  overflow: hidden;
+          zoom: 1;
+}
+
+.right i{
+  color: #fff;
+  font-size: 12px;
+}
+.right span:nth-of-type(1){
+  font-family: PingFangSC-Medium;
+font-size: 12px;
+}
+.right span:nth-of-type(2){
+  opacity: 0.84;
+font-family: PingFangSC-Medium;
+font-size: 9px;
+}
+.content .content-details{
+  /*height: .22px;
+  line-height: .22px;*/
+  font-size: 14px;
+/*  text-align: center;*/
+  padding: 13px 20px;
+  background: #FFFFFF;
+
+  
+}
+.content .content-details .content-details-left i{
+  font-size: 12px;
+  color: #C7C5C4;
+  margin-right: 14px;
+}
+.content .content-details .content-details-left span{
+  font-family: MicrosoftYaHei;
+font-size: 14px;
+color: #000000;
+text-align: center;
+line-height: 19px;
+height: 19px;
+}
+.content .content-details .content-details-left p:nth-child(2){
+  margin: 4px 0;
+}
+.content .content-details .content-details-right{
+/* opacity: 0.32; */
+border: 1px solid #4A90E2;
+/* margin-top: 10px; */
+border-radius: 50%;
+width: 40px;
+height: 40px;
+position: relative;
+}
+.content .content-details .content-details-right i{
+  color: #4A90E2;
+  font-size: 19px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)
+}
+.content .arrow i{
+  color: #D2D2D2;
+}
+.content .bottom-content{
+  padding: 12px 12px 81px;
+  background: #F8F8F8;
+}
+.content .bottom-content .details{
+box-shadow: 0 1px 19px 0 rgba(199,199,199,0.15);
+border-radius: 10px;
+
+ }
+/*.content .bottom-content .details li{
+  font-family: PingFangHK-Medium;
+font-size: 12px;
+color: #666666;
+letter-spacing: 0;
+line-height: 30px;
+border-radius: 10px;
+  background: #FFFFFF;
+padding: 15px;
+}
+.content .bottom-content .details li .time,.left-fathter{
+  color: #666666;
+}
+.content .bottom-content .details li:nth-child(2){
+  margin: 10px 0;
+  padding: 0 15px;
+  height: 45px;
+  line-height: 45px;
+} */
+.ipt-select {
+    position: relative;
+}
+.ipt-select i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: #d3d3d3;
+    font-size: 12px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    z-index: 1;
+}
+input.ipt-text {
+    width: 100%;
+    font-size: 12px;
+    height: 30px;
+    line-height: 28px;
+    padding: 0 10px;
+    border: 1px solid #dadada;
+    background-color: #fff;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+.ipt-select select {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 2;
+    box-sizing: border-box;
+}
+.ipt-select select option{
+  font-family: PingFangHK-Medium;
+font-size: 10px;
+color: #666666;
+letter-spacing: 0;
+}
+textarea{
+border: 1px solid #D4D4D4;
+border-radius: 8px;
+width: 316px;
+height: 115px;
+}
+
+.bottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 46px;
+  line-height: 46px;
+  font-family: MicrosoftYaHei;
+font-size: 14px;
+color: #FFFFFF;
+text-align: center;
+}
+.bottom button{
+  width: 50%;
+  height: 100%;
+       outline: 0!important; 
+     border: 0; 
+     
+}
+.bottom button:first-child{
+  background: #FF5353;
+  color: #fff;
+}
+.bottom button:last-child{
+  background: #004098;
+  color: #fff;
+}

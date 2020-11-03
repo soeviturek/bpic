@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.application.mapper.FamilyMemberMapper">
+  <resultMap id="BaseResultMap" type="com.fulan.api.personnel.domain.FamilyMember">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="personnel_id" jdbcType="BIGINT" property="personnelId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="relationship" jdbcType="VARCHAR" property="relationship" />
+    <result column="agent_code" jdbcType="VARCHAR" property="agentCode" />
+    <result column="Telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="entry_date" jdbcType="VARCHAR" property="entryDate" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="trial_result" jdbcType="VARCHAR" property="trialResult" />
+     <result column="member_type" jdbcType="VARCHAR" property="memberType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, personnel_id, name, relationship, agent_code, Telephone, company, channel, post, 
+    entry_date, seq, create_time, create_user, update_time, update_user,trial_result,member_type
+  </sql>
+  <select id="selectByPersonnelId" parameterType="com.fulan.api.personnel.domain.FamilyMember" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from er_family_member
+    where personnel_id = #{personnelId,jdbcType=BIGINT} 
+    <if test="memberType != null and memberType != ''">
+   		 and member_type = #{memberType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from er_family_member
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from er_family_member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByPersonnelId" parameterType="java.lang.Long">
+    delete from er_family_member
+    where personnel_id = #{personnelId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.api.personnel.domain.FamilyMember">
+    insert into er_family_member (id, personnel_id, name, 
+      relationship, agent_code, Telephone, 
+      company, channel, post, 
+      entry_date, seq, create_time, 
+      create_user, update_time, update_user
+      )
+    values (#{id,jdbcType=BIGINT}, #{personnelId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{relationship,jdbcType=VARCHAR}, #{agentCode,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{company,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
+      #{entryDate,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+      #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=DATE}, #{updateUser,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fulan.api.personnel.domain.FamilyMember">
+    insert into er_family_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="personnelId != null">
+        personnel_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="relationship != null">
+        relationship,
+      </if>
+      <if test="agentCode != null">
+        agent_code,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="entryDate != null">
+        entry_date,
+      </if>
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+       <if test="memberType != null">
+        member_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCode != null">
+        #{agentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+       <if test="memberType != null">
+       	#{memberType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fulan.api.personnel.domain.FamilyMember">
+    update er_family_member
+    <set>
+      <if test="personnelId != null">
+        personnel_id = #{personnelId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        relationship = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCode != null">
+        agent_code = #{agentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        Telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        entry_date = #{entryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.api.personnel.domain.FamilyMember">
+    update er_family_member
+    set personnel_id = #{personnelId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      relationship = #{relationship,jdbcType=VARCHAR},
+      agent_code = #{agentCode,jdbcType=VARCHAR},
+      Telephone = #{telephone,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      entry_date = #{entryDate,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+   <select id="selecPersonnelById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from er_family_member
+    where personnel_id = #{id,jdbcType=BIGINT} and member_type=1
+  </select>
+</mapper>

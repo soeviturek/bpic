@@ -1,0 +1,81 @@
+<div class="inform-viwer">
+    <div class="info-process">
+        <div class="info-bar step-1 step-active">
+            <p>
+                <span></span>
+            </p>
+            <p>基础信息</p>
+        </div>
+        <div class="info-bar step-2 step-active">
+            <p>
+                <span></span>
+            </p>
+            <p>告知事项</p>
+        </div>
+        <div class="info-bar step-3">
+            <p>
+                <span></span>
+            </p>
+            <p>证件影像</p>
+        </div>
+        <div class="info-bar step-4">
+            <p>
+                <span></span>
+            </p>
+            <p>签约资料</p>
+        </div>
+    </div>
+    <div class="inform-panel inform-paper" id = "1001">
+        <p class="tit">1，是否您身体有任何残疾？</p>
+        <div class="inform-radio" >
+            <input type="radio"  name="t1" id="radio-1" value="A" {{?it.f1001}}{{=it.f1001.informOption=='A'?'checked':''}}{{?}}>
+            <label for="radio-1">是</label>
+            <input type="radio"  name="t1" id="radio-2" value="B" {{?it.f1001}}{{=it.f1001.informOption=='B'?'checked':''}}{{?}}>
+            <label for="radio-2">否</label>
+        </div>
+    </div>
+
+    <div class="inform-panel inform-paper" id = "1002">
+        <p class="tit">2，您是否曾被依法逮捕，触犯法律,或目前正处于官司诉讼中?</p>
+        <div class="inform-radio">
+            <input type="radio"  name="t2" id="radio-3" value="A" {{?it.f1002}}{{=it.f1002.informOption=='A'?'checked':''}}{{?}}>
+            <label for="radio-3">是</label>
+            <input type="radio"  name="t2" id="radio-4" value="B" {{?it.f1002}}{{=it.f1002.informOption=='B'?'checked':''}}{{?}}>
+            <label for="radio-4">否</label>
+        </div>
+    </div>
+
+    <div class="inform-panel inform-paper" id = "1003">
+        <p class="tit">3，您是否因严重失信行为被国家有关单位确定为失信联合惩戒对象，或者最近5年内具有其他严重失信不良记录?</p>
+        <div class="inform-radio">
+            <input type="radio"  name="t3" id="radio-5" value="A" {{?it.f1003}}{{=it.f1003.informOption=='A'?'checked':''}}{{?}}>
+            <label for="radio-5">是</label>
+            <input type="radio"  name="t3" id="radio-6" value="B" {{?it.f1003}}{{=it.f1003.informOption=='B'?'checked':''}}{{?}}>
+            <label for="radio-6">否</label>
+        </div>
+        <!-- <h5>请提供详情</h5>
+        <textarea name="" id="informDetail" cols="30" rows="10">{{?it.personnelInformVo}}{{=it.personnelInformVo.personnelInform.informDetail || ''}}{{?}}</textarea> -->
+    </div>
+
+    <div class="inform-panel">
+        <h3>我承诺上述填写的信息均为属实和正确</h3>
+        <div class="signImg">
+        	<p>请在此签署姓名</p>
+            <img src="" alt="">
+        </div>
+        <p class="time">签字日期:<span></span></p>
+    </div>
+
+
+     <div class="click-button">
+    <a class="prev-page">上一步</a>
+    <a class="next-page">下一步</a>
+</div>
+</div>
+
+<!--签字-->
+<div class="sign-popup" id="content" style="display: none">
+    <div id="signatureparent">
+        <div id="signature"></div></div>
+    <div id="tools"></div>
+</div>

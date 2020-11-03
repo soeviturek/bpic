@@ -1,0 +1,56 @@
+<div class="bank_sign">
+    <div class="info-text bank-select ipt-select">
+        <label>银行</label>
+        <div class="ipt-select">
+            <select style="opacity: 1;">
+                <option value="">请选择开户银行卡</option>
+<!--                 <option value="CCBANK">银行</option>-->
+<!--                 <option value="">中国建设银行</option>-->
+            </select>
+        </div>
+        <i class="iconfont icon-jiantou narrow"></i>
+    </div>
+
+<!--    <div class="info-text bank-branch ipt-select">-->
+<!--        <label>银行卡支行</label>-->
+<!--&lt;!&ndash;        <input type="text" class="bank-branch" name="bank-branch" placeholder="请选择银行卡支行" readonly>&ndash;&gt;-->
+<!--        <div class="ipt-select">-->
+<!--            <select style="opacity: 1;">-->
+<!--                <option value="">请选择银行卡支行</option>-->
+<!--                &lt;!&ndash;                 <option value="CCBANK">银行</option>&ndash;&gt;-->
+<!--                &lt;!&ndash;                 <option value="">中国建设银行</option>&ndash;&gt;-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <i class="iconfont icon-jiantou narrow"></i>-->
+<!--    </div>-->
+
+    <div class="info-text">
+        <label>银行卡支行</label>
+        <input type="text"  tittle="" value="" name="bank-branch" class="select-bank"  readonly>
+        <div class="bank-content">
+            <ul class="bank-con">
+                <li><input type="text" class="bank-branch" placeholder="请输入所在支行"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-text">
+        <label>银行卡卡号</label>
+        <input type="number"  name="bank-cardno" class="bank-cardno" placeholder="请输入银行卡卡号" maxlength="30">
+    </div>
+    <div class="info-text bank">
+        <div class="card-item">
+            <p>银行卡影像</p>
+            <div class="card-on must-up" card-type="bank">
+                <i class="iconfont icon-untitled44 add"></i>
+                <img src="" hidden>
+                <input type="file" class="fileImg" name="" card-type="42" accept="image/*"/>
+            </div>
+        </div>
+    </div>
+    <p class="info_tip"><span>!</span>银行支行和银行卡号不填写或填写错误，都可能影响工资的正常发放</p>
+    <div class="reset-bank">清空</div>
+    <div class="submit-bank">确认</div>
+
+</div>
+

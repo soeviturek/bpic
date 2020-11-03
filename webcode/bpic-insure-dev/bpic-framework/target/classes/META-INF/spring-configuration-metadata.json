@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource.druid.master",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.bpic.framework.config.DruidConfig",
+      "sourceMethod": "masterDataSource(com.bpic.framework.config.properties.DruidProperties)"
+    },
+    {
+      "name": "spring.datasource.druid.slave",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.bpic.framework.config.DruidConfig",
+      "sourceMethod": "slaveDataSource(com.bpic.framework.config.properties.DruidProperties)"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

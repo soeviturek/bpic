@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=100%, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>线上报聘</title>
+    <link rel="stylesheet" href="../../css/icon/iconfont.css">
+    <link rel="stylesheet" href="../../css/fonts/iconfont.css">
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../lib/swiper/swiper.css">
+    <link type="text/css" rel="stylesheet" href='../../css/preset.css'>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link type="text/css" rel="stylesheet" href="../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <script type="text/javascript">
+        if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                var phoneScale = parseInt(window.screen.width) / 375;
+                document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=375, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=375, user-scalable=0, target-densitydpi=device-dpi">');
+        }
+
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+        function onDeviceReady() {
+            document.addEventListener("resume", onResume, false);
+        }
+
+        function onResume() {
+            //回到前台后  调用这里
+            console.log("-----onResume-----");
+            try {
+                Cordova.cordovaComplete = true;
+                navigator.splashscreen.hide();
+            } catch (e) {
+                console.log("exec=============" + e.message)
+            }
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+<!--盒子容器-->
+<div class="wrapper">
+    <!-- 头部 -->
+    <div class="header">
+        <div class="back">
+            <i class="iconfont icon-back"></i>
+        </div>
+        <div class="title"></div>
+    </div>
+
+    <!-- 内容区 -->
+    <div class="main"></div>
+</div>
+<!--<div class="dev-mask">-->
+    <!--<span>正在开发中，敬请期待。。。</span>-->
+<!--</div>-->
+<!--盒子容器-->
+<script src="../../lib/jquery.min.js"></script>
+<script src="../../lib/zepto.min.js"></script>
+<script src="../../lib/seajs/sea.js"></script>
+<script src="../../lib/swiper/swiper.js"></script>
+<script src="../../lib/ebtJs.js"></script>
+<!--<script src="../../lib/pdf.js"></script>-->
+<!--<script src="../../lib/pdf.worker.js"></script>-->
+<script src="../../lib/common/common.js"></script>
+<!--<script src="../../lib/cordova/cordova.js"></script>-->
+<script src="../../lib/vconsole.min.js"></script>
+<script src="../../lib/swiper.min.js"></script>
+<script src="../../lib/mobileSelect/json.js"></script>
+<script src="../../lib/mobileSelect/jsonExchange.js"></script>
+<script src="../../lib/mobileSelect/mPicker.js"></script>
+<script src="../../lib/conversion.js"></script>
+<script>
+    var dateTag = new Date();
+    seajs.config({
+        base: '../../',
+        alias: {
+            'interface': 'utils/interface',
+            'validation': 'utils/validation',
+            'seajsText': 'lib/seajs/seajs-text',
+            'seajsCss': 'lib/seajs/seajs-css',
+            'zeptoTouch': 'lib/zepto.touch',
+            'zeptoMd5': 'lib/zepto.md5',
+            'doT': 'lib/doT.min',
+            /*   'cordova': 'lib/cordova/cordova',*/
+            'hammer': 'lib/hammer.min',
+            'dropload': 'lib/dropload',
+            'moment': 'lib/moment.min',
+            'base64': 'lib/base64',
+            'datepicker': 'lib/LCalendar.min',
+            'swiper': 'lib/swiper.min',
+            'echarts': 'lib/echarts.min',
+            'BScroll': 'lib/bscroll.min',
+            'signJs': 'lib/jSignature.min.noconflict',
+//          'pdfJs':'lib/pdf.js',
+            'conversion':'lib/conversion.js',
+        },
+        paths: {},
+        preload: [
+            'common'
+        ],
+        map: [
+            [/^(.*\.(?:css|js|html))(.*)$/i, '$1?' + dateTag.getTime()]
+        ]
+    });
+    seajs.use('./index.js')
+</script>
+</body>
+</html>

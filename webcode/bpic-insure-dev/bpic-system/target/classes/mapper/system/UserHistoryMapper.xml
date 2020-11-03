@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.UserHistoryMapper">
+    <select id="selectByPhone" parameterType="String" resultType="com.bpic.common.core.domain.entity.UserHistory">
+        select * from user_history u where u.telphone=#{telPhone}
+    </select>
+
+    <update id="update" parameterType="com.bpic.common.core.domain.entity.UserHistory">
+        update user_history set history = #{history} where telphone =#{telphone}
+    </update>
+
+    <insert id="insert" parameterType="com.bpic.common.core.domain.entity.UserHistory">
+        insert into user_history(telphone,history) values (#{telphone},#{history})
+    </insert>
+
+    <delete id="deleteByTel" parameterType="String">
+        delete from user_history where telphone =#{telphone}
+    </delete>
+</mapper>

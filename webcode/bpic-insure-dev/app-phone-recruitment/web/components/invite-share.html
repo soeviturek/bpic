@@ -1,0 +1,119 @@
+<style>
+    .wrapper {
+        padding-bottom: 0
+    }
+</style>
+<div class="invite invite2">
+
+    <h2>招募邀请</h2>
+    <input type="hidden" value="0" name="isShare">
+    <div class="ipt-select">
+        <i class="iconfont icon-jiantouarrow483"></i>
+        <input type="text" class="ipt-text" name="job" placeholder="拟申请职级" readonly>
+        <select name="protocolposition">
+            <option selected disabled>拟申请职级</option>
+        </select>
+    </div>
+
+    <div class="panel com-info">
+        <h3>公司介绍</h3>
+        <p>上海复深蓝软件股份有限</p>
+        <p>公司，总部位于上海，是</p>
+        <p>一家不断深入保险核心业务</p>
+        <p>加速人工智能在保险场景中落地</p>
+        <p>复深蓝积极探索科技并将之与保险经纪业务融合，科技赋能保险经纪和客户体验。复深蓝为您提供多层次、全覆盖的培育体系，快速、便捷、专业化的精准服务，一站式全方位保险解决方案。</p>
+        <p>复深蓝，期待您的加入！</p>
+    </div>
+
+    <div class="panel input-info">
+        <h3><span>*</span>个人信息</h3>
+        <div class="name">
+            姓名<input type="text" maxlength="50">
+        </div>
+        <div class="sex">
+            性别 <label><input type="radio" name="sex" value="M">男</label> <label><input type="radio" name="sex"
+                    value="F">女</label>
+        </div>
+        <div class="phone">
+            手机<input type="text" maxlength="11">
+        </div>
+        <div class="educational">
+            <label>最高学历</label>
+            <select name="" id="">
+                <option value="">--请选择--</option>
+            </select>
+            <!-- <input type="text" class="" placeholder=""> -->
+        </div>
+        <!-- <div class="city">
+            所在城市<input type="text" class="select-value1">
+        </div>-->
+    </div>
+    <div class="panel experience">
+        <h3>工作经历</h3>
+        <div class="work-years">
+            工作总年限（年）<input type="text" maxlength="2" style="padding-left: 130px">
+        </div>
+        <div class="has_experience">
+            是否有保险公司工作经验
+            <label><input type="radio" name="iswork" value="0" checked>否</label>
+            <label><input type="radio" name="iswork" value="1">是</label>
+        </div>
+        <div class="hidden insurance_years">
+            <label>保险从业年限</label>
+            <select>
+                <option value="" selected="">请选择保险从业年限</option>
+                <option value="1年以下">1年以下</option>
+                <option value="1-3年">1-3年</option>
+                <option value="3-5年">3-5年</option>
+                <option value="5-7年">5-7年</option>
+                <option value="7-10年">7-10年</option>
+                <option value="10年以上">10年以上</option>
+            </select>
+            <!-- <input type="text" class="" placeholder=""> -->
+        </div>
+        <div class="hidden user_number">
+            累计签寿险单的客户量（人）<input type="text" style="padding-left: 210px">
+        </div>
+        <div class="hidden work_number">
+            最多同时辅导/管理人力（人）<input type="text" style="padding-left: 210px">
+        </div>
+        <div class="s_etime ex_time hidden">
+            <label>起止时间</label> 
+            <input type="text" data-time="on" value="" name="endTime" class=""
+                placeholder="结束时间" readonly=""> 
+                <span>~</span>
+            <input type="text" data-time="on" value="" name="startTime"
+                class="" placeholder="开始时间" readonly="">
+        </div>
+        <div class="hidden company">
+            公司<input type="text">
+        </div>
+        <div class="hidden department">
+            部门<input type="text">
+        </div>
+        <div class="hidden job">
+            职位<input type="text">
+        </div>
+    </div>
+    <div class="panel recent_wort">
+        <h3>最近一份工作</h3>
+        <div class="s_etime rw_time">
+            <label>起止时间</label> 
+            <input type="text" data-time="on" value="" name="endTime" class=""
+                placeholder="结束时间" readonly=""> 
+                <span>~</span>
+            <input type="text" data-time="on" value="" name="startTime"
+                class="" placeholder="开始时间" readonly="">
+        </div>
+        <div class="company">
+            公司<input type="text">
+        </div>
+        <div class="department">
+            部门<input type="text">
+        </div>
+        <div class="job">
+            职位<input type="text">
+        </div>
+    </div>
+    <div id="submit">立刻加入</div>
+</div>

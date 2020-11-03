@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.AdviceFeedbackMapper">
+    <insert id="save" parameterType="com.bpic.system.domain.AdviceFeedback">
+        insert into advice_feedback(
+        <if test="advice_type != null and advice_type != ''">advice_type,</if>
+        <if test="advice_info != null and advice_info != ''">advice_info,</if>
+        <if test="picture != null and picture != ''">picture,</if>
+        <if test="cellphone != null and cellphone != ''">cellphone,</if>
+        update_time)
+        values(
+        <if test="advice_type != null and advice_type != ''">#{advice_type},</if>
+        <if test="advice_info != null and advice_info != ''">#{advice_info},</if>
+        <if test="picture != null and picture != ''">#{picture},</if>
+        <if test="cellphone != null and cellphone != ''">#{cellphone},</if>
+        sysdate())
+    </insert>
+
+    <select id="queryOne" parameterType="String" resultType="com.bpic.system.domain.AdviceFeedback">
+        select id,advice_type,advice_info,picture,cellphone,update_time from advice_feedback
+        where cellphone = #{cellphone}
+    </select>
+
+    <select id="queryList" parameterType="String" resultType="com.bpic.system.domain.AdviceFeedback">
+        select id,advice_type,advice_info,picture,cellphone,update_time from advice_feedback
+        where advice_type = #{advice_type}
+    </select>
+</mapper>

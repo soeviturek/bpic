@@ -1,0 +1,59 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bpic.system.mapper.SysProductImageMapper">
+
+    <resultMap id="BaseMap" type="com.bpic.common.core.domain.entity.ProductImage">
+        <id property="id" column="id"/>
+        <result property="productCode" column="product_code" />
+        <result property="channelCode" column="channel_code" />
+        <result property="image" column="image" />
+        <result property="productGroupCode" column="product_group_code" />
+        <result property="productName" column="product_name" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creater" column="creater" />
+        <result property="updater" column="updater" />
+    </resultMap>
+
+    <select id="selectByConditions" parameterType="String" resultMap="BaseMap">
+        select p.* from product_image p where 1=1
+        <if test="productCode!=null and productCode!='' ">
+            and p.product_code=#{productCode}
+        </if>
+        <if test="productName!=null and productName!='' ">
+            and p.product_name like concat('%',#{productName},'%')
+        </if>
+    </select>
+
+    <update id="updateProductImage" parameterType="String">
+        update product_image p set p.image=#{url},p.update_time=sysdate() where p.product_code=#{id}
+    </update>
+
+    <insert id="insertProductImage" parameterType="com.bpic.common.core.domain.entity.ProductImage">
+        insert into product_image (
+        <if test="productCode != null and productCode != ''">product_code,</if>
+        <if test="channelCode != null and channelCode != ''">channel_code,</if>
+        <if test="image != null and image != ''">image,</if>
+        <if test="productGroupCode != null and productGroupCode != ''">product_group_code,</if>
+        <if test="productName != null and productName != ''">product_name,</if>
+        <if test="creater != null and creater != ''">creater,</if>
+        <if test="updater != null and updater != ''">updater,</if>
+        create_time)
+        values (
+        <if test="productCode != null and productCode != ''">#{productCode},</if>
+        <if test="channelCode != null and channelCode != ''">#{channelCode},</if>
+        <if test="image != null and image != ''">#{image},</if>
+        <if test="productGroupCode != null and productGroupCode != ''">#{productGroupCode},</if>
+        <if test="productName != null and productName != ''">#{productName},</if>
+        <if test="creater != null and creater != ''">#{creater},</if>
+        <if test="updater != null and updater != ''">#{updater},</if>
+        sysdate());
+
+    </insert>
+
+    <select id="selectByProductCode" parameterType="String" resultMap="BaseMap">
+         select p.* from product_image p where p.product_code=#{id}
+    </select>
+
+</mapper>

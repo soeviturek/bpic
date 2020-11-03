@@ -1,0 +1,355 @@
+.recrite-view .fl {
+    float: left;
+    width: 250px;
+    text-align: left;
+}
+
+.recrite-view .fr {
+    float: right;
+    font-size: 13px;
+}
+
+.recrite-view .head {
+    padding: 20px;
+    background-image: linear-gradient(-180deg, #004098 0%, #0056CB 99%);
+    height: 70px;
+}
+
+.recrite-view .head .left {
+    float: left;
+}
+
+.head .right {
+    float: right;
+    margin-top: 17px;
+    min-width: 100px;
+    height: 28px;
+    line-height: 28px;
+    /* opacity: 0.43; */
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 52px;
+    font-size: 9px;
+    color: #fff;
+    padding: 0 5px;
+}
+
+.head .portrait {
+    border-radius: 50%;
+    background: #ccc;
+    width: 56px;
+    height: 56px;
+    margin-right: 16px;
+    float: left;
+    position: relative;
+}
+
+.head .portrait i {
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    color: #4A90E2
+}
+
+.head .rank {
+    font-family: PingFangHK-Medium;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.head .right i {
+    color: #fff;
+    font-size: 12px;
+}
+.head .right i.icon-renyuanzhunbei{font-size: 14px}
+
+.head .right span:nth-of-type(1) {
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+}
+
+.head .right span:nth-of-type(2) {
+    opacity: 0.84;
+    font-family: PingFangSC-Medium;
+    font-size: 9px;
+}
+
+.content .arrow {
+    height: 22px;
+    line-height: 22px;
+    font-size: 13px;
+    text-align: center;
+    background: #fafafa;
+    transform: rotate(180deg);
+    border-top: 1px solid #F0F0F0;
+
+}
+
+.recrite-view .content .arrow i {
+    color: #D2D2D2;
+}
+
+.recrite-view .content .bottom-content {
+    padding: 13px;
+    background: #f0f0f0;
+}
+
+.recrite-view .content .bottom-content .details {
+    background: #FFFFFF;
+    box-shadow: 0 1px 19px 0 rgba(199, 199, 199, 0.15);
+    border-radius: 10px;
+    padding: 30px 19px;
+}
+
+.recrite-view .details ul li {
+    overflow: hidden;
+    position: relative;
+}
+
+.current-node{
+	
+}
+/*.details ul li .over-flow i{display: none}*/
+/*.details ul li.on .over-flow i{display: block}*/
+
+
+.content .bottom-content .details li .time {
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    color: #9B9B9B;
+    text-align: left;
+    width: 20%;
+}
+
+.content .bottom-content .details li .time span {
+    font-size: 12px;
+
+}
+
+.recrite-view .content .bottom-content .details li .time em {
+    font-size: 12px;
+
+}
+
+.recrite-view .content .bottom-content .details .left-fathter {
+    width: 10%;
+}
+
+.recrite-view .content .bottom-content .details .left {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    line-height: 24px;
+    border-radius: 15px;
+    text-align: center;
+    margin-right: 10px;
+    /* padding-top: 3.5px; */
+    background-color: #FFFFFF;
+    font-size: 22px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.bor_1FD09B {
+    border: 1px solid #D0D0D0;
+}
+
+.content .bottom-content .details li .right p:nth-child(2)::before {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 105%;
+    border-left: 3px dashed #F2F2F2;
+    position: absolute;
+    left: -20px;
+    top: -2px;
+}
+.content .bottom-content .details li:last-child .right p:nth-child(2)::before  {
+    display: none;
+}
+
+.content .bottom-content .details li:nth-child(4) .time {
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    color: #4A4A4A;
+    text-align: left;
+}
+
+.recrite-view .content .bottom-content .work-details li {
+    font-family: PingFangHK-Medium;
+    font-size: 12px;
+    color: #666666;
+    letter-spacing: 0;
+    line-height: 30px;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px
+}
+.work_msg{
+    position: relative;
+    padding-right: 10px;
+    padding-top: 16px;
+}
+.work_msg p{
+    line-height: 28px;
+    height: 28px;
+    color:rgba(102,102,102,1);
+    font-size:12px;
+}
+.work_msg p span:last-child{
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-width: 80%;
+}
+.recrite-view .content .bottom-content .work-details li{
+    position: relative !important;
+}
+.right_icon{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 56px;
+    max-height: 45px;
+}
+
+ 
+
+.content .bottom-content .details li:last-child .left::before {
+    height: 0;
+}
+
+.pass .right p:nth-child(2)::before {
+    border-left: 3px solid #F2F2F2 !important;
+}
+
+
+.bor_4A90E2 {
+    /*border: 1px solid #4A90E2;*/
+}
+
+.col_4A90E2 {
+    /*color: #4A90E2;*/
+}
+
+
+.content .bottom-content .details .left i {
+    text-align: center;
+    font-size: 22px;
+    color: #D0D0D0;
+}
+
+.content .bottom-content .details .right {
+    font-size: 16px;
+    /* color: #17A87C; */
+    letter-spacing: 0;
+    /*line-height: 30px;*/
+    width: 70%;
+
+}
+
+.content .bottom-content .details .right p:nth-child(1) span:nth-child(1) {
+    font-family: PingFangHK-Medium;
+    font-size: 13px;
+    color: #666666;
+    letter-spacing: 0;
+    text-align: left;
+    margin-right: 11px;
+    font-weight: 700;
+}
+
+.content .bottom-content .details .on .right p:nth-child(1) span:nth-child(1) {
+    color: #666666;
+}
+
+.content .bottom-content .details .right p:nth-child(1) span:nth-child(2) {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #666666;
+    font-weight: 700;
+}
+
+/*.content .bottom-content .details .right p:nth-child(1) span:nth-child(3) {
+    font-family: PingFangHK-Medium;
+    font-size: 13px;
+    color: #4DBBAA;
+    letter-spacing: 0;
+    text-align: left;
+}*/
+
+.content .bottom-content .details .right p:nth-child(2) {
+    font-family: PingFangHK-Regular;
+    font-size: 12px;
+    color: #9B9B9B;
+    letter-spacing: 0;
+    text-align: justify;
+    line-height: 18px;
+    margin-top: 6px;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.content .bottom-content .details .right p:nth-child(2) span {
+    /*display: none;*/
+    display: inline-block;
+    width: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.content .bottom-content .details .right p:nth-child(2) i {
+    color: #9B9B9B;
+    font-size: 5.7px;
+    vertical-align: middle;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+
+}
+.content-details-right  i{
+    font-size: 18px !important;
+    color: #4A90E2 !important;
+}
+.over-flow span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.bottom{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #004098;
+    height: 46px;
+    line-height: 46px;
+    font-family: MicrosoftYaHei;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.curr-img{
+    background: url("../images/chusheng@3x.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.curr-img2{
+    background: url("../images/chusheng@3x.png") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.clearfix img{
+    width: 100%;
+    height: 100%;
+}

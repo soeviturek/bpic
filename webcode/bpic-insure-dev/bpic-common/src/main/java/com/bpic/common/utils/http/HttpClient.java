@@ -155,6 +155,8 @@ public class HttpClient {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+
         return result;
     }
 
@@ -173,7 +175,7 @@ public class HttpClient {
         }
         log.info("==================sendGet请求结束=============end==============");
         return result;
-        
+
     }
 
 
